@@ -1,0 +1,36 @@
+<vbox>
+    <style>
+        @statusLabel {
+            color: red;
+        }
+        @sidebar {
+            background: #999;
+        }
+        @content {
+            background: #777;
+        }
+    </style>
+    <label anon-id="statusLabel"></label>
+    <hbox flex="1">
+        <div anon-id="sidebar">
+            This is the side bar<br/>
+            <ui:ComboManager anon-id="comboManager" />
+            <div anon-id="categoryTreeContainer" flex="1">
+		        <ui:Tree anon-id="categoryTree" />
+		    </div>
+        </div>
+        <vbox anon-id="content" flex="1">
+            <div>This is the content</div>
+            <hbox anon-id="contentActionBar"><ui:ActionBar anon-id="actionBar" class="ActionBar" simple="true"/></hbox>
+            <vbox>
+	            <vbox flex="1">
+	                <ui:DataTable anon-id="dataTable" flex="1" />
+	            </vbox>
+ 	            <hbox anon-id="contentFooter">
+	                <div anon-id="contentDescription" flex="1"></div>
+	                <ui:Paginator anon-id="paginator" />
+	            </hbox>
+            </vbox>
+        </vbox>
+    </hbox>
+</vbox>

@@ -1,0 +1,44 @@
+/* FontAwesome binding for ui icons in framework widget */
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('../../font-awesome/fonts/fontawesome-webfont.eot?v=4.5.0');
+  src: url('../../font-awesome/fonts/fontawesome-webfont.eot?#iefix&v=4.5.0') format('embedded-opentype'), url('../../font-awesome/fonts/fontawesome-webfont.woff2?v=4.5.0') format('woff2'), url('../../font-awesome/fonts/fontawesome-webfont.woff?v=4.5.0') format('woff'), url('../../font-awesome/fonts/fontawesome-webfont.ttf?v=4.5.0') format('truetype'), url('../../font-awesome/fonts/fontawesome-webfont.svg?v=4.5.0#fontawesomeregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+i[ui-icon] {
+	display: inline-block;
+	font: normal normal normal 14px/1 FontAwesome;
+	font-size: inherit;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	font-size: 1em;
+}
+
+i[ui-icon='arrow-down']:before {
+	content: "\f0d7";
+}
+
+i[ui-icon='close']:before {
+    content: "\f00d";
+}
+i[ui-icon='information']:before {
+  content: "\f129";
+}
+i[ui-icon='trash']:before {
+  content: "\f1f8";
+}
+i[ui-icon='chervon-right']:before {
+  content: "\f054";
+}
+i[ui-icon='minus']:before {
+  content: "\f147";
+}
+i[ui-icon='plus']:before {
+    content: "\f196";
+}
+i[ui-icon='cog']:before {
+    content: "\f013";
+}
+

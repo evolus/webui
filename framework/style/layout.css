@@ -1,0 +1,354 @@
+.hbox {
+  flex-direction: row;
+  display: flex;
+}
+.vbox {
+  flex-direction: column;
+  display: flex;
+}
+html {
+  flex-direction: row;
+  display: flex;
+}
+body {
+  flex: 1;
+  flex-direction: column;
+  display: flex;
+  overflow: hidden;
+}
+hbox {
+  flex-direction: row;
+  display: flex;
+}
+vbox {
+  flex-direction: column;
+  display: flex;
+}
+box {
+  display: flex;
+}
+box[orient="vertical"] {
+  flex-direction: column;
+  display: flex;
+}
+box[orient="horizontal"] {
+  flex-direction: row;
+  display: flex;
+}
+vbox > *,
+hbox > *,
+box > * {
+  flex-shrink: 0;
+}
+*[flex='1'] {
+  flex: 1 1 auto;
+}
+*[flex='2'] {
+  flex: 2 1 auto;
+}
+*[flex='3'] {
+  flex: 3 1 auto;
+}
+*[flex='4'] {
+  flex: 4 1 auto;
+}
+*[flex='5'] {
+  flex: 5 1 auto;
+}
+*[flex='6'] {
+  flex: 6 1 auto;
+}
+*[flex='7'] {
+  flex: 7 1 auto;
+}
+*[flex='8'] {
+  flex: 8 1 auto;
+}
+*[flex='9'] {
+  flex: 9 1 auto;
+}
+*[flex='10'] {
+  flex: 10 1 auto;
+}
+hbox.InputRow > * + *,
+hbox.InputRow > * + input[type] {
+  margin-left: 1ex;
+}
+hbox.InputRow {
+  align-items: center;
+}
+footer {
+  flex-direction: row;
+  display: flex;
+  padding: 0.5em;
+}
+footer:after {
+  content: " ";
+  flex: 1;
+  order: 50;
+}
+footer > button[role='primary'] {
+  order: 99;
+  margin-left: 0.3em;
+}
+footer > button:not([role]),
+footer > button[role='dismissal'] {
+  order: 98;
+  margin-left: 0.3em;
+}
+footer > button[role='extra1'] {
+  order: 1;
+  margin-right: 0.3em;
+}
+footer > button[role='extra2'] {
+  order: 2;
+  margin-right: 0.3em;
+}
+footer > button[role='extra3'] {
+  order: 3;
+  margin-right: 0.3em;
+}
+html {
+  height: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  margin: 0px;
+  padding: 0px;
+  height: 100%;
+}
+html {
+  user-select: none;
+  -o-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+}
+label {
+  font-weight: normal;
+}
+
+/* SplitView */
+
+.SplitViewSplitter {
+    cursor: ew-resize;
+}
+.SplitViewSplitter div {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    width: 4px;
+    bottom: -20px;
+    margin-left: -2px;
+}
+.SplitViewSplitter div.Kept,
+.SplitViewSplitter:hover div,
+.SplitViewSplitter:active div {
+    background: rgba(0, 0, 0, 0.1);
+}
+.SplitViewHeld .SplitViewSplitter div {
+    background: rgba(33, 66, 99, 0.6);
+}
+.SplitViewBOTH #dataContainer {
+    border-right: solid 2px transparent;
+}
+.SplitViewBOTH #mapContainerWrapper {
+    border-left: solid 2px transparent;
+}
+
+/* TREE WIDGET */
+
+.Tree label {
+    margin-bottom: 0px;
+    font-weight: normal;
+    padding:3px;
+}
+.Tree .SelectableItem label {
+    border-radius: 2px;
+    line-height: 1em;
+}
+.Tree .ItemText.Selected {
+    padding-bottom: 3px;
+    padding-top: 3px;
+}
+.Tree .ItemText.Selected label {
+    background: #41B3ED;
+}
+.Tree .SelectableItem * {
+    cursor: pointer;
+    font-weight: bold;
+}
+.Tree .SelectableItem:hover label {
+    background: #DEF2FF;
+}
+.Tree .ItemText.Selected:hover label {
+    background: #44BBF7;
+}
+
+.Tree .ItemText.Selected label {
+    color: #fff;
+}
+
+.Tree .ItemText.Disabled label {
+    color: gray;
+}
+
+.Tree .Title .ItemText {
+    display: inline;
+}
+.Tree .Title {
+    white-space: nowrap;
+}
+.Tree .IconicLabel * {
+    vertical-align: middle;
+}
+.Tree .IconicLabel img {
+    width: 1em;
+    height: 1em;
+}
+
+.Tree .Children .Children .Title {
+    xbackground: url(../images/tree-line-normal.png) 0% 50% no-repeat;
+}
+.Tree .Children .Children .LastChildTitle {
+    xbackground: url(../images/tree-line-last.png) 0% 50% no-repeat;
+}
+.Tree .Children .Children {
+    xbackground: url(../images/tree-line-children.png) 0% 0% repeat-y;
+}
+
+.Tree .Title * {
+    vertical-align: middle;
+}
+.Tree .Title .Checkbox {
+    margin: 0px;
+    padding: 0px;
+    margin-right: 3px;
+    width: 13px;
+    height: 13px;
+}
+.Tree .Chevron .Down,
+.Tree .Chevron .Right {
+    display: inline-block;
+}
+.Tree .NoChild .Chevron .Down,
+.Tree .NoChild .Chevron .Right {
+    visibility: hidden;
+}
+
+.Tree .Chevron .Right {
+}
+.Tree .CollapsedTitle .Down,
+.Tree .ExpandedTitle .Right {
+    display: none;
+}
+.Tree .ExpandedTitle .Down,
+.Tree .CollapsedTitle .Right {
+    display: inline-block;
+}
+.Tree .Title .Chevron {
+    font-size: 13px;
+    padding: 0em 0.3em 0em 0.6em;
+    cursor: pointer;
+    color: #777;
+}
+.Tree .Children {
+    padding-left: 15px;
+}
+.Tree .RootChildren {
+    padding-left: 0px;
+}
+.Tree .CollapsedChildren {
+    display: none;
+}
+.Tree .Checkbox {
+    display: none;
+}
+.Tree .Children .Children {
+    position: relative;
+}
+.Tree .Children .Children:before {
+    content: "";
+    position: absolute;
+    top: -0.2em;
+    bottom: 0.45em;
+    left: 0.8em;
+    width: 1px;
+    border-left: dotted 1px #CCC;
+}
+.Tree .Children .Children .Title {
+    position: relative;
+}
+.Tree .Children .Children .Title:before {
+    content: "";
+    position: absolute;
+    top: 0.6em;
+    height: 1px;
+    left: -0.1em;
+    width: 0.8em;
+    border-top: dotted 1px #CCC;
+}
+.Tree .Children .Children .NoChild:before {
+    width: 1.6em;
+}
+.Tree .Children .Children .LastChild {
+    position: relative;
+}
+.Tree .Children .Children .LastChild:before {
+    content: "";
+    position: absolute;
+    top: 0.9em;
+    bottom: 0px;
+    left: -0.4em;
+    width: 5px;
+    xbackground: #fff;
+}
+
+.CheckableTree .Checkbox {
+    display: inline;
+}
+.FamilyNotMSIE .CheckableTree .Checkbox {
+    margin-top: 3px;
+}
+.CheckableTree .Checkbox[disabled] {
+    opacity: 0.4;
+}
+
+
+/* .Tree .Children .Children:before {
+    content: "";
+    position: absolute;
+    top: -0.3em;
+    bottom: 0.7em;
+    left: 1em;
+    width: 1px;
+    border-left: dotted 1px #CCC;
+}
+.Tree .Children .Children .Title {
+    position: relative;
+}
+.Tree .Children .Children .Title:before {
+    content: "";
+    position: absolute;
+    top: 0.8em;
+    height: 1px;
+    left: -0.2em;
+    width: 0.9em;
+    border-top: dotted 1px #CCC;
+}
+.Tree .Children .Children .NoChild:before {
+    width: 1.6em;
+}
+.Tree .Children .Children .LastChild {
+    position: relative;
+}
+.Tree .Children .Children .LastChild:before {
+    content: "";
+    position: absolute;
+    top: 0.9em;
+    bottom: 0px;
+    left: -0.4em;
+    width: 5px;
+    background: #fff;
+} */

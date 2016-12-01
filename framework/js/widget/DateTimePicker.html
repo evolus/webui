@@ -1,0 +1,181 @@
+<hbox>
+    <style>
+        body .DateTimePickerPopup @header > .Container > .Input {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        body .DateTimePickerPopup @header > .Container {
+            position: relative;
+        }
+        body .DateTimePickerPopup @header > .Container > label {
+            position: absolute;
+            left: 0px;
+            top: 1px;
+            line-height: 2.23em;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+            font-weight: bold;
+            width: 100%;
+        }
+        body .DateTimePickerPopup @header[active] > .Container > .Input,
+        body .DateTimePickerPopup @header[focused] > .Container > .Input,
+        body .DateTimePickerPopup @header:hover > .Container > .Input {
+            opacity: 1;
+        }
+        body .DateTimePickerPopup @header[focused] > .Container > label,
+        body .DateTimePickerPopup @header[active] > .Container > label,
+        body .DateTimePickerPopup @header:hover > .Container > label {
+            opacity: 0;
+        }
+        body .DateTimePickerPopup @monthContainer {
+            width: 7.5em;
+        }
+        body .DateTimePickerPopup @monthInput {
+            padding-left: 0.3em;
+            padding-right: 0.3em;
+            box-size: border-box;
+        }
+        body .DateTimePickerPopup @yearInput {
+            width: 5em;
+            margin-left: 0.5ex;
+            margin-right: 1em;
+        }
+        body .DateTimePickerPopup @nextMonthButton {
+            margin-left: 0.2ex;
+        }
+
+        body .DateTimePickerPopup @dayGrid {
+            margin-top: 1em;
+            cursor: pointer;
+        }
+        body .DateTimePickerPopup @dayGrid > hbox > span + span {
+            margin-left: 1px;
+        }
+        body .DateTimePickerPopup @dayGrid > hbox > span {
+            display: inline-block;
+            text-align: center;
+            height: 2em;
+            line-height: 2em;
+            box-sizing: border-box;
+            width: 3em;
+            position: relative;
+        }
+        body .DateTimePickerPopup @dayGrid > hbox > span[wd="6"] {
+            color: #336699;
+        }
+        body .DateTimePickerPopup @dayGrid > hbox > span[wd="0"] {
+            color: #660000;
+        }
+        body .DateTimePickerPopup @dayGrid > hbox > span:hover {
+            background: #EEE;
+        }
+        body .DateTimePickerPopup @dayGrid > hbox > span.Inactive {
+            opacity: 0.3;
+        }
+        body .DateTimePickerPopup @dayGrid > hbox > span.Current {
+            background: #FFD40B;
+        }
+        body .DateTimePickerPopup @dayGrid > hbox > span.Current:hover {
+            background: #D3AF08;
+        }
+        body .DateTimePickerPopup @dayGrid > hbox > span.Today {
+            border: solid 2px #FFD40B;
+        }
+        body .DateTimePickerPopup @dayGrid > hbox > span.Today.Current:before {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            bottom: 0px;
+            left: 0px;
+            border: solid 1px #FFFFFF;
+
+            content: " ";
+            display: block;
+            overflow: hidden;
+        }
+        body .DateTimePickerPopup @dayGrid > hbox {
+            margin-top: 1px;
+        }
+        body .DateTimePickerPopup @weakDayRow {
+            background: #EEE;
+            font-weight: bold;
+            text-shadow: 1px 1px 0px #FFF;
+            margin-bottom: 0.5ex;
+        }
+        @pickerButton {
+            border-top-left-radius: 0px;
+            border-bottom-left-radius: 0px;
+            border-left: none;
+        }
+        @input {
+            border-top-right-radius: 0px;
+            border-bottom-right-radius: 0px;
+        }
+
+        body .DateTimePickerPopup @timeRow {
+            align-items: center;
+            margin-top: 2ex;
+        }
+        body .DateTimePickerPopup @timeRow > i {
+            margin-right: 1em;
+        }
+        body .DateTimePickerPopup @timeRow input[type="text"],
+        body .DateTimePickerPopup @timeRow @amInput {
+            padding: 0.2em 0.4em;
+            text-align: center;
+        }
+        body .DateTimePickerPopup @timeRow input[type="text"] {
+            width: 2.8em;
+        }
+        body .DateTimePickerPopup @timeRow input + span {
+            margin: 0em 0.3ex;
+            opacity: 0.5;
+        }
+        body .DateTimePickerPopup @timeRow @amInput {
+            margin-left: 0.6ex;
+        }
+
+        body .DateTimePickerPopup @timeRow.Disabled {
+            display: none;
+        }
+
+        body .DateTimePickerPopup @timeRow.WithoutMinute @hourInput + span,
+        body .DateTimePickerPopup @timeRow.WithoutMinute @minuteInput ,
+        body .DateTimePickerPopup @timeRow.WithoutSecond @minuteInput + span,
+        body .DateTimePickerPopup @timeRow.WithoutSecond @secondInput,
+        body .DateTimePickerPopup @timeRow.Use24H @amInput {
+            display: none;
+        }
+    </style>
+    <input type="text" flex="1" anon-id="input" /><button type="button" anon-id="pickerButton"><i class="fa fa-calendar"></i></button>
+    <ui:Popup anon-id="pickerPopup">
+        <vbox>
+            <hbox anon-id="header">
+                <div anon-id="monthContainer" class="Container" flex="1">
+                    <label anon-id="monthDisplay">November</label>
+                    <hbox class="Input">
+                        <ui:ComboManager anon-id="monthInput" />
+                        <input type="text" anon-id="yearInput" />
+                    </hbox>
+                </div>
+                <button type="button" anon-id="prevMonthButton" title="Previous month"><i class="fa fa-caret-left"></i></button>
+                <button type="button" anon-id="nextMonthButton" title="Next month"><i class="fa fa-caret-right"></i></button>
+            </hbox>
+            <vbox anon-id="dayGrid">
+                <hbox anon-id="weakDayRow"></hbox>
+            </vbox>
+            <hbox anon-id="timeRow">
+                <i class="fa fa-clock-o"></i>
+                <input type="text" anon-id="hourInput" />
+                <span>:</span>
+                <input type="text" anon-id="minuteInput" />
+                <span>:</span>
+                <input type="text" anon-id="secondInput" />
+                <ui:ComboManager anon-id="amInput" />
+                <span flex="1"></span>
+                <button type="button" anon-id="selectButton">Select</button>
+            </hbox>
+        </vbox>
+    </ui:Popup>
+</hbox>

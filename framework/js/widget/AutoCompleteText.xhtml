@@ -1,0 +1,23 @@
+<input type="text">
+    <style>
+        body @popupContainer.AutoCompleteTextPopup {
+            padding: 0.2em;
+        }
+
+        body @list .Item {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding: 0.3em;
+            cursor: default;
+        }
+        body @list .Item.Selected {
+            background: #FFD40B;
+            color: #000;
+        }
+    </style>
+    <ui:Popup anon-id="popup">
+        <vbox anon-id="list">
+        </vbox>
+    </ui:Popup>
+</input>

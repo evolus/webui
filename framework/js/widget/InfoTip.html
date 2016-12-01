@@ -1,0 +1,113 @@
+<div>
+    <style>
+        body .widget_InfoTip {
+          position: relative;
+          opacity: 0.999999;
+          transition: opacity 0.4s;
+        }
+        @tipContent {
+            box-sizing: border-box;
+            padding: 1em;
+            padding-right: 2.5em;
+            border-radius: 0.2em;
+        }
+
+        @tipContent,
+        @before {
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        }
+
+
+        @tipContent,
+        @before,
+        @after {
+            border: 1px solid #dadada;
+            background: #FCF6E6;
+        }
+
+        @before {
+            z-index: -1;
+        }
+
+        @before,
+        @after {
+          content: '';
+          display: block;
+          position: absolute;
+          width: 15px;
+          height: 15px;
+          overflow: hidden;
+        }
+
+        @before,
+        @after {
+          top: 100%;
+          left: 1.5em;
+          margin-top: -7px;
+          border-top: 0;
+          border-left: 0;
+          -webkit-transform: rotate(45deg);
+          -moz-transform: rotate(45deg);
+          -ms-transform: rotate(45deg);
+          -o-transform: rotate(45deg);
+          transform: rotate(45deg);
+        }
+
+
+        body .widget_InfoTip[position="below"]:before,
+        body .widget_InfoTip[position="below"]:after {
+          bottom: 100%;
+          left: 1.5em;
+          margin-bottom: -7px;
+          border-bottom: 0;
+          border-right: 0;
+          -webkit-transform: rotate(45deg);
+          -moz-transform: rotate(45deg);
+          -ms-transform: rotate(45deg);
+          -o-transform: rotate(45deg);
+          transform: rotate(45deg);
+        }
+
+        body .widget_InfoTip[position="before"]:before,
+        body .widget_InfoTip[position="before"]:after {
+          top: 1.5em;
+          left: 100%;
+          margin-left: -7px;
+          border-bottom: 0;
+          border-left: 0;
+        }
+
+        body .widget_InfoTip[position="after"]:before,
+        body .widget_InfoTip[position="after"]:after {
+          top: 1.5em;
+          left: 0;
+          margin-left: -7px;
+          border-top: 0;
+          border-right: 0;
+        }
+
+        body @tipClose {
+            width: 2em;
+            height: 2em;
+            text-align: center;
+            line-height: 2em;
+            margin-left: 1em;
+            font-weight: bold;
+            padding: 0em;
+            position: absolute;
+            top: 0.2em;
+            right: 0.2em;
+            cursor: pointer;
+        }
+        body @tipClose:hover {
+            color: #F00;
+            background: rgba(0, 0, 0, 0.05);
+        }
+    </style>
+    <div anon-id="before"></div>
+    <div anon-id="tipContent">
+        <i anon-id="tipClose" class="fa fa-times"></i>
+        <div anon-id="tipBody"></div>
+    </div>
+    <div anon-id="after"></div>
+</div>

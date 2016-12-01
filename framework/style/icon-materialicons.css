@@ -1,0 +1,54 @@
+/* MaterialDesignIcons binding for ui icons in framework widget */
+@font-face {
+	font-family: "Material Design Icons";
+	src: url("../../materialdesignicons/fonts/materialdesignicons-webfont.eot?v=1.7.22");
+	src: url("../../materialdesignicons/fonts/materialdesignicons-webfont.eot?#iefix&v=1.7.22") format("embedded-opentype"), url("../../materialdesignicons/fonts/materialdesignicons-webfont.woff2?v=1.7.22") format("woff2"), url("../../materialdesignicons/fonts/materialdesignicons-webfont.woff?v=1.7.22") format("woff"), url("../../materialdesignicons/fonts/materialdesignicons-webfont.ttf?v=1.7.22") format("truetype"), url("../../materialdesignicons/fonts/materialdesignicons-webfont.svg?v=1.7.22#materialdesigniconsregular") format("svg");
+	font-weight: normal;
+	font-style: normal;
+}
+i[ui-icon]:before {
+	display: inline-block;
+	font: normal normal normal 24px/1 "Material Design Icons";
+	font-size: inherit;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	transform: translate(0, 0);
+}
+
+i[ui-icon='arrow-down']:before {
+    content: "\F35D";
+}
+
+i[ui-icon='close']:before {
+    content: "\F157";
+}
+i[ui-icon='information']:before {
+    content: "\F2FC";
+}
+i[ui-icon='trash']:before {
+    content: "\F1C0";
+}
+i[ui-icon='chevron-right']:before {
+    content: "\F142";
+}
+i[ui-icon='minus']:before {
+    content: "\F377";
+}
+i[ui-icon='plus']:before {
+    content: "\F419";
+}
+i[ui-icon='cog']:before {
+    content: "\F493";
+}
+i[ui-icon='info']:before {
+    content: "\F2FC";
+}
+i[ui-icon='error']:before {
+    content: "\F159";
+}
+i[ui-icon='help']:before {
+    content: "\F2D7";
+}
+
+

@@ -1,0 +1,45 @@
+<button>
+    <style>
+        body @popupContainer.ComboManagerPopup {
+            padding: 0.2em;
+        }
+
+        @this {
+            white-space: nowrap;
+            text-align: left;
+            position: relative;
+        }
+        @this > i {
+            margin-left: 0.5em;
+            line-height: 1em;
+            font-size: 1em;
+            position: absolute;
+            top: 50%;
+            margin-top: -0.5em;
+            right: 0.5em;
+        }
+
+        @buttonDisplay {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            padding-right: 1.5em;
+        }
+        body @list .Item {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding: 0.3em;
+            cursor: default;
+        }
+        body .ComboManagerPopup @list .Item:hover {
+            background: #FFD40B;
+            color: #000;
+        }
+    </style>
+    <span anon-id="buttonDisplay"></span><i ui-icon="arrow-down"></i>
+    <ui:Popup anon-id="popup">
+        <vbox anon-id="list">
+        </vbox>
+    </ui:Popup>
+</button>

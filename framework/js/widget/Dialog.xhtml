@@ -1,0 +1,173 @@
+<div class="Sys_DialogContainer">
+    <style>
+        body .Sys_DialogContainer {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            display: none;
+        }
+        body .Sys_DialogOverlay {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            bottom: 0px;
+            cursor: default;
+            z-index: 2;
+            background: rgba(0, 0, 0, 0.05);
+        }
+        body @dialogFrame {
+            position: absolute;
+            border: none;
+            border-radius: 0.35ex;
+            background: #FFFFFF;
+            box-shadow: 0px 0px 1em rgba(0, 0, 0, 0.5);
+            transition: opacity 0.4s;
+            box-sizing: border-box;
+            cursor: default;
+            z-index: 2;
+            overflow: hidden;
+        }
+        body @dialogFrame:focus {
+            outline: none;
+        }
+
+        body @dialogFrame @dialogClose {
+            width: 1.5em;
+            height: 1.5em;
+            text-align: center;
+            line-height: 1.5em;
+            margin-left: 1em;
+            margin-top: 0.3em;
+            font-weight: bold;
+            font-size: 1em;
+            padding: 0em;
+            color: #333;
+            opacity: 0.2;
+        }
+        body @dialogFrame @dialogClose:hover {
+            color: #F00;
+            opacity: 0.5;
+            background: rgba(0, 0, 0, 0.05);
+        }
+        body @dialogFrame @dialogTitle {
+            color: #000;
+            display: block;
+        }
+        body @dialogFrame @dialogSubTitle {
+            color: #000;
+            display: block;
+            opacity: 0.7;
+        }
+        body @dialogFrame @dialogTitleContainer {
+            padding: 1.2em;
+        }
+        body @dialogFrame @dialogHeaderPane {
+            margin-bottom: 0em;
+            background: @app_bg;
+            border-top-left-radius: 0.35ex;
+            border-top-right-radius: 0.35ex;
+        }
+        body @dialogFrame @dialogBody {
+            padding: 1.2em;
+        }
+        body @dialogFrame @dialogHeaderPane {
+            padding: 0.4em 0.7em;
+            background: @app_bg;
+        }
+        body @dialogFrame @dialogBody {
+            padding-bottom: 0em;
+        }
+        body @dialogFrame @dialogFooter {
+            padding: 0.9em;
+            margin-top: 1.4em;
+            background: lighten(@app_bg, 2%);
+            border-bottom-left-radius: 0.35ex;
+            border-bottom-right-radius: 0.35ex;
+        }
+        body @dialogFooter > hbox > * + * {
+            margin-left: 1ex;
+        }
+
+        body @dialogFooter button {
+            padding-left: 1em;
+            padding-right: 1em;
+            min-width: 6em;
+            text-align: center;
+            display: inline-block;
+        }
+
+        body @dialogFooter > hbox > button[mode='accept'] {
+            font-weight: bolder;
+        }
+
+        body @dialogFrame .MessageDialog {
+            padding: 1em;
+        }
+
+        body @dialogFrame .MessageDialog .DialogIcon {
+            @iconify();
+            font-size: 3em;
+        }
+
+        body @dialogFrame .MessageDialog .Messages {
+            margin-left: 2em;
+            word-break: break-word;
+        }
+        body @dialogFrame .MessageDialog .Messages p {
+            margin-top: 0.5em;
+        }
+
+        body @dialogFrame .WizardContent {
+            /*position: relative;
+            border: solid 1px #DDDDDD;
+            border-top: none;
+            background: #FAFAFA;
+            box-sizing: content-box;*/
+            position: relative;
+            background: #FAFAFA;
+            box-sizing: content-box;
+        }
+        body @dialogFrame .WizardContent > .WizardPane {
+            position: absolute;
+            visibility: hidden;
+            padding: 0.7em;
+            left: 0px;
+            top: 0px;
+        }
+        body @dialogFrame .WizardContent > .WizardPane.Measured {
+            right: 0px;
+            bottom: 0px;
+        }
+        body @dialogFrame .WizardContent > .ActiveWizardPane {
+            visibility: inherit;
+        }
+        body @dialogFrame .DialogIcon.Error {
+            color: red;
+        }
+        body @dialogFrame i.DialogIcon.Icon {
+            @iconify();
+            float: left;
+            font-size: 3em;
+            color: #428BCA;
+            opacity: 1;
+            margin-top: 10px;
+        }
+    </style>
+    <vbox anon-id="dialogFrame" class="DialogFrame" tabindex="0">
+        <hbox anon-id="dialogHeaderPane">
+            <div flex="1" anon-id="dialogTitleContainer">
+                <strong anon-id="dialogTitle">Dialog Title</strong>
+                <span anon-id="dialogSubTitle"></span>
+            </div>
+            <i anon-id="dialogClose" ui-icon="close"></i>
+        </hbox>
+        <vbox flex="1" anon-id="dialogBody">
+        </vbox>
+        <hbox anon-id="dialogFooter">
+            <hbox anon-id="dialogFooterStartPane"></hbox>
+            <hbox anon-id="dialogFooterMiddlePane" flex="1"></hbox>
+            <hbox anon-id="dialogFooterEndPane"></hbox>
+        </hbox>
+    </vbox>
+</div>
