@@ -4,5 +4,5 @@ function BaseApplicationView () {
 __extend(BaseTemplatedWidget, BaseApplicationView);
 
 BaseApplicationView.prototype.getTemplatePrefix = function () {
-return "widgets/";  
+    return "widgets/";
 };

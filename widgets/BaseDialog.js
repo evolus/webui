@@ -1,8 +1,8 @@
 function BaseDialog() {
-	Dialog.call(this);
+    Dialog.call(this);
 }
 __extend(Dialog, BaseDialog);
 
 BaseDialog.prototype.getTemplatePrefix = function() {
-	return "widgets/";
+    return "widgets/";
 }
