@@ -1,5 +1,5 @@
 function Sample() {
-    BaseApplicationView.call(this);
+    BaseTemplatedWidget.call(this);
 
     this.statusLabel.innerHTML = new Date().toString();
 
@@ -286,7 +286,7 @@ function Sample() {
         }
     });
 }
-__extend(BaseApplicationView, Sample);
+__extend(BaseTemplatedWidget, Sample);
 
 Sample.prototype.onAttached = function () {
     this.dataTable.setup();

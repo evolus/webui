@@ -1,8 +1,8 @@
 function SampleDialog() {
-	BaseDialog.call(this);
+	Dialog.call(this);
 	this.title = "Sample Dialog";
 }
-__extend(BaseDialog, SampleDialog);
+__extend(Dialog, SampleDialog);
 
 SampleDialog.prototype.getDialogActions = function () {
     return [

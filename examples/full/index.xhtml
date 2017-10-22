@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://evolus.vn/Namespaces/WebUI/1.0">
+    <head>
+        <title>Full Example</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <!--  FRAMEWORK SCRIPTS -->
+        <script type="text/javascript" src="../../framework/js/less-2.7.1.min.js"></script>
+        <script type="text/javascript" src="../../framework/js/common-dom.js"></script>
+        <script type="text/javascript" src="../../framework/js/stacktrace.js"></script>
+        <script type="text/javascript" src="../../framework/js/widget/Common.js"></script>
+
+        <script type="text/javascript" src="../../framework/js/widget/SplitView.js"></script>
+        <script type="text/javascript" src="../../framework/js/widget/Dialog.js"></script>
+        <script type="text/javascript" src="../../framework/js/widget/ActionBar.js"></script>
+        <script type="text/javascript" src="../../framework/js/widget/DataTable.js"></script>
+        <script type="text/javascript" src="../../framework/js/widget/Paginator.js"></script>
+        <script type="text/javascript" src="../../framework/js/widget/TabPane.js"></script>
+        <script type="text/javascript" src="../../framework/js/widget/Popup.js"></script>
+        <script type="text/javascript" src="../../framework/js/widget/Menu.js"></script>
+        <script type="text/javascript" src="../../framework/js/widget/ComboManager.js"></script>
+        <script type="text/javascript" src="../../framework/js/widget/Tree.js"></script>
+        <script type="text/javascript" src="../../framework/js/widget/RepeaterView.js"></script>
+
+        <!--  FRAMEWORK STYLES -->
+        <link rel="stylesheet" href="../../framework/style/layout.css" />
+        <!--
+        <link rel="stylesheet" href="../../framework/style/icon-fontawesome.css" />
+         -->
+        <link rel="stylesheet" href="../../framework/style/icon-materialicons.css" />
+
+        <!-- APPLICATION SPECIFIC WIDGETS -->
+        <script type="text/javascript" src="widgets/Sample.js"></script>
+        <script type="text/javascript" src="widgets/SampleDialog.js"></script>
+
+
+    </head>
+    <body>
+        <ui:SplitView>
+            <div>Left</div>
+            <vbox>
+                <ui:TabPane anon-id="settingTabPane">
+                    <vbox anon-id="generalTab" flex="1" tab-title="General">
+                        <ui:Sample anon-id="sampleWidget" flex="1" />
+                    </vbox>
+                    <vbox anon-id="generalTab" flex="1" tab-title="Second">
+                        This is the content
+                    </vbox>
+                </ui:TabPane>
+            </vbox>
+        </ui:SplitView>
+    </body>
+</html>

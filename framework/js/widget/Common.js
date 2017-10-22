@@ -114,6 +114,8 @@ const DOM_VK_CLOSE_BRACKET = 221
 const DOM_VK_QUOTE = 222
 const DOM_VK_META = 224
 
+var __currentScriptPath = null;
+
 function __extend() {
     var __base = arguments[0];
     var sub = arguments[1];
@@ -126,6 +128,9 @@ function __extend() {
         var f = arguments[i];
         sub.prototype[f.name] = f;
     }
+
+    sub.prototype.__pathPrefix = __guessPrefix();
+    console.log(sub.prototype.constructor.name + ": " + sub.prototype.__pathPrefix);
 
     return sub;
 }
@@ -144,6 +149,20 @@ function __base(object) {
 function __getFrameworkPrefix() {
     return window.FRAMEWORK_PATH || "framework/";
 };
+function __getCurrentScriptPath() {
+    if (__currentScriptPath) return __currentScriptPath;
+    var scripts = document.getElementsByTagName("script");
+    var src = scripts[scripts.length - 1].getAttribute("src");
+
+    return src;
+};
+function __guessPrefix() {
+    var src = __getCurrentScriptPath();
+    return src.replace(/\/[^\/]+\.js$/, "/");
+}
+
+window.FRAMEWORK_PATH = __guessPrefix().replace(/js\/widget\/$/, "");
+
 //support function.name in IE9+
 if (!(function f() {}).name) {
     Object.defineProperty(Function.prototype, 'name', {
@@ -265,11 +284,11 @@ widget.Util = function() {
     };
     return {
         _processTemplateStyleSheet: function (html, prefix, templateName) {
-        	
+
             return html.replace(/(<style[^>]*>)([^<]+)(<\/style>)/g, function (zero, start, content, end) {
 
                 if (processedCSS[templateName]) return "";
-                
+
                 var css = content.replace(/([\r\n ]+)([^\{\}\$;]+)\{/g, function (zero, leading, selectors) {
                     selectors = selectors.replace(/@this/gi, "body " + prefix);
                     selectors = selectors.replace(/(\.widget_[^\r\n\,]+ )@([a-z])/gi, "$1 .AnonId_$2");
@@ -292,17 +311,17 @@ widget.Util = function() {
                 if (window.APP_THEME_PATH) {
                     includes += "@import \"" + window.APP_THEME_PATH + "\";\n";
                 }
-                
+
                 console.log(includes);
-                
+
                 css = includes + css;
-                
+
                 less.render(css, lessParserConfig).then(function (output) {
                 	widget.Util.insertGlobalStyleSheet(output.css, templateName);
                 });
 
                 processedCSS[templateName] = true;
-                
+
                 return "";
 
             });
@@ -759,7 +778,7 @@ window.addEventListener("load", function () {
     window.globalViews = {};
     widget.Util.performAutoBinding(document.body, window.globalViews);
     widget.Util.registerPopopCloseHandler();
-    
+
     window.addEventListener("optimizedResize", function() {
         BaseWidget.signalOnSizeChangedRecursively(document.body);
     });
@@ -953,6 +972,7 @@ BaseTemplatedWidget.getTemplatePrefix = function () {
     return __getFrameworkPrefix() + "js/widget/";
 };
 BaseTemplatedWidget.prototype.getTemplatePrefix = function () {
+    if (this.__pathPrefix) return this.__pathPrefix;
     return BaseTemplatedWidget.getTemplatePrefix();
 };
 BaseTemplatedWidget.prototype.getTemplatePath = function () {
@@ -1031,7 +1051,7 @@ var Util = (function () {
 	function findById(list, id) {
 	    return find(list, function (u) { return u.id == id; });
 	}
-	
+
 	var uuidGenerator = {
 	    generateUUID: function () {
 	        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
@@ -1050,7 +1070,7 @@ var Util = (function () {
 	function getInstanceToken () {
 	    return Util.instanceToken;
 	};
-	
+
 	return {
 		em: em,
 		contains: contains,
@@ -1093,7 +1113,7 @@ widget.busyIndicator = (function () {
 	    if (busyCount > 0) busyCount --;
 	    if (busyCount == 0) hideBusyIndicator();
 	}
-	
+
 	return {
 		busy: busy,
 		unbusy: unbusy
@@ -1102,4 +1122,3 @@ widget.busyIndicator = (function () {
 
 window.__busyIndicator = widget.busyIndicator;
 window.APP_THEME_PATH = __getFrameworkPrefix() + "style/theme-default.less";
-
