@@ -16,13 +16,14 @@ function Sample() {
     });
     this.menu.register({
         key: "Item2",
-        isEnabled: function () { return true },
+        isEnabled: function () { return false },
         getLabel: function () { return "Item 2" },
         isValid: function () { return true },
         run: function () {
             alert("Item 2");
        }
     });
+    this.menu.separator();
     this.menu.register({
         key:  "SubMenu",
         label: "Item 3",
@@ -48,15 +49,17 @@ function Sample() {
                    }
                    ]
     });
+    this.menu.separator();
     this.menu.register({
         key: "Item4",
         type: "Toggle",
         isEnabled: function () { return true },
         getLabel: function () { return "Item 4" },
         isValid: function () { return true },
-        run: function () {
-            alert("Item 4");
-       }
+        checked: false,
+        run: function (checked) {
+            this.checked = checked;
+        }
     });
     this.menu.register({
         key: "Item5",
@@ -64,15 +67,16 @@ function Sample() {
         isEnabled: function () { return true },
         getLabel: function () { return "Item 5" },
         isValid: function () { return true },
-        run: function () {
-            alert("Item 5");
-       }
+        checked: false,
+        run: function (checked) {
+            this.checked = checked;
+        }
     });
 
     this.bind("click", function (event) {
 //        var dialog = new SampleDialog();
 //        dialog.open();
-        this.menu.showMenu(this.button, "left", "bottom", 5, 5, true);
+        this.menu.showMenu(this.button, "left-inside", "bottom", 5, 5, true);
     }, this.button);
 
     this.initializeDataTable();
@@ -318,10 +322,13 @@ Sample.prototype.onAttached = function () {
 Sample.prototype.initializeDataTable = function () {
     this.dataTable.column(new DataTable.PlainTextColumn("Id", function (data) {
         return (data.id);
-    }).width("1*"));
+    }).width("5em"));
     this.dataTable.column(new DataTable.PlainTextColumn("Name", function (data) {
         return (data.name);
     }).width("2*"));
+    this.dataTable.column(new DataTable.PlainTextColumn("Price", function (data) {
+        return "$" + (Math.round(Math.random() * 10000) / 100);
+    }).type("numeric").sortable("price").width("6em"));
     var thiz = this;
     var actions = [ {
             id: "edit", type: "fa-pencil-square-o", title: "Edit Patient",
@@ -343,7 +350,7 @@ Sample.prototype.initializeDataTable = function () {
         }];
     this.dataTable.column(new DataTable.ActionColumn(actions).width("1*"));
 
-    this.dataTable.configurable().selector(false);
+    this.dataTable.configurable().selector(true, false);
     this.dataTable.setDefaultSelectionHandler({
         run: function (patient) {
         }

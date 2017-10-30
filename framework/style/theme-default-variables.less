@@ -1,15 +1,29 @@
-@primary_color: #03a9f4;
-@primary_text_color: #FFFFFF;
-@app_bg: #E5E5E5;
-@selected_fg: #FFFFFF;
+@primary_color: #00BCD4;
+@base_text_color: #000000;
+@primary_text_color: fade(@base_text_color, 87%);
+@base_inverted_text_color: #FFFFFF;
+@inverted_text_color: fade(@base_inverted_text_color, 87%);
 
+@secondary_color: #FFFF8D;
+
+@problem_color: #D64B06;
+@hover_bg: rgba(0, 0, 0, 0.05);
+
+@selected_fg: @inverted_text_color;
 @selected_bg: @primary_color;
+
+@app_bg: #E5E5E5;
+
 @card_shadow: 0em 0.15ex 0.25em rgba(0, 0, 0, 0.2);
 @popup_bg: lighten(@app_bg, 3%);
 @popup_border: darken(@app_bg, 5%);
 @toolbar_spacing: 0.4em;
 @selected_button_bg: darken(@app_bg, 10%);
 @toolbar_gap: 0.4em;
+
+@dp: 0.066666667;
+@default-line-height: 1.2;
+
 @iconify: {
     display: inline-block;
     line-height: 1em;
@@ -25,4 +39,123 @@
     -webkit-font-feature-settings: 'liga';
     -webkit-font-smoothing: antialiased;
     opacity: 0.54;
+};
+.base-icon() {
+    display: inline-block;
+    font: normal normal normal 24px/1 "Material Design Icons";
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transform: translate(0, 0);
+}
+.icon(@content) {
+    &:before {
+        .base-icon();
+        content: @content;
+    }
+}
+
+.line-height-default() {
+    line-height: @default-line-height;
+}
+
+.z-depth-transition() {
+    transition: box-shadow .28s cubic-bezier(.4, 0, .2, 1);
+}
+
+.z-depth-focus() {
+    box-shadow: 0 0 8px rgba(0, 0, 0, .18), 0 8px 16px rgba(0, 0, 0, .36);
+}
+
+.z-depth-2dp() {
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14),
+                            0 1px 5px 0 rgba(0, 0, 0, .12),
+                            0 3px 1px -2px rgba(0, 0, 0, .2);
+}
+
+.z-depth-3dp() {
+    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, .14),
+                            0 1px 8px 0 rgba(0, 0, 0, .12),
+                            0 3px 3px -2px rgba(0, 0, 0, .4);
+}
+
+.z-depth-4dp() {
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14),
+                            0 1px 10px 0 rgba(0, 0, 0, .12),
+                            0 2px 4px -1px rgba(0, 0, 0, .4);
+}
+
+.z-depth-6dp() {
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, .14),
+                            0 1px 18px 0 rgba(0, 0, 0, .12),
+                            0 3px 5px -1px rgba(0, 0, 0, .4);
+}
+
+.z-depth-8dp() {
+    box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14),
+                            0 3px 14px 2px rgba(0, 0, 0, .12),
+                            0 5px 5px -3px rgba(0, 0, 0, .4);
+}
+
+.z-depth-16dp() {
+    box-shadow: 0 16px 24px 2px rgba(0, 0, 0, .14),
+                            0    6px 30px 5px rgba(0, 0, 0, .12),
+                            0    8px 10px -5px rgba(0, 0, 0, .4);
+}
+
+.z-depth-24dp() {
+    box-shadow: 0    9px 46px    8px rgba(0, 0, 0, .14),
+                            0 24px 38px    3px rgba(0, 0, 0, .12),
+                            0 11px 15px -7px rgba(0, 0, 0, .4);
+}
+
+.z-depth(@dp: 2) {
+    & when (@dp = 2) { .z-depth-2dp(); }
+    & when (@dp = 3) { .z-depth-3dp(); }
+    & when (@dp = 4) { .z-depth-4dp(); }
+    & when (@dp = 6) { .z-depth-6dp(); }
+    & when (@dp = 8) { .z-depth-8dp(); }
+    & when (@dp = 16) { .z-depth-16dp(); }
+    & when (@dp = 24) { .z-depth-24dp(); }
+}
+
+.ripple-effect() {
+    position: relative;
+    overflow: hidden;
+
+    animation: ripple-effect; /* name used as a marker only, no actual animation defined */
+
+    &:after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 5px;
+        height: 5px;
+        background: rgba(255, 255, 255, .5);
+        opacity: 0;
+        border-radius: 100%;
+        transform: scale(1, 1) translate(-50%);
+        transform-origin: 50% 50%;
+    }
+    &[ripple-effect-just-clicked]::after {
+        animation: ripple 1s ease-out;
+    }
+
+    /*
+    &:before {
+        content: '';
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, .07);
+        opacity: 0;
+    }
+    &[ripple-effect-just-clicked]::before {
+        animation: ripple-bg 1s ease-out;
+    }
+    */
 };

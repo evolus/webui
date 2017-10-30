@@ -47,7 +47,7 @@ TabPane.prototype.activateTab = function (header) {
         }
     }
     Dom.emitEvent("e:TabChange", this.node());
-    
+
     BaseWidget.signalOnSizeChangedRecursively(this.node());
 };
 TabPane.prototype.handleHeaderClick = function (event) {
@@ -81,7 +81,6 @@ TabPane.prototype.ensureSizing = function () {
         var cw = Dom.getOffsetWidth(contentNode);
         var ch = Dom.getOffsetHeight(contentNode);
 
-        w = Math.max(w, cw);
         h = Math.max(h, ch);
     }
 

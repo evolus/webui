@@ -6,6 +6,15 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
+        <!--  FRAMEWORK STYLES -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet" />
+        <link rel="stylesheet" href="../../framework/style/layout.css" />
+        <link rel="stylesheet/less" type="text/css" href="../../framework/style/theme-default.less?" />
+        <!--
+        <link rel="stylesheet/less" type="text/css" href="../../framework/style/icon-fontawesome.less" />
+         -->
+        <link rel="stylesheet/less" type="text/css" href="../../framework/style/icon-materialicons.less" />
+
         <!--  FRAMEWORK SCRIPTS -->
         <script type="text/javascript" src="../../framework/js/less-2.7.1.min.js"></script>
         <script type="text/javascript" src="../../framework/js/common-dom.js"></script>
@@ -24,13 +33,6 @@
         <script type="text/javascript" src="../../framework/js/widget/Tree.js"></script>
         <script type="text/javascript" src="../../framework/js/widget/RepeaterView.js"></script>
 
-        <!--  FRAMEWORK STYLES -->
-        <link rel="stylesheet" href="../../framework/style/layout.css" />
-        <!--
-        <link rel="stylesheet" href="../../framework/style/icon-fontawesome.css" />
-         -->
-        <link rel="stylesheet" href="../../framework/style/icon-materialicons.css" />
-
         <!-- APPLICATION SPECIFIC WIDGETS -->
         <script type="text/javascript" src="widgets/Sample.js"></script>
         <script type="text/javascript" src="widgets/SampleDialog.js"></script>
@@ -42,7 +44,7 @@
             <div>Left</div>
             <vbox>
                 <ui:TabPane anon-id="settingTabPane">
-                    <vbox anon-id="generalTab" flex="1" tab-title="General">
+                    <vbox anon-id="generalTab" flex="1" tab-title="Very long tab title">
                         <ui:Sample anon-id="sampleWidget" flex="1" />
                     </vbox>
                     <vbox anon-id="generalTab" flex="1" tab-title="Second">

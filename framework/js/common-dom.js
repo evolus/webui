@@ -92,7 +92,7 @@ Dom.getList = function (xpath, node) {
         node.ownerDocument.setProperty("SelectionLanguage", "XPath");
         return node.selectNodes(xpath);
     }
-    
+
     var doc = node.ownerDocument ? node.ownerDocument : node;
     var xpathResult = doc.evaluate(xpath, node, Namespaces.resolve, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null);
     var nodes = [];
@@ -140,7 +140,7 @@ Dom.registerEvent = function (target, event, handler, capture) {
         window.addWheelListener(target, handler, capture);
         return;
     }
-    
+
     var useCapture = false;
     if (capture) {
         useCapture = true;
@@ -235,9 +235,9 @@ Dom.emitEvent = function (name, sourceElement, options) {
        return;
     }
     evt.eventName = name;
-    
+
     for (n in options) evt[n] = options[n];
-    
+
     //console.log("emit event on " , sourceElement.tagName, name);
     if (sourceElement.dispatchEvent) {
         sourceElement.dispatchEvent(evt);
@@ -248,18 +248,18 @@ Dom.emitEvent = function (name, sourceElement, options) {
     } else if (sourceElement['on'+name]) {
         sourceElement['on'+name]();
     }
-    
+
 };
 
 Dom.getEventOffset = function (e, to) {
     var x = 0;
     var y = 0;
-    
+
     if (to) {
         x = Dom.getOffsetLeft(to);
         y = Dom.getOffsetTop(to);
     }
-    
+
     var event = Dom.getEvent(e);
     if (typeof(event.pageX) != "undefined" || typeof(event.pageY) != "undefined") {
         return {
@@ -277,7 +277,7 @@ Dom.getEventOffset = function (e, to) {
 Dom.getTouchOffset = function (t, to) {
     var x = 0;
     var y = 0;
-    
+
     if (to) {
         x = Dom.getOffsetLeft(to);
         y = Dom.getOffsetTop(to);
@@ -825,7 +825,7 @@ Dom.newDOMElement = function (spec, doc, holder) {
     if (spec._children && spec._children.length > 0) {
         e.appendChild(Dom.newDOMFragment(spec._children, e.ownerDocument, holder || null));
     }
-    
+
     if (holder && spec._id) {
         holder[spec._id] = e;
     }
@@ -912,7 +912,7 @@ Dom.disableControls = function (element, disabled) {
     var nodeName = element.nodeName.toUpperCase();
     if (nodeName == "INPUT" || nodeName == "TEXTAREA" || nodeName == "SELECT") {
         element.disabled = disabled;
-        
+
         return element;
     } else if (element.childNodes) {
         var firstControl = null;
@@ -927,26 +927,26 @@ Dom.calculateSystemScrollbarSize = function () {
     if (Dom.calculatedSystemScrollbarSize) {
         return Dom.calculatedSystemScrollbarSize;
     }
-    
+
     var wrapper = document.createElement("div");
     wrapper.style.overflow = "scroll";
     wrapper.style.visibility = "hidden";
     wrapper.style.position = "absolute";
-    
+
     var inner = document.createElement("div");
     inner.style.width = "10px";
     inner.style.height = "10px";
     wrapper.appendChild(inner);
-    
+
     document.body.appendChild(wrapper);
-    
+
     Dom.calculatedSystemScrollbarSize = {
         w: Dom.getOffsetWidth(wrapper) - Dom.getOffsetWidth(inner),
         h: Dom.getOffsetHeight(wrapper) - Dom.getOffsetHeight(inner)
     };
-    
+
     document.body.removeChild(wrapper);
-    
+
     return Dom.calculatedSystemScrollbarSize;
 };
 
@@ -1030,7 +1030,7 @@ DomVisibilityToggleHandler.prototype.nagative = function() {
                         originalEvent.returnValue = false;
                 }
             };
-            
+
             // calculate deltaY (and deltaX) according to the event
             if ( support == "mousewheel" ) {
                 event.deltaY = - 1/40 * originalEvent.wheelDelta;
@@ -1054,21 +1054,21 @@ function registerNavSpecHandler(pattern, handler) {
         pattern: pattern,
         handler: handler
     });
-    
+
     tryNavSpecHandlers();
 }
 function tryNavSpecHandlers() {
     var url = window.location.href;
     var i = url.indexOf("?");
     if (i < 0) return;
-    
+
     var nav = url.substring(i + 1);
     if (!nav) return;
     for (var i = 0; i < navSpecHandlers.length; i ++) {
         var spec = navSpecHandlers[i];
         var m = spec.pattern.exec(nav);
         if (!m) continue;
-        
+
         try {
             spec.handler.apply(window, m);
         } catch (e) { }

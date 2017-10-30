@@ -701,7 +701,7 @@ var DataTable = function () {
         //add a selector column if required
         if (this.withSelector) {
             var selectorColumn = new SelectorColumn(this.exclusive, this.selectable, this.checked);
-            selectorColumn.sizingPolicy = this.selectorColumnWidth || "45px";
+            selectorColumn.sizingPolicy = this.selectorColumnWidth || "4.5em";
             this.actualColumns.push(selectorColumn);
         }
 
@@ -728,29 +728,8 @@ var DataTable = function () {
 
         this.createColumnDefinitions();
 
-        if (this.isConfigurable && !this.columnBuilder) {
-            var thiz = this;
-            thiz._init();
-            if (callback) callback();
-            
-//            $userService.getConfigParam("nv.amw", "hidden_columns_" + this.systemId, function (param) {
-//                if (param && param.smallValue) {
-//                    thiz.hiddenColumnIds = (param.smallValue == "-" ? "" : param.smallValue).split(",");
-//                } else {
-//                    //construct default hidden columns
-//                    thiz.hiddenColumnIds = [];
-//                    for (var i = 0; i < thiz.columns.length; i ++) {
-//                        var c = thiz.columns[i];
-//                        if (c.defaultHidden) thiz.hiddenColumnIds.push(c.id);
-//                    }
-//                }
-//                thiz._init();
-//                if (callback) callback();
-//            });
-        } else {
-            this._init();
-            if (callback) callback();
-        }
+        this._init();
+        if (callback) callback();
 
         return this;
     };
@@ -770,10 +749,16 @@ var DataTable = function () {
     	    return;
     	}
         var selected = this.getSelectedItems();
-    	this.setup(function () {
-    		thiz._setItems(thiz.getItems(), false);
-    		thiz.selectItems(selected);
-    	});
+
+        this.container.innerHTML = "";
+
+        window.setTimeout(function () {
+            thiz.setup(function () {
+                thiz._setItems(thiz.getItems(), false);
+                thiz.selectItems(selected);
+            });
+        }, 1);
+
     }
     DataTable.prototype.supportZebraColor = function() {
         return true;
@@ -782,7 +767,6 @@ var DataTable = function () {
     	this.invalidateSizing();
     };
     DataTable.prototype._init = function() {
-//    	console.log("_init: ", printStackTrace());
         var random = widget.random();
         this.tableId = "table" + random;
         this.headerId = "header" + random;
@@ -871,10 +855,10 @@ var DataTable = function () {
             }
 
             var style = "";
-            style += "width: " + col._width + "px; height: 25px; overflow: hidden;";
+            style += "width: " + col._width + "px; overflow: hidden;";
             var margin = 1;
             html +=
-                "<th title=\"" + Dom.htmlEncode(col.getTitleInfo()) + "\" width=\"" + col._width + "\" id=\"" + id + "\" class=\"" + clazz + "\" style=\"" + style +"\"><div" + extra + " style=\"width: " + (col._width - margin) + "px;\">" + col.getTitleContentHtml() + "</div></th>";
+                "<th title=\"" + Dom.htmlEncode(col.getTitleInfo()) + "\" width=\"" + col._width + "\" data-type=\"" + col.dataType + "\" id=\"" + id + "\" class=\"" + clazz + "\" style=\"" + style +"\"><div" + extra + " style=\"width: " + (col._width - margin) + "px;\">" + col.getTitleContentHtml() + "</div></th>";
         }
 
         html += "        </tr>\n" +
@@ -939,7 +923,7 @@ var DataTable = function () {
            this.setOrder(this.currentOrder);
         }
         Dom.registerEvent(this.header, "click", columnHeaderClickHandler, false);
-        
+
         console.log("actual container width, after init: ", Dom.getOffsetWidth(this.container));
 
     };
@@ -1135,6 +1119,10 @@ var DataTable = function () {
                 if (column._width) {
                     html += " style=\"width: " + column._width + ";\"";
                 }
+                if (column.dataType) {
+                    html += " data-type=\"" + column.dataType + "\"";
+                }
+
                 html += ">";
                 var cellHtml = column.getCellContentHtml(item, i, j);
                 if (column.getContentTitle) {
@@ -1194,6 +1182,9 @@ var DataTable = function () {
                 }
                 if (column._width) {
                     html += " style=\"width: " + (column._width - 1) + "px;\"";
+                }
+                if (column.dataType) {
+                    html += " data-type=\"" + column.dataType + "\"";
                 }
                 var cellHtml = column.getCellContentHtml(item, i, j);
                 if (column.getContentTitle) {
@@ -1342,6 +1333,7 @@ var DataTable = function () {
     DataTable.ActionColumn = ActionColumn;
 
     function BaseColumn() {
+        this.dataType = "text";
     }
     BaseColumn.prototype.sortable = function (propertyName) {
         this.propertyName = propertyName;
@@ -1368,6 +1360,11 @@ var DataTable = function () {
     BaseColumn.prototype.getTitleInfo = function () {
         return this.title ? this.title : "";
     };
+    BaseColumn.prototype.type = function (type) {
+        this.dataType = type;
+        return this;
+    };
+
     DataTable.BaseColumn = BaseColumn;
 
     DataTable.PlainTextColumn = function (title, getter, clazz) {

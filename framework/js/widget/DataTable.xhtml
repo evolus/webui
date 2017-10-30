@@ -1,5 +1,58 @@
 <vbox class="DataTableContainer">
     <style>
+        @this {
+            position: relative;
+            overflow: hidden;
+        }
+        @this:hover {
+            overflow-x: auto;
+        }
+        @this > .ColumnSetting {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            overflow: hidden;
+            opacity: 0.5;
+        }
+        @this > .ColumnSetting span i {
+            color: #999;
+        }
+        @this:hover > .ColumnSetting {
+            opacity: 0.8;
+        }
+        @this:hover> .ColumnSetting i {
+            color: #888;
+        }
+        @this:hover > .ColumnSetting span:hover i {
+            color: #369;
+        }
+        .SelectionInfoPane {
+            width: 240px;
+            height: 45%;
+            position: absolute;
+            left: 45px;
+            top: 10px;
+            -webkit-box-shadow: 10px 10px 20px -9px rgba(0,0,0,0.8);
+            -moz-box-shadow: 10px 10px 20px -9px rgba(0,0,0,0.8);
+            box-shadow: 10px 10px 20px -9px rgba(0,0,0,0.8);
+            border: solid 1px #CCC;
+            background: #FFF;
+
+        }
+        .SelectionInfoPane .SelectionBodyPane {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            bottom: 40px;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+        .SelectionInfoPane .ActionInfoPane {
+           width: 100%;
+        }
+    </style>
+    <stylex>
     @this {
         overflow-x: hidden;
     }
@@ -41,77 +94,7 @@
         background: url('../images/sort_both.png') no-repeat right center;
     }
 
-    .widget_DataTable {
-        position: relative;
-        overflow: hidden;
-    }
-    .widget_DataTable:hover {
-        overflow-x: auto;
-    }
-    .DataTableColumSettingContainer .ColumnSetting {
-        text-align: center;
-        width: 20px;
-        height: 40px;
-        position: absolute;
-        top: 0px;
-        right: 0px;
-        overflow: hidden;
-        opacity: 0.5;
-    }
-    .DataTableColumSettingContainer .ColumnSetting span {
-        background: #C7C7C7;
-        position: absolute;
-        display: block;
-        width: 40px;
-        height: 40px;
-        top: -20px;
-        left: 0px;
-        border-radius: 20px;
-        text-align: left;
-        cursor: pointer;
-    }
-    .DataTableColumSettingContainer .ColumnSetting span i {
-        font-size: 10px;
-        line-height: 10px;
-        margin-top: 23px;
-        margin-left: 7px;
-        color: #999;
-        text-shadow: 1px 1px 0px #E7E7E7;
-    }
-    .DataTableColumSettingContainer:hover .ColumnSetting {
-        opacity: 0.8;
-    }
-    .DataTableColumSettingContainer:hover .ColumnSetting i {
-        color: #888;
-    }
-    .DataTableColumSettingContainer:hover .ColumnSetting span:hover i {
-        color: #369;
-    }
-    .SelectionInfoPane {
-        width: 240px;
-        height: 45%;
-        position: absolute;
-        left: 45px;
-        top: 10px;
-        -webkit-box-shadow: 10px 10px 20px -9px rgba(0,0,0,0.8);
-        -moz-box-shadow: 10px 10px 20px -9px rgba(0,0,0,0.8);
-        box-shadow: 10px 10px 20px -9px rgba(0,0,0,0.8);
-        border: solid 1px #CCC;
-        background: #FFF;
 
-    }
-    .SelectionInfoPane .SelectionBodyPane {
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        right: 0px;
-        bottom: 40px;
-        overflow-y: auto;
-        overflow-x: hidden;
-    }
-    .SelectionInfoPane .ActionInfoPane {
-       width: 100%;
-    }
     table.DataTable th.DTCheckboxAll {
         position: relative;
         overflow: hidden;
@@ -431,5 +414,5 @@
         box-sizing: border-box;
     }
 
-    </style>
+    </stylex>
 </vbox>

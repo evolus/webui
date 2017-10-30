@@ -4,12 +4,43 @@
             color: red;
         }
         @sidebar {
-            background: #999;
+            background: #EEE;
         }
         @content {
-            background: #777;
+            background: #FFF;
+            padding: 1em;
+        }
+        .buttonPane > button + button {
+            margin-left: 0.5em;
+        }
+        .buttonPane {
+            margin: 0.5em 0em;
+        }
+
+        @dataTable {
+        }
+        @dataTable > table > tbody > tr > td {
         }
     </style>
+    <hbox class="buttonPane">
+        <button>Button</button>
+        <button mode="raised">Raised</button>
+        <button role="primary">Primary</button>
+        <button role="primary" mode="raised">Primary Raised</button>
+        <button role="danger">Danger</button>
+        <button role="danger" mode="raised">Danger Raised</button>
+    </hbox>
+    <hbox class="buttonPane">
+        <button disabled="true">Disabled</button>
+        <button mode="raised" disabled="true">Disabled</button>
+        <button role="primary" disabled="true">Disabled</button>
+        <button role="primary" mode="raised" disabled="true">Disabled</button>
+        <button role="danger" disabled="true">Disabled</button>
+    </hbox>
+
+    <span class="InlineEntry"><input type="checkbox" /><label>With more options</label></span>
+    <span class="InlineEntry"><input type="radio" /><label>With more options</label></span>
+
     <label anon-id="statusLabel"></label>
     <hbox flex="1">
         <div anon-id="sidebar">

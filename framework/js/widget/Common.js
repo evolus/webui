@@ -280,7 +280,7 @@ widget.Util = function() {
     var TEMPLATE_CACHE = {};
     var processedCSS = {};
     var lessParserConfig = {
-    		paths: [__getFrameworkPrefix(), __getFrameworkPrefix() + "style/"]
+            paths: [__getFrameworkPrefix(), __getFrameworkPrefix() + "style/"]
     };
     return {
         _processTemplateStyleSheet: function (html, prefix, templateName) {
@@ -317,7 +317,7 @@ widget.Util = function() {
                 css = includes + css;
 
                 less.render(css, lessParserConfig).then(function (output) {
-                	widget.Util.insertGlobalStyleSheet(output.css, templateName);
+                    widget.Util.insertGlobalStyleSheet(output.css, templateName);
                 });
 
                 processedCSS[templateName] = true;
@@ -697,6 +697,47 @@ widget.Util = function() {
         configureNumberInput: function (input, min, max) {
             input._min = min;
             input._max = max;
+        },
+        registerJustClickedHandler: function () {
+            document.body.addEventListener("mousedown", function (event) {
+                var start = event.target;
+                while (start && start.nodeType != 1) start = start.parentNode;
+                if (!start) return;
+                var target = Dom.findUpward(start, function (node) {
+                    var n = window.getComputedStyle(node).animationName;
+                    return (n && n != "none") ? true : false;
+                });
+                if (!target) return;
+                var animationName = window.getComputedStyle(target).animationName;
+                var animationDuration = window.getComputedStyle(target).animationDuration;
+                console.log(animationName, animationDuration);
+                if (animationName) {
+                    var attributeName = animationName + "-just-clicked";
+                    if (target._lastJustClickedTimeout) window.clearTimeout(target._lastJustClickedTimeout);
+
+                    var runnable = function () {
+                        target.setAttribute(attributeName, "true");
+
+                        var timeout = 0;
+                        if (animationDuration && animationDuration.match(/([0-9\.]+)s/)) {
+                            timeout = parseFloat(RegExp.$1) * 1000;
+                        }
+                        if (!timeout) timeout = 1000;
+
+                        target._lastJustClickedTimeout = window.setTimeout(function () {
+                            target.removeAttribute(attributeName);
+                            target._lastJustClickedTimeout = null;
+                        }, Math.round(timeout * 1.2));
+                    };
+
+                    if (target.hasAttribute(attributeName)) {
+                        target.removeAttribute(attributeName);
+                        window.setTimeout(runnable, 10);
+                    } else {
+                        runnable();
+                    }
+                }
+            }, false);
         }
     };
 }();
@@ -778,6 +819,7 @@ window.addEventListener("load", function () {
     window.globalViews = {};
     widget.Util.performAutoBinding(document.body, window.globalViews);
     widget.Util.registerPopopCloseHandler();
+    widget.Util.registerJustClickedHandler();
 
     window.addEventListener("optimizedResize", function() {
         BaseWidget.signalOnSizeChangedRecursively(document.body);
@@ -980,145 +1022,145 @@ BaseTemplatedWidget.prototype.getTemplatePath = function () {
 };
 
 var Util = (function () {
-	function em() {
-	    if (Util._calculatedEM) return Util._calculatedEM;
-	    var div = document.createElement("div");
-	    var s = "mmmmmmmmmmmmmmmmmmmmmmmmmmm";
-	    div.innerHTML = s;
-	    document.body.appendChild(div);
-	    div.style.position = "absolute";
-	    div.style.top = "0px";
-	    div.style.opacity = "0";
-	    div.style.left = "0px";
-	    div.style.whiteSpace = "nowrap";
+    function em() {
+        if (Util._calculatedEM) return Util._calculatedEM;
+        var div = document.createElement("div");
+        var s = "mmmmmmmmmmmmmmmmmmmmmmmmmmm";
+        div.innerHTML = s;
+        document.body.appendChild(div);
+        div.style.position = "absolute";
+        div.style.top = "0px";
+        div.style.opacity = "0";
+        div.style.left = "0px";
+        div.style.whiteSpace = "nowrap";
 
-	    Util._calculatedEM = div.offsetWidth / s.length;
-	    document.body.removeChild(div);
-	    return Util._calculatedEM;
-	};
+        Util._calculatedEM = div.offsetWidth / s.length;
+        document.body.removeChild(div);
+        return Util._calculatedEM;
+    };
 
-	function contains(list, item, comparer) {
-	    return findItemByComparer(list, item, comparer) >= 0;
-	}
+    function contains(list, item, comparer) {
+        return findItemByComparer(list, item, comparer) >= 0;
+    }
 
-	function sameList(a, b, comparer) {
-	    return containsAll(a, b, comparer) && containsAll(b, a, comparer);
-	};
-	function containsAll(a, b, comparer) {
-	    var c = comparer || sameId;
-	    for (var i = 0; i < b.length; i ++) {
-	        if (!contains(a, b[i], c)) return false;
-	    }
+    function sameList(a, b, comparer) {
+        return containsAll(a, b, comparer) && containsAll(b, a, comparer);
+    };
+    function containsAll(a, b, comparer) {
+        var c = comparer || sameId;
+        for (var i = 0; i < b.length; i ++) {
+            if (!contains(a, b[i], c)) return false;
+        }
 
-	    return true;
-	};
-	function intersect(a, b, comparer) {
-	    if (!a || !b) return [];
-	    var items = [];
-	    for (var i = 0; i < a.length; i ++) {
-	        if (contains(b, a[i], comparer)) {
-	            items.push(a[i]);
-	        }
-	    }
+        return true;
+    };
+    function intersect(a, b, comparer) {
+        if (!a || !b) return [];
+        var items = [];
+        for (var i = 0; i < a.length; i ++) {
+            if (contains(b, a[i], comparer)) {
+                items.push(a[i]);
+            }
+        }
 
-	    return items;
-	};
+        return items;
+    };
 
-	function findItemByComparer(list, item, comparer) {
-	    for (var i = 0; i < list.length; i ++) {
-	        if (comparer(list[i], item)) return i;
-	    }
+    function findItemByComparer(list, item, comparer) {
+        for (var i = 0; i < list.length; i ++) {
+            if (comparer(list[i], item)) return i;
+        }
 
-	    return -1;
-	}
-	function removeItemByComparer(list, item, comparer) {
-	    var result = [];
-	    for (var i = 0; i < list.length; i ++) {
-	        if (!comparer(list[i], item)) {
-	            result.push(list[i]);
-	        }
-	    }
+        return -1;
+    }
+    function removeItemByComparer(list, item, comparer) {
+        var result = [];
+        for (var i = 0; i < list.length; i ++) {
+            if (!comparer(list[i], item)) {
+                result.push(list[i]);
+            }
+        }
 
-	    return result;
-	}
-	function find(list, matcher) {
-	    for (var i = 0; i < list.length; i ++) {
-	        if (matcher(list[i])) return list[i];
-	    }
+        return result;
+    }
+    function find(list, matcher) {
+        for (var i = 0; i < list.length; i ++) {
+            if (matcher(list[i])) return list[i];
+        }
 
-	    return null;
-	}
-	function findById(list, id) {
-	    return find(list, function (u) { return u.id == id; });
-	}
+        return null;
+    }
+    function findById(list, id) {
+        return find(list, function (u) { return u.id == id; });
+    }
 
-	var uuidGenerator = {
-	    generateUUID: function () {
-	        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-	            var r = crypto.getRandomValues(new Uint8Array(1))[0]%16|0, v = c == 'x' ? r : (r&0x3|0x8);
-	            return v.toString(16);
-	        });
-	    }
-	};
+    var uuidGenerator = {
+        generateUUID: function () {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                var r = crypto.getRandomValues(new Uint8Array(1))[0]%16|0, v = c == 'x' ? r : (r&0x3|0x8);
+                return v.toString(16);
+            });
+        }
+    };
 
-	function newUUID () {
-	    var uuid = Util.uuidGenerator.generateUUID();
-	    return uuid.toString().replace(/[^0-9A-Z]+/gi, "");
-	};
+    function newUUID () {
+        var uuid = Util.uuidGenerator.generateUUID();
+        return uuid.toString().replace(/[^0-9A-Z]+/gi, "");
+    };
 
-	var instanceToken = "" + (new Date()).getTime();
-	function getInstanceToken () {
-	    return Util.instanceToken;
-	};
+    var instanceToken = "" + (new Date()).getTime();
+    function getInstanceToken () {
+        return Util.instanceToken;
+    };
 
-	return {
-		em: em,
-		contains: contains,
-		sameList: sameList,
-		containsAll: containsAll,
-		intersect: intersect,
-		findItemByComparer: findItemByComparer,
-		removeItemByComparer: removeItemByComparer,
-		find: find,
-		findById: findById,
-		uuidGenerator: uuidGenerator,
-		newUUID: newUUID,
-		instanceToken: instanceToken,
-		getInstanceToken: getInstanceToken
-	}
+    return {
+        em: em,
+        contains: contains,
+        sameList: sameList,
+        containsAll: containsAll,
+        intersect: intersect,
+        findItemByComparer: findItemByComparer,
+        removeItemByComparer: removeItemByComparer,
+        find: find,
+        findById: findById,
+        uuidGenerator: uuidGenerator,
+        newUUID: newUUID,
+        instanceToken: instanceToken,
+        getInstanceToken: getInstanceToken
+    }
 
 } ());
 
 
 widget.busyIndicator = (function () {
-	var busyCount = 0;
-	var currentBusyOverlay = null;
+    var busyCount = 0;
+    var currentBusyOverlay = null;
 
-	function showBusyIndicator() {
-	    currentBusyOverlay = document.createElement("div");
-	    document.body.appendChild(currentBusyOverlay);
-	    currentBusyOverlay.style.cssText = "position: absolute; z-index:1000; top: 0px; left: 0px; right: 0px; bottom: 0px; cursor: wait;";
-	}
-	function hideBusyIndicator() {
-	    if (currentBusyOverlay) {
-	        if (currentBusyOverlay.parentNode) currentBusyOverlay.parentNode.removeChild(currentBusyOverlay);
-	        currentBusyOverlay = null;
-	    }
-	}
-	function busy() {
-	    busyCount ++;
-	    if (busyCount == 1) showBusyIndicator();
-	}
-	function unbusy() {
-	    if (busyCount > 0) busyCount --;
-	    if (busyCount == 0) hideBusyIndicator();
-	}
+    function showBusyIndicator() {
+        currentBusyOverlay = document.createElement("div");
+        document.body.appendChild(currentBusyOverlay);
+        currentBusyOverlay.style.cssText = "position: absolute; z-index:1000; top: 0px; left: 0px; right: 0px; bottom: 0px; cursor: wait;";
+    }
+    function hideBusyIndicator() {
+        if (currentBusyOverlay) {
+            if (currentBusyOverlay.parentNode) currentBusyOverlay.parentNode.removeChild(currentBusyOverlay);
+            currentBusyOverlay = null;
+        }
+    }
+    function busy() {
+        busyCount ++;
+        if (busyCount == 1) showBusyIndicator();
+    }
+    function unbusy() {
+        if (busyCount > 0) busyCount --;
+        if (busyCount == 0) hideBusyIndicator();
+    }
 
-	return {
-		busy: busy,
-		unbusy: unbusy
-	}
+    return {
+        busy: busy,
+        unbusy: unbusy
+    }
 })();
 
 window.__busyIndicator = widget.busyIndicator;
-window.APP_THEME_PATH = __getFrameworkPrefix() + "style/theme-default.less";
+window.APP_THEME_PATH = __getFrameworkPrefix() + "style/theme-default-variables.less";
