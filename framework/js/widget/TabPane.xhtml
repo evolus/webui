@@ -17,6 +17,11 @@
         @content > .ActiveTab {
             visibility: inherit;
         }
+        body vbox > *[flex].widget_TabPane @content {
+            overflow: hidden;
+            flex: 1 1 auto;
+        }
+
     </style>
     <hbox anon-id="header">
     </hbox>

@@ -29,7 +29,6 @@ var Paginator = function () {
             try {
                 var n = parseInt(role, 10);
                 if (!isNaN(n) && n >= 0 && n < paginator.totalPages) {
-                    console.log("Go to page: ", n);
                     paginator.gotoPage(n);
                 }
             } catch (e) {}
@@ -45,7 +44,7 @@ var Paginator = function () {
         this.currentPage = 0;
         this.totalPages = 0;
         this.firstRender = true;
-        
+
         this.selectedItems = [];
     }
     __extend(BaseWidget, Paginator);
@@ -375,8 +374,7 @@ var Paginator = function () {
 
         html += "><span role=\"next\">&#187;</span></button>";
         html += "</div></div>";
-        console.log("container:", this.container);
-        
+
         this.container.innerHTML = html;
         this.list = document.getElementById(id);
         this.list._p = this;
@@ -424,11 +422,11 @@ var Paginator = function () {
                     } else {
                         defaultIndicator.done();
                         //console.log("Done loading " + items.length + " items.");
-                        thiz._allItems = cloneObject(items);
+                        thiz._allItems = items;
                         callback(items);
                     }
                 }, function (error) {
-                    Dialog.error("Data Error");
+                    console.error(error);
                     defaultIndicator.done();
                 });
             };

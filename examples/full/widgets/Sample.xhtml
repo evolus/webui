@@ -1,4 +1,4 @@
-<vbox>
+<vbox xmlns:ui="http://evolus.vn/Namespaces/WebUI/1.0">
     <style>
         @statusLabel {
             color: red;
@@ -21,6 +21,9 @@
         }
         @dataTable > table > tbody > tr > td {
         }
+        @contentActionBar {
+            margin: 0.5em 0em;
+        }
     </style>
     <hbox class="buttonPane">
         <button>Button</button>
@@ -28,7 +31,7 @@
         <button role="primary">Primary</button>
         <button role="primary" mode="raised">Primary Raised</button>
         <button role="danger">Danger</button>
-        <button role="danger" mode="raised">Danger Raised</button>
+        <button role="danger" mode="raised" anon-id="buttonX">Danger Raised</button>
     </hbox>
     <hbox class="buttonPane">
         <button disabled="true">Disabled</button>
@@ -38,8 +41,9 @@
         <button role="danger" disabled="true">Disabled</button>
     </hbox>
 
-    <span class="InlineEntry"><input type="checkbox" /><label>With more options</label></span>
-    <span class="InlineEntry"><input type="radio" /><label>With more options</label></span>
+    <span class="InlineEntry"><input type="checkbox" anon-id="check1" /><label for="check1">With more options</label></span>
+    <span class="InlineEntry"><input type="radio" anon-id="radio1" name="radio" /><label for="radio1">Option #1</label></span>
+    <span class="InlineEntry"><input type="radio" anon-id="radio2" name="radio" /><label for="radio2">Option #2</label></span>
 
     <label anon-id="statusLabel"></label>
     <hbox flex="1">
@@ -53,7 +57,7 @@
         </div>
         <vbox anon-id="content" flex="1">
             <div>This is the content</div>
-            <hbox anon-id="contentActionBar"><ui:ActionBar anon-id="actionBar" class="ActionBar" simple="true"/></hbox>
+            <hbox anon-id="contentActionBar"><ui:ActionBar anon-id="actionBar" class="ActionBar"/></hbox>
             <vbox>
 	            <vbox flex="1">
 	                <ui:DataTable anon-id="dataTable" flex="1" />

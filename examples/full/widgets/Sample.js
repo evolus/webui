@@ -8,10 +8,10 @@ function Sample() {
     this.menu.register({
         key: "Item1",
         isEnabled: function () { return true },
-        getLabel: function () { return "Item 1" },
+        getLabel: function () { return "Show an alert..." },
         isValid: function () { return true },
         run: function () {
-            alert("Item 1");
+            Dialog.alert("Parrot can speak Spanish", "A pet parrot that spoke with a British accent when it disappeared from its home four years ago has been reunited with its owner");
        }
     });
     this.menu.register({
@@ -78,6 +78,12 @@ function Sample() {
 //        dialog.open();
         this.menu.showMenu(this.button, "left-inside", "bottom", 5, 5, true);
     }, this.button);
+
+    this.bind("click", function (event) {
+       var dialog = new SampleDialog();
+       dialog.open();
+   }, this.buttonX);
+
 
     this.initializeDataTable();
 
@@ -241,7 +247,9 @@ function Sample() {
 
     var options = {
         expandedAll: true,
-        checkable: false,
+        checkable: function (item) {
+            return true;
+        },
         same: Util.sameId,
         isItemSelectable: function (item) {
             return true;
@@ -257,10 +265,10 @@ function Sample() {
             return "editor";
         },
         getTitle: function () {
-            return "Edit";
+            return "Delete";
         },
         getIcon: function () {
-            return "trash";
+            return "delete";
         },
         isApplicable: function () {
             return true;
@@ -270,16 +278,69 @@ function Sample() {
             });
         }
     });
-//
     this.actionBar.register({
         getGroup: function (){
-            return "assetEditor";
+            return "editor";
         },
         getTitle: function () {
-            return "Clone asset";
+            return "Clone asset...";
         },
         getIcon: function () {
-            return "cog";
+            return "settings";
+        },
+        isApplicable: function () {
+            return true;
+        },
+        run: function () {
+            thiz.paginator.getSelectedItems(function (items) {
+            });
+        }
+    });
+    this.actionBar.register({
+        getGroup: function (){
+            return "editor";
+        },
+        getTitle: function () {
+            return "";
+        },
+        getIcon: function () {
+            return "download";
+        },
+        isApplicable: function () {
+            return false;
+        },
+        run: function () {
+            thiz.paginator.getSelectedItems(function (items) {
+            });
+        }
+    });
+    this.actionBar.register({
+        getGroup: function (){
+            return "editor";
+        },
+        getTitle: function () {
+            return "";
+        },
+        getIcon: function () {
+            return "calendar-clock";
+        },
+        isApplicable: function () {
+            return true;
+        },
+        run: function () {
+            thiz.paginator.getSelectedItems(function (items) {
+            });
+        }
+    });
+    this.actionBar.register({
+        getGroup: function (){
+            return "editor";
+        },
+        getTitle: function () {
+            return "Send";
+        },
+        getIcon: function () {
+            return "send";
         },
         isApplicable: function () {
             return true;
@@ -293,7 +354,7 @@ function Sample() {
 __extend(BaseTemplatedWidget, Sample);
 
 Sample.prototype.onAttached = function () {
-    this.dataTable.setup();
+    //this.dataTable.setup();
 //    this.dataTable.setItems(this.patients);
     var thiz = this;
     this.paginator.setup({
@@ -315,7 +376,7 @@ Sample.prototype.onAttached = function () {
     });
     this.paginator.pageSize = 5;
     this.paginator.control(this.dataTable);
-    this.paginator.setSource(this.dataListSource);
+    //this.paginator.setSource(this.dataListSource);
 };
 
 

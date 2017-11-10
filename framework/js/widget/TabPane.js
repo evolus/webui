@@ -72,6 +72,11 @@ TabPane.prototype.onSizeChanged = function () {
 	this.ensureSizing();
 };
 TabPane.prototype.ensureSizing = function () {
+    var resize = true;
+    if (this.node().getAttribute("flex") && this.node().parentNode && this.node().parentNode.nodeName == "vbox") {
+        resize = false;
+    }
+
     var w = Dom.getOffsetWidth(this.node()) - 2;
     var h = 0;
 
@@ -85,7 +90,10 @@ TabPane.prototype.ensureSizing = function () {
     }
 
     this.content.style.width = w + "px";
-    this.content.style.height = h + "px";
+
+    if (resize) {
+        this.content.style.height = h + "px";
+    }
 
     for (var i = 0; i < this.headers.length; i ++) {
         var contentNode = this.headers[i]._contentNode;

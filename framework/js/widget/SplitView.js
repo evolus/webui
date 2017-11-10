@@ -41,7 +41,7 @@ var SplitView = function () {
         currentSplitView.ratio = r;
         currentSplitView.updateView();
     	BaseWidget.signalOnSizeChangedRecursively(currentSplitView.node());
-    	
+
         Dom.removeClass(currentSplitView.container, "SplitViewHeld");
         currentSplitView = null;
     }
@@ -60,7 +60,6 @@ var SplitView = function () {
     SplitView.HANDLE_WIDTH = 10;
 
     SplitView.prototype.setContentFragment = function (fragment) {
-        console.log("setContentFragment called on splitview", fragment);
         for (var i = 0; i < fragment.childNodes.length; i ++) {
             var node = fragment.childNodes[i];
             if (!node.nodeName || !node.getAttribute) continue;
@@ -82,7 +81,7 @@ var SplitView = function () {
     SplitView.prototype.setup = function (options) {
         if (this._setupCalled) return;
         this._setupCalled = true;
-        
+
         this.options = options || {};
 
         if (!this.options.initialRatio) this.options.initialRatio = 0.5;
@@ -177,11 +176,11 @@ var SplitView = function () {
             }
         }
     };
-    
+
     SplitView.prototype.onSizeChanged = function () {
         this.updateView();
     };
-    
+
 
     SplitView.prototype.setSplitViewPosition = function (pos) {
         this.splitter.style.left = (pos - SplitView.HANDLE_WIDTH / 2) + "px";
@@ -192,7 +191,7 @@ var SplitView = function () {
     	this.listener = listener;
     	return this;
     };
-    
+
     SplitView.prototype.onAttached = function () {
         this.setup({
             initialRatio: 0.2,

@@ -25,13 +25,18 @@ var ActionBar = function () {
         this.actions = [];
         this.groups = {};
 
-        // this.buttonGroupDiv = document.createElement("div");
-        // Dom.addClass(this.buttonGroupDiv, "btn-group nav-pills");
-        // this.container.appendChild(this.buttonGroupDiv);
+        // this.buttonGroupBox = document.createElement("div");
+        // Dom.addClass(this.buttonGroupBox, "btn-group nav-pills");
+        // this.container.appendChild(this.buttonGroupBox);
 
         Dom.registerEvent(this.container, "click", actionBarClickHandler, false);
     }
     __extend(BaseWidget, ActionBar);
+
+    ActionBar.prototype.buildDOMNode = function () {
+        var node = document.createElement("hbox");
+        return node;
+    };
 
     ActionBar.prototype.register = function (action) {
         this.actions.push(action);
@@ -51,8 +56,7 @@ var ActionBar = function () {
 
             if (!actions || actions.length < 0) continue;
 
-            var buttonGroupDiv = document.createElement("div");
-            Dom.addClass(buttonGroupDiv, "btn-group nav-pills");
+            var buttonGroupBox = document.createElement("hbox");
 
             for (var i = 0; i < actions.length; i ++) {
                 var action = actions[i];
@@ -62,14 +66,16 @@ var ActionBar = function () {
                 var button = document.createElement("button");
                 button.setAttribute("type", "button");
 
-                Dom.addClass(button, "btn btn-default");
+                var html = "";
+                if (action.getIcon && action.getIcon()) html += "<icon class=\"" + action.getIcon() + "\"></icon>";
+                if (action.getTitle && action.getTitle()) html += "<span>" + (this.simple ? "" : Dom.htmlEncode(action.getTitle())) + "</span>";
 
-                button.innerHTML = "<span><i class=\"" + action.getIcon() + "\" ui-icon=\"" + action.getIcon() + "\"></i> " + (this.simple ? "" : Dom.htmlEncode(action.getTitle())) + "</span>";
-                if (this.simple) {
+                button.innerHTML = html;
+                if (this.simple && action.getTitle) {
                     button.setAttribute("title", action.getTitle());
                 }
 
-                buttonGroupDiv.appendChild(button);
+                buttonGroupBox.appendChild(button);
                 if (disabled) {
                     Dom.addClass(button, "disabled");
                     button.setAttribute("disabled", "true");
@@ -77,7 +83,7 @@ var ActionBar = function () {
                 button._action = action;
             }
 
-            this.container.appendChild(buttonGroupDiv);
+            this.container.appendChild(buttonGroupBox);
         }
     };
 

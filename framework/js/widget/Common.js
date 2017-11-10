@@ -130,7 +130,6 @@ function __extend() {
     }
 
     sub.prototype.__pathPrefix = __guessPrefix();
-    console.log(sub.prototype.constructor.name + ": " + sub.prototype.__pathPrefix);
 
     return sub;
 }
@@ -312,7 +311,6 @@ widget.Util = function() {
                     includes += "@import \"" + window.APP_THEME_PATH + "\";\n";
                 }
 
-                console.log(includes);
 
                 css = includes + css;
 
@@ -667,7 +665,6 @@ widget.Util = function() {
 
             //invalidate into view
             var screenW = document.body.offsetWidth - 10;
-            console.log("Location", x, w, screenW);
             if (x + w > screenW) x = screenW - w;
 
             var screenH = document.body.offsetHeight - 10;
@@ -710,7 +707,6 @@ widget.Util = function() {
                 if (!target) return;
                 var animationName = window.getComputedStyle(target).animationName;
                 var animationDuration = window.getComputedStyle(target).animationDuration;
-                console.log(animationName, animationDuration);
                 if (animationName) {
                     var attributeName = animationName + "-just-clicked";
                     if (target._lastJustClickedTimeout) window.clearTimeout(target._lastJustClickedTimeout);

@@ -344,18 +344,17 @@ Dialog.hasOpenDialog = function () {
 };
 Dialog.alert = function (message, extra, onClose) {
     var builder = {
-        title: "Information",
+        title: message || "Information",
         size: message.size || "small",
         buildContent: function (container) {
             container.appendChild(Dom.newDOMElement({
                 _name: "hbox", "class": "MessageDialog",
                 _children: [
-                    { _name: "i", "class": "DialogIcon Alert", "ui-icon": "info" },
+                    { _name: "icon", "class": "information" },
                     {
                         _name: "vbox", flex: 1, "class": "Messages",
                         _children: [
-                            { _name: "strong", _text: message },
-                            { _name: "p", _text: extra || ""}
+                            { _name: "div", _text: extra || ""}
                         ]
                     }
                 ]
@@ -382,7 +381,7 @@ Dialog.error = function (message, extra, onClose) {
             container.appendChild(Dom.newDOMElement({
                 _name: "hbox", "class": "MessageDialog",
                 _children: [
-                    { _name: "i", "class": "DialogIcon Error", "ui-icon": "error" },
+                    { _name: "icon", "class": "close-box" },
                     {
                         _name: "vbox", flex: 1, "class": "Messages",
                         _children: [
@@ -411,9 +410,8 @@ Dialog.prompt = function (message, initialValue, acceptMessage, onInput, cancelM
         title: "Prompt",
         size: "small",
         buildContent: function (container) {
-            var i = document.createElement("i");
-            i.appendChild(document.createTextNode("info"));
-            i.setAttribute("class", "Icon DialogIcon");
+            var i = document.createElement("icon");
+            i.setAttribute("class", "information");
             container.appendChild(i);
 
             var div = document.createElement("div");
@@ -465,7 +463,7 @@ Dialog.confirm = function (question, extra, positiveActionTitle, onPositiveAnswe
             container.appendChild(Dom.newDOMElement({
                 _name: "hbox", "class": "MessageDialog",
                 _children: [
-                    { _name: "i", "class": "DialogIcon", "ui-icon": "help" },
+                    { _name: "i", "class": "help-circle" },
                     {
                         _name: "vbox", flex: 1, "class": "Messages",
                         _children: [
@@ -521,8 +519,8 @@ Dialog.select = function (items, callback, selectedItems, options) {
         size: options.size || "normal",
         buildContent: function (container) {
             if (options.message) {
-                var i = document.createElement("p");
-                Dom.addClass(i, "fa fa-question-circle");
+                var i = document.createElement("icon");
+                Dom.addClass(i, "question-circle");
                 i.setAttribute("style", "float: left; font-size: 2em; color: #428BCA;");
                 container.appendChild(i);
 

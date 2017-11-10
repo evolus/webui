@@ -29,6 +29,7 @@ body {
     font-size: 0.9em;
     font-size-adjust: none;
     line-height: @default-line-height;
+    color: @primary_text_color;
 }
 
 /* Push Buttons */
@@ -50,11 +51,14 @@ input[type='button'] {
     outline: none !important;
 
     .ripple-effect();
-}
 
-button:focus,
-input[type='button']:focus {
-    background: rgba(153, 153, 153, 0.3);
+    &:focus {
+        background: rgba(153, 153, 153, 0.3);
+        outline: none !important;
+    }
+    &::-moz-focus-inner {
+        border: 0;
+    }
 }
 
 button[mode='raised'],
@@ -90,13 +94,27 @@ input[type='button'][disabled] {
     box-shadow: none;
 }
 
+button > icon {
+    font-size: 1.4em;
+    opacity: 0.54;
+}
+button > * {
+    vertical-align: middle;
+}
+button > icon + * {
+    margin-left: 0.3em;
+}
+
+
 /* Checkbox & Radio */
+@checkbox-font-size: unit(@default-line-height * 1.2, em);
 .base-checkable-control() {
     font: inherit;
     font-size: 1em;
     display: inline-block;
     -webkit-appearance: none;
     -moz-appearance: none;
+    -ms-appearance: none !important;
     appearance: none;
     margin: 0px;
     padding: 0px;
@@ -106,11 +124,24 @@ input[type='button'][disabled] {
         .base-icon();
         color: fade(@base_text_color, 54%);
 
-        font-size: unit(@default-line-height * 1.2, em);
+        font-size: @checkbox-font-size;
         line-height: 1;
     }
     &:checked::before {
         color: @primary_color;
+    }
+
+    &:focus {
+        outline: none !important;
+    }
+    &::-moz-focus-inner {
+        border: 0;
+    }
+    &:disabled,
+    &[disabled] {
+        &:checked:before {
+            color: fade(@primary_color, 30%);
+        }
     }
 
     .InlineEntry > & + label {
@@ -181,20 +212,25 @@ input[type="radio"]:checked::before {
     margin-top: -0.5em;
 }
 .widget_DataTable > table > thead > tr > th.Sortable.DescSort {
-    .icon("\F045");
+    .icon("arrow-down");
 }
 .widget_DataTable > table > thead > tr > th.Sortable.AscSort {
-    .icon("\F05D");
+    .icon("arrow-up");
 }
 .widget_DataTable > table > thead > tr > th[data-type="numeric"],
 .widget_DataTable > table > tbody > tr > td[data-type="numeric"] {
     text-align: right;
 }
-
+.widget_DataTable > table > thead > tr > th,
+.widget_DataTable > table > tbody > tr > td {
+    padding: 0px;
+}
 .widget_DataTable > table > thead > tr > th > div,
 .widget_DataTable > table > tbody > tr > td > .CellContentWrapper {
     padding: unit(10 * @dp, em) unit(16 * @dp, em);
     box-sizing: border-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .widget_DataTable > table > thead > tr > th > div {
     height: unit(10 * @dp, em) * 2 + 1.2em;
@@ -210,7 +246,7 @@ input[type="radio"]:checked::before {
     display: block;
 }
 .widget_DataTable > .ColumnSetting span i {
-    .icon("\F1D9");
+    .icon("dots-vertical");
     font-size: unit(10 * @dp, em) * 2 + 0.4em;
     line-height: 1em;
     height: 1em;
@@ -266,6 +302,18 @@ input[type="radio"]:checked::before {
     text-overflow: ellipsis;
 }
 
+.widget_ComboManager .AnonId_buttonDisplay {
+    padding-right: 1.2em;
+}
+
+.widget_ComboManager > icon {
+    font-size: 1.4em;
+    position: absolute;
+    top: 50%;
+    margin-top: -0.5em;
+    right: 0.3em;
+}
+
 .AnonId_popupContainer.MenuPopupContainer .MenuItem:not(.MenuSeparator) {
     align-items: center;
 }
@@ -292,9 +340,9 @@ input[type="radio"]:checked::before {
 }
 .AnonId_popupContainer.MenuPopupContainer .MenuItem > label {
     min-width: 1em;
+    margin-right: 0.5em;
 }
 .AnonId_popupContainer.MenuPopupContainer .MenuItem > i {
-    @iconify();
     font-size: 1.4em;
     width: 1.2em;
 }
@@ -316,27 +364,255 @@ input[type="radio"]:checked::before {
     margin-left: 2ex;
 }
 
-/*
-@header {
-    border-bottom: solid 1px #DDDDDD;
-    padding: 0px;
-    cursor: pointer;
+/* Dialogs */
+.Sys_DialogOverlay {
+    background: rgba(0, 0, 0, 0.05);
 }
-@header .TabHeader {
-    border: solid 1px transparent;
+.AnonId_dialogFrame {
+    border: none;
+    border-radius: unit(2 * @dp, em);
+    background: #FFFFFF;
+    .z-depth-8dp();
+    transition: opacity 0.4s;
+}
+.AnonId_dialogFrame:focus {
+    outline: none;
+}
 
-    padding: 0.5em 0.7em;
-    color: rgba(0, 0, 0, 0.6);
-    font-weight: bold;
+.AnonId_dialogFrame .AnonId_dialogHeaderPane {
+    margin: 0em;
+    padding: unit(24 * @dp, em);
 }
-@header .ActiveTab {
+
+.AnonId_dialogFrame .AnonId_dialogHeaderPane:hover .AnonId_dialogClose {
+    opacity: 0.2;
+}
+.AnonId_dialogFrame .AnonId_dialogHeaderPane .AnonId_dialogClose {
+    width: 1em;
+    height: 1em;
+    text-align: center;
+    line-height: 1em;
+    font-size: unit(20 * @dp * @default-line-height, em);
+    padding: 0em;
+    .icon("close");
+
+    padding: 0.2em;
+    margin: -0.2em;
+
+    border-radius: 0.7em;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+
+    .ripple-effect();
+
+    &:hover {
+        opacity: 1;
+        background: @hover_bg;
+    }
+}
+
+.AnonId_dialogFrame .AnonId_dialogTitle {
+    display: block;
+    font-size: unit(20 * @dp, em);
+    font-weight: 500;
+
+    padding-right: 1em;
+}
+.AnonId_dialogFrame .AnonId_dialogSubTitle {
     color: #000;
-    border-color: #DDDDDD;
-    border-top-left-radius: 0.3em;
-    border-top-right-radius: 0.3em;
-    border-bottom: none;
-    margin-bottom: -1px;
+    display: block;
+    opacity: 0.7;
+}
+
+.AnonId_dialogFrame .AnonId_dialogBody {
+    padding: 0em unit(24 * @dp, em);
+}
+.AnonId_dialogFrame .AnonId_dialogFooter {
+    padding: unit(12 * @dp, em);
+    margin-top: unit(24 * @dp, em);
+}
+.AnonId_dialogFooter > hbox > * + * {
+    margin-left: unit(12 * @dp, em);
+}
+
+.AnonId_dialogFooter button {
+    min-width: unit(64 * @dp, em);
+    display: inline-block;
+
+    &:not([role]) {
+        color: @primary_color;
+    }
+}
+
+
+.AnonId_dialogFrame .MessageDialog > icon {
+    font-size: 3em;
+    opacity: 0.54;
+}
+
+.AnonId_dialogFrame .MessageDialog .Messages {
+    margin-left: 2em;
+    word-break: break-word;
+}
+.AnonId_dialogFrame .MessageDialog .Messages p {
+    margin-top: 0.5em;
+}
+
+.AnonId_dialogFrame .WizardContent {
+    /*position: relative;
+    border: solid 1px #DDDDDD;
+    border-top: none;
     background: #FAFAFA;
+    box-sizing: content-box;*/
+    position: relative;
+    background: #FAFAFA;
+    box-sizing: content-box;
+}
+.AnonId_dialogFrame .WizardContent > .WizardPane {
+    position: absolute;
+    visibility: hidden;
+    padding: 0.7em;
+    left: 0px;
+    top: 0px;
+}
+.AnonId_dialogFrame .WizardContent > .WizardPane.Measured {
+    right: 0px;
+    bottom: 0px;
+}
+.AnonId_dialogFrame .WizardContent > .ActiveWizardPane {
+    visibility: inherit;
+}
+
+/* Tree */
+@tree-item-height: unit(@default-line-height + 4 * @dp, em);
+.widget_Tree {
+    padding: 0.5em;
+}
+.widget_Tree label {
+    margin-bottom: 0px;
+    font-weight: normal;
+}
+.widget_Tree .ItemText {
+    box-sizing: border-box;
+}
+.widget_Tree .ItemText label {
+    display: inline-block;
+    line-height: @tree-item-height;
+    padding: 0em 0.4em;
+}
+.widget_Tree .ItemText.Selected label {
+    border-radius: unit(2 * @dp, em);
+    background: @primary_color;
+    color: @inverted_text_color;
+}
+.widget_Tree .SelectableItem * {
     cursor: default;
 }
-*/
+.widget_Tree .SelectableItem:hover label {
+    background: @hover_bg;
+}
+.widget_Tree .SelectableItem.Selected:hover label {
+    background: darken(@primary_color, 10%);
+}
+
+.widget_Tree .ItemText.Disabled label {
+    opacity: 50%;
+}
+
+.widget_Tree .Title .ItemText {
+    display: inline;
+}
+.widget_Tree .Title {
+    white-space: nowrap;
+    padding: 0.1em 0em;
+}
+.widget_Tree .IconicLabel * {
+    vertical-align: middle;
+}
+.widget_Tree .IconicLabel img {
+    width: 1em;
+    height: 1em;
+}
+
+.widget_Tree .Title * {
+    vertical-align: middle;
+}
+.widget_Tree .Title .Checkbox::before {
+    line-height: @tree-item-height / unit(@checkbox-font-size);
+    height: @tree-item-height / unit(@checkbox-font-size);
+}
+.widget_Tree .NoChild .Chevron icon:before {
+    visibility: hidden;
+}
+.widget_Tree .Title .Chevron icon:before {
+    margin-top: (@tree-item-height - 1em) / 2;
+    transform: rotate(0deg) scale(1.5);
+    transition: transform 0.1s ease;
+}
+
+.widget_Tree .ExpandedTitle .Chevron icon:before {
+    transform: rotate(90deg) scale(1.5);
+}
+.widget_Tree .Title .Chevron {
+    font-size: 1em;
+    padding: 0em 0.3em;
+    cursor: pointer;
+    color: #777;
+}
+.widget_Tree .Children {
+    padding-left: 1em;
+}
+.widget_Tree .RootChildren {
+    padding-left: 0px;
+}
+.widget_Tree .CollapsedChildren {
+    display: none;
+}
+.widget_Tree .Checkbox {
+    display: none;
+}
+.widget_Tree .Children .Children {
+    position: relative;
+}
+.widget_Tree .Children .Children .Title {
+    position: relative;
+}
+.widget_Tree .Children .Children .NoChild:before {
+    width: 1.6em;
+}
+.widget_Tree .Children .Children .LastChild {
+    position: relative;
+}
+
+.CheckableTree .Checkbox {
+    display: inline;
+}
+.FamilyNotMSIE .CheckableTree .Checkbox {
+}
+.CheckableTree .Checkbox[disabled] {
+    opacity: 0.4;
+}
+
+/* Action Bar */
+@toolbar-button-background: rgba(0, 0, 0, 0.03);
+.widget_ActionBar > hbox + hbox {
+    margin-left: 0.5em;
+}
+.widget_ActionBar button {
+    padding: 0.4em 0.6em;
+    text-align: center;
+    min-width: 1.4em;
+    box-sizing: content-box;
+    border-radius: unit(4 * @dp, em);
+}
+.widget_ActionBar button + button {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+.widget_ActionBar button:not(:last-child) {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+.widget_ActionBar button:not(:focus) {
+    background: @toolbar-button-background;
+}

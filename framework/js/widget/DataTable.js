@@ -1,18 +1,18 @@
 var DataTable = function () {
-    Dom.registerEvent(window, "load", function () {
-        var f = function (event) {
-            var target = Dom.getTarget(event);
-            Dom.doOnChildRecursively(target, {
-                eval: function (node) {
-                    return Dom.hasClass(node, "DataTable") && node._dt && node._dt.invalidateSizing;
-                }
-            }, function (node) {
-                node._dt.invalidateSizing();
-            });
-        };
-        Dom.registerEvent(document.body, "overflow", f, false);
-        Dom.registerEvent(document.body, "underflow", f, false);
-    });
+    // Dom.registerEvent(window, "load", function () {
+    //     var f = function (event) {
+    //         var target = Dom.getTarget(event);
+    //         Dom.doOnChildRecursively(target, {
+    //             eval: function (node) {
+    //                 return Dom.hasClass(node, "DataTable") && node._dt && node._dt.invalidateSizing;
+    //             }
+    //         }, function (node) {
+    //             node._dt.invalidateSizing();
+    //         });
+    //     };
+    //     Dom.registerEvent(document.body, "overflow", f, false);
+    //     Dom.registerEvent(document.body, "underflow", f, false);
+    // });
 
     function clickHandler(event) {
         var target = Dom.getTarget(event);
@@ -99,7 +99,6 @@ var DataTable = function () {
         if (event.shiftKey) {
             //var json = JSON.stringify(data, null, 2);
             //alert(json);
-            console.log("ROW DATA:", data);
         }
 
         if (actionNode) {
@@ -200,7 +199,6 @@ var DataTable = function () {
             if (!column.propertyName) continue;
 
             if (column.columnId == id) {
-                console.log("Found colum id ", column, th);
                 var asc = Dom.hasClass(th, "AscSort");
                 var order = {
                         propertyName: column.propertyName,
@@ -743,7 +741,10 @@ var DataTable = function () {
         return this;
     };
     DataTable.prototype.invalidateSizing = function() {
-    	console.log("invalidateSizing called");
+        // this.count = !this.count ? 1 : (this.count + 1);
+        // if (this.count >= 10) return;
+        // console.log("invalidateSizing called: " + this.count);
+        // console.trace();
     	var thiz = this;
     	if (!Dom.isElementExistedInDocument(this.container)) {
     	    return;
@@ -831,7 +832,6 @@ var DataTable = function () {
         }
 
         var realTableWidth = Math.max(totalWidth, totalDisplayWidth);
-        console.log("realTableWidth: ", realTableWidth);
         html = html.replace("#@@TABLE_WIDTH@@#", "" + realTableWidth);
 
         var t = 0;
@@ -924,7 +924,6 @@ var DataTable = function () {
         }
         Dom.registerEvent(this.header, "click", columnHeaderClickHandler, false);
 
-        console.log("actual container width, after init: ", Dom.getOffsetWidth(this.container));
 
     };
     DataTable.prototype.isColumnVisible = function (column) {
@@ -1174,8 +1173,8 @@ var DataTable = function () {
                 if (!this.isColumnVisible(this.actualColumns[j])) continue;
                 var column = this.actualColumns[j];
                 html += "<td data-title=\"" + Dom.htmlEncode(column.title) + "\"";
-                if (column.getBodyClass) {
-                    var c = column.getBodyClass(item, i, j);
+                if (column.getBodyClass || column.id) {
+                    var c = column.getBodyClass ? column.getBodyClass(item, i, j) : ("Col_" + column.id);
                     if (c) {
                         html += " class=\"" + c + "\"";
                     }
@@ -1221,18 +1220,18 @@ var DataTable = function () {
             this.rightOverflowIndicator.style.height = this.table.offsetHeight + "px";
         }
 
-        this.table.style.height = "auto";
+        //this.table.style.height = "auto";
         this.invalidateOverflowIndicators();
-        if (this.lastCalculatedPageSize && this.items.length == this.lastCalculatedPageSize) {
-            var padding = 0;
-            if (Dom.getOffsetWidth(this.table) > Dom.getOffsetWidth(this.container)) {
-                padding = Dom.calculateSystemScrollbarSize().h;
-            }
-            this.table.style.height = (Dom.getOffsetHeight(this.container) - padding) + "px";
-        } else {
-            this.table.style.height = "auto";
-        }
-        this.invalidateOverflowIndicators();
+        // if (this.lastCalculatedPageSize && this.items.length == this.lastCalculatedPageSize) {
+        //     var padding = 0;
+        //     if (Dom.getOffsetWidth(this.table) > Dom.getOffsetWidth(this.container)) {
+        //         padding = Dom.calculateSystemScrollbarSize().h;
+        //     }
+        //     this.table.style.height = (Dom.getOffsetHeight(this.container) - padding) + "px";
+        // } else {
+        //     this.table.style.height = "auto";
+        // }
+        //this.invalidateOverflowIndicators();
 
         this.fireSelectionChangedEvent(false);
 
@@ -1400,12 +1399,44 @@ var DataTable = function () {
     DataTable.GenericColumn.prototype.getTitleContentHtml = function () {
         return !this.useHtmlTitle() ? Dom.htmlEncode(this.title) : this.title;
     };
-    DataTable.GenericColumn.prototype.getTitleContent = function (data, row, col) {
+    DataTable.GenericColumn.prototype.getContentTitle = function (data, row, col) {
         return Dom.htmlEncode(this.renderer(data, row, col));
     };
     DataTable.GenericColumn.prototype.getCellContentHtml = function (data, row, col) {
         return this.renderer(data, row, col);
     };
+
+    DataTable.GenericDomColumn = function (title, renderer, clazz) {
+        this.title = title;
+        this.headerClass = clazz;
+        this.renderer = renderer;
+        this.generateId(title);
+    };
+    DataTable.GenericDomColumn.prototype = new DataTable.GenericColumn("");
+    DataTable.GenericDomColumn.prototype.getContentTitle = function (data, row, col) {
+        return "";
+    };
+    DataTable.GenericDomColumn.prototype.getCellContentHtml = function (data, row, col) {
+        var html = this._renderDom(data, row, col);
+        return html;
+    };
+    DataTable.GenericDomColumn.prototype._renderDom = function (data, row, col) {
+        var spec = this.renderer(data, row, col);
+        if (!spec) return "";
+        var node = null;
+        if (typeof(spec) == "array") {
+            node = Dom.newDOMFragment(spec);
+        } else if (typeof(spec) == "object") {
+            node = Dom.newDOMElement(spec);
+        }
+
+        if (!this._div) this._div = document.createElement("div");
+        this._div.innerHTML = "";
+        this._div.appendChild(node);
+
+        return this._div.innerHTML;
+    };
+
 
     DataTable.LinkColumn = function (title, linkContentBuilder, linkHrefBuider, clazz) {
         this.title = title;

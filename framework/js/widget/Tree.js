@@ -426,27 +426,16 @@ var Tree = function() {
             _name: "div",
             "class": itemClass,
             _children: [ {
-                _name: "div",
+                _name: "hbox",
                 "class": "Title CollapsedTitle",
                 _id: "titleElement",
                 _children: [ {
                     _name: "span",
                     "class": "Chevron",
                     _children: [ {
-                        _name: "span",
-                        "class": "Down",
-                        _children: [ {
-                        				_name: "i",
-                        				"ui-icon": "minus"
-                        			} ]
-                    }, {
-                        _name: "span",
-                        "class": "Right",
-                        _children: [ {
-            				_name: "i",
-            				"ui-icon": "plus"
-            			} ]
-                    } ]
+                        _name: "icon",
+                        "class": "menu-right",
+                    }]
                 }, {
                     _name: "input",
                     "class": "Checkbox",

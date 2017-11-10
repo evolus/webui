@@ -1,0 +1,35 @@
+<vbox xmlns:ui="http://evolus.vn/Namespaces/WebUI/1.0">
+    <style>
+        @titleBar {
+            align-items: center;
+            margin-bottom: 0.5em;
+        }
+        h1 {
+            margin: 0em;
+            font-size: 1.5em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        @contentFooter {
+            margin-top: 0.5em;
+            align-items: center;
+        }
+        @dataTable td.Col_name span {
+            opacity: 0.6;
+        }
+    </style>
+    <hbox anon-id="titleBar">
+        <h1 flex="1">Data List Example</h1>
+        <ui:ActionBar anon-id="actionBar" class="ActionBar"/>
+    </hbox>
+    <vbox flex="1">
+        <vbox flex="1" anon-id="dataTableContainer">
+            <ui:DataTable anon-id="dataTable" flex="1" />
+        </vbox>
+        <hbox anon-id="contentFooter">
+            <div anon-id="contentDescription" flex="1"></div>
+            <ui:Paginator anon-id="paginator" />
+        </hbox>
+    </vbox>
+</vbox>

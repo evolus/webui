@@ -25,34 +25,5189 @@
 @default-line-height: 1.2;
 
 @iconify: {
-    display: inline-block;
-    line-height: 1em;
-    font-family: 'Material Icons';
-    font-weight: normal;
-    font-style: normal;
-    letter-spacing: normal;
-    text-transform: none;
-    display: inline-block;
-    white-space: nowrap;
-    word-wrap: normal;
-    direction: ltr;
-    -webkit-font-feature-settings: 'liga';
-    -webkit-font-smoothing: antialiased;
-    opacity: 0.54;
 };
 .base-icon() {
     display: inline-block;
-    font: normal normal normal 24px/1 "Material Design Icons";
+    font: normal normal normal 1.2em/1 "Material Design Icons";
     font-size: inherit;
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     transform: translate(0, 0);
 }
-.icon(@content) {
+
+.icon(@name) {
     &:before {
         .base-icon();
-        content: @content;
+        .mdi-icon-name-to-content(@name);
+    }
+}
+.mdi-icon-name-to-content(@name) {
+    & when (@name = "access-point") {
+        content: "\F002";
+    }
+    & when (@name = "access-point-network") {
+        content: "\F003";
+    }
+    & when (@name = "account") {
+        content: "\F004";
+    }
+    & when (@name = "account-alert") {
+        content: "\F005";
+    }
+    & when (@name = "account-box") {
+        content: "\F006";
+    }
+    & when (@name = "account-box-outline") {
+        content: "\F007";
+    }
+    & when (@name = "account-card-details") {
+        content: "\F5D2";
+    }
+    & when (@name = "account-check") {
+        content: "\F008";
+    }
+    & when (@name = "account-circle") {
+        content: "\F009";
+    }
+    & when (@name = "account-convert") {
+        content: "\F00A";
+    }
+    & when (@name = "account-key") {
+        content: "\F00B";
+    }
+    & when (@name = "account-location") {
+        content: "\F00C";
+    }
+    & when (@name = "account-minus") {
+        content: "\F00D";
+    }
+    & when (@name = "account-multiple") {
+        content: "\F00E";
+    }
+    & when (@name = "account-multiple-minus") {
+        content: "\F5D3";
+    }
+    & when (@name = "account-multiple-outline") {
+        content: "\F00F";
+    }
+    & when (@name = "account-multiple-plus") {
+        content: "\F010";
+    }
+    & when (@name = "account-network") {
+        content: "\F011";
+    }
+    & when (@name = "account-off") {
+        content: "\F012";
+    }
+    & when (@name = "account-outline") {
+        content: "\F013";
+    }
+    & when (@name = "account-plus") {
+        content: "\F014";
+    }
+    & when (@name = "account-remove") {
+        content: "\F015";
+    }
+    & when (@name = "account-search") {
+        content: "\F016";
+    }
+    & when (@name = "account-settings") {
+        content: "\F630";
+    }
+    & when (@name = "account-settings-variant") {
+        content: "\F631";
+    }
+    & when (@name = "account-star") {
+        content: "\F017";
+    }
+    & when (@name = "account-star-variant") {
+        content: "\F018";
+    }
+    & when (@name = "account-switch") {
+        content: "\F019";
+    }
+    & when (@name = "adjust") {
+        content: "\F01A";
+    }
+    & when (@name = "air-conditioner") {
+        content: "\F01B";
+    }
+    & when (@name = "airballoon") {
+        content: "\F01C";
+    }
+    & when (@name = "airplane") {
+        content: "\F01D";
+    }
+    & when (@name = "airplane-landing") {
+        content: "\F5D4";
+    }
+    & when (@name = "airplane-off") {
+        content: "\F01E";
+    }
+    & when (@name = "airplane-takeoff") {
+        content: "\F5D5";
+    }
+    & when (@name = "airplay") {
+        content: "\F01F";
+    }
+    & when (@name = "alarm") {
+        content: "\F020";
+    }
+    & when (@name = "alarm-check") {
+        content: "\F021";
+    }
+    & when (@name = "alarm-multiple") {
+        content: "\F022";
+    }
+    & when (@name = "alarm-off") {
+        content: "\F023";
+    }
+    & when (@name = "alarm-plus") {
+        content: "\F024";
+    }
+    & when (@name = "alarm-snooze") {
+        content: "\F68D";
+    }
+    & when (@name = "album") {
+        content: "\F025";
+    }
+    & when (@name = "alert") {
+        content: "\F026";
+    }
+    & when (@name = "alert-box") {
+        content: "\F027";
+    }
+    & when (@name = "alert-circle") {
+        content: "\F028";
+    }
+    & when (@name = "alert-circle-outline") {
+        content: "\F5D6";
+    }
+    & when (@name = "alert-octagon") {
+        content: "\F029";
+    }
+    & when (@name = "alert-outline") {
+        content: "\F02A";
+    }
+    & when (@name = "alpha") {
+        content: "\F02B";
+    }
+    & when (@name = "alphabetical") {
+        content: "\F02C";
+    }
+    & when (@name = "altimeter") {
+        content: "\F5D7";
+    }
+    & when (@name = "amazon") {
+        content: "\F02D";
+    }
+    & when (@name = "amazon-clouddrive") {
+        content: "\F02E";
+    }
+    & when (@name = "ambulance") {
+        content: "\F02F";
+    }
+    & when (@name = "amplifier") {
+        content: "\F030";
+    }
+    & when (@name = "anchor") {
+        content: "\F031";
+    }
+    & when (@name = "android") {
+        content: "\F032";
+    }
+    & when (@name = "android-debug-bridge") {
+        content: "\F033";
+    }
+    & when (@name = "android-studio") {
+        content: "\F034";
+    }
+    & when (@name = "angular") {
+        content: "\F6B1";
+    }
+    & when (@name = "animation") {
+        content: "\F5D8";
+    }
+    & when (@name = "apple") {
+        content: "\F035";
+    }
+    & when (@name = "apple-finder") {
+        content: "\F036";
+    }
+    & when (@name = "apple-ios") {
+        content: "\F037";
+    }
+    & when (@name = "apple-keyboard-caps") {
+        content: "\F632";
+    }
+    & when (@name = "apple-keyboard-command") {
+        content: "\F633";
+    }
+    & when (@name = "apple-keyboard-control") {
+        content: "\F634";
+    }
+    & when (@name = "apple-keyboard-option") {
+        content: "\F635";
+    }
+    & when (@name = "apple-keyboard-shift") {
+        content: "\F636";
+    }
+    & when (@name = "apple-mobileme") {
+        content: "\F038";
+    }
+    & when (@name = "apple-safari") {
+        content: "\F039";
+    }
+    & when (@name = "application") {
+        content: "\F614";
+    }
+    & when (@name = "appnet") {
+        content: "\F03A";
+    }
+    & when (@name = "apps") {
+        content: "\F03B";
+    }
+    & when (@name = "archive") {
+        content: "\F03C";
+    }
+    & when (@name = "arrange-bring-forward") {
+        content: "\F03D";
+    }
+    & when (@name = "arrange-bring-to-front") {
+        content: "\F03E";
+    }
+    & when (@name = "arrange-send-backward") {
+        content: "\F03F";
+    }
+    & when (@name = "arrange-send-to-back") {
+        content: "\F040";
+    }
+    & when (@name = "arrow-all") {
+        content: "\F041";
+    }
+    & when (@name = "arrow-bottom-left") {
+        content: "\F042";
+    }
+    & when (@name = "arrow-bottom-right") {
+        content: "\F043";
+    }
+    & when (@name = "arrow-compress") {
+        content: "\F615";
+    }
+    & when (@name = "arrow-compress-all") {
+        content: "\F044";
+    }
+    & when (@name = "arrow-down") {
+        content: "\F045";
+    }
+    & when (@name = "arrow-down-bold") {
+        content: "\F046";
+    }
+    & when (@name = "arrow-down-bold-circle") {
+        content: "\F047";
+    }
+    & when (@name = "arrow-down-bold-circle-outline") {
+        content: "\F048";
+    }
+    & when (@name = "arrow-down-bold-hexagon-outline") {
+        content: "\F049";
+    }
+    & when (@name = "arrow-down-drop-circle") {
+        content: "\F04A";
+    }
+    & when (@name = "arrow-down-drop-circle-outline") {
+        content: "\F04B";
+    }
+    & when (@name = "arrow-expand") {
+        content: "\F616";
+    }
+    & when (@name = "arrow-expand-all") {
+        content: "\F04C";
+    }
+    & when (@name = "arrow-left") {
+        content: "\F04D";
+    }
+    & when (@name = "arrow-left-bold") {
+        content: "\F04E";
+    }
+    & when (@name = "arrow-left-bold-circle") {
+        content: "\F04F";
+    }
+    & when (@name = "arrow-left-bold-circle-outline") {
+        content: "\F050";
+    }
+    & when (@name = "arrow-left-bold-hexagon-outline") {
+        content: "\F051";
+    }
+    & when (@name = "arrow-left-drop-circle") {
+        content: "\F052";
+    }
+    & when (@name = "arrow-left-drop-circle-outline") {
+        content: "\F053";
+    }
+    & when (@name = "arrow-right") {
+        content: "\F054";
+    }
+    & when (@name = "arrow-right-bold") {
+        content: "\F055";
+    }
+    & when (@name = "arrow-right-bold-circle") {
+        content: "\F056";
+    }
+    & when (@name = "arrow-right-bold-circle-outline") {
+        content: "\F057";
+    }
+    & when (@name = "arrow-right-bold-hexagon-outline") {
+        content: "\F058";
+    }
+    & when (@name = "arrow-right-drop-circle") {
+        content: "\F059";
+    }
+    & when (@name = "arrow-right-drop-circle-outline") {
+        content: "\F05A";
+    }
+    & when (@name = "arrow-top-left") {
+        content: "\F05B";
+    }
+    & when (@name = "arrow-top-right") {
+        content: "\F05C";
+    }
+    & when (@name = "arrow-up") {
+        content: "\F05D";
+    }
+    & when (@name = "arrow-up-bold") {
+        content: "\F05E";
+    }
+    & when (@name = "arrow-up-bold-circle") {
+        content: "\F05F";
+    }
+    & when (@name = "arrow-up-bold-circle-outline") {
+        content: "\F060";
+    }
+    & when (@name = "arrow-up-bold-hexagon-outline") {
+        content: "\F061";
+    }
+    & when (@name = "arrow-up-drop-circle") {
+        content: "\F062";
+    }
+    & when (@name = "arrow-up-drop-circle-outline") {
+        content: "\F063";
+    }
+    & when (@name = "assistant") {
+        content: "\F064";
+    }
+    & when (@name = "at") {
+        content: "\F065";
+    }
+    & when (@name = "attachment") {
+        content: "\F066";
+    }
+    & when (@name = "audiobook") {
+        content: "\F067";
+    }
+    & when (@name = "auto-fix") {
+        content: "\F068";
+    }
+    & when (@name = "auto-upload") {
+        content: "\F069";
+    }
+    & when (@name = "autorenew") {
+        content: "\F06A";
+    }
+    & when (@name = "av-timer") {
+        content: "\F06B";
+    }
+    & when (@name = "baby") {
+        content: "\F06C";
+    }
+    & when (@name = "baby-buggy") {
+        content: "\F68E";
+    }
+    & when (@name = "backburger") {
+        content: "\F06D";
+    }
+    & when (@name = "backspace") {
+        content: "\F06E";
+    }
+    & when (@name = "backup-restore") {
+        content: "\F06F";
+    }
+    & when (@name = "bandcamp") {
+        content: "\F674";
+    }
+    & when (@name = "bank") {
+        content: "\F070";
+    }
+    & when (@name = "barcode") {
+        content: "\F071";
+    }
+    & when (@name = "barcode-scan") {
+        content: "\F072";
+    }
+    & when (@name = "barley") {
+        content: "\F073";
+    }
+    & when (@name = "barrel") {
+        content: "\F074";
+    }
+    & when (@name = "basecamp") {
+        content: "\F075";
+    }
+    & when (@name = "basket") {
+        content: "\F076";
+    }
+    & when (@name = "basket-fill") {
+        content: "\F077";
+    }
+    & when (@name = "basket-unfill") {
+        content: "\F078";
+    }
+    & when (@name = "battery") {
+        content: "\F079";
+    }
+    & when (@name = "battery-10") {
+        content: "\F07A";
+    }
+    & when (@name = "battery-20") {
+        content: "\F07B";
+    }
+    & when (@name = "battery-30") {
+        content: "\F07C";
+    }
+    & when (@name = "battery-40") {
+        content: "\F07D";
+    }
+    & when (@name = "battery-50") {
+        content: "\F07E";
+    }
+    & when (@name = "battery-60") {
+        content: "\F07F";
+    }
+    & when (@name = "battery-70") {
+        content: "\F080";
+    }
+    & when (@name = "battery-80") {
+        content: "\F081";
+    }
+    & when (@name = "battery-90") {
+        content: "\F082";
+    }
+    & when (@name = "battery-alert") {
+        content: "\F083";
+    }
+    & when (@name = "battery-charging") {
+        content: "\F084";
+    }
+    & when (@name = "battery-charging-100") {
+        content: "\F085";
+    }
+    & when (@name = "battery-charging-20") {
+        content: "\F086";
+    }
+    & when (@name = "battery-charging-30") {
+        content: "\F087";
+    }
+    & when (@name = "battery-charging-40") {
+        content: "\F088";
+    }
+    & when (@name = "battery-charging-60") {
+        content: "\F089";
+    }
+    & when (@name = "battery-charging-80") {
+        content: "\F08A";
+    }
+    & when (@name = "battery-charging-90") {
+        content: "\F08B";
+    }
+    & when (@name = "battery-minus") {
+        content: "\F08C";
+    }
+    & when (@name = "battery-negative") {
+        content: "\F08D";
+    }
+    & when (@name = "battery-outline") {
+        content: "\F08E";
+    }
+    & when (@name = "battery-plus") {
+        content: "\F08F";
+    }
+    & when (@name = "battery-positive") {
+        content: "\F090";
+    }
+    & when (@name = "battery-unknown") {
+        content: "\F091";
+    }
+    & when (@name = "beach") {
+        content: "\F092";
+    }
+    & when (@name = "beaker") {
+        content: "\F68F";
+    }
+    & when (@name = "beats") {
+        content: "\F097";
+    }
+    & when (@name = "beer") {
+        content: "\F098";
+    }
+    & when (@name = "behance") {
+        content: "\F099";
+    }
+    & when (@name = "bell") {
+        content: "\F09A";
+    }
+    & when (@name = "bell-off") {
+        content: "\F09B";
+    }
+    & when (@name = "bell-outline") {
+        content: "\F09C";
+    }
+    & when (@name = "bell-plus") {
+        content: "\F09D";
+    }
+    & when (@name = "bell-ring") {
+        content: "\F09E";
+    }
+    & when (@name = "bell-ring-outline") {
+        content: "\F09F";
+    }
+    & when (@name = "bell-sleep") {
+        content: "\F0A0";
+    }
+    & when (@name = "beta") {
+        content: "\F0A1";
+    }
+    & when (@name = "bible") {
+        content: "\F0A2";
+    }
+    & when (@name = "bike") {
+        content: "\F0A3";
+    }
+    & when (@name = "bing") {
+        content: "\F0A4";
+    }
+    & when (@name = "binoculars") {
+        content: "\F0A5";
+    }
+    & when (@name = "bio") {
+        content: "\F0A6";
+    }
+    & when (@name = "biohazard") {
+        content: "\F0A7";
+    }
+    & when (@name = "bitbucket") {
+        content: "\F0A8";
+    }
+    & when (@name = "black-mesa") {
+        content: "\F0A9";
+    }
+    & when (@name = "blackberry") {
+        content: "\F0AA";
+    }
+    & when (@name = "blender") {
+        content: "\F0AB";
+    }
+    & when (@name = "blinds") {
+        content: "\F0AC";
+    }
+    & when (@name = "block-helper") {
+        content: "\F0AD";
+    }
+    & when (@name = "blogger") {
+        content: "\F0AE";
+    }
+    & when (@name = "bluetooth") {
+        content: "\F0AF";
+    }
+    & when (@name = "bluetooth-audio") {
+        content: "\F0B0";
+    }
+    & when (@name = "bluetooth-connect") {
+        content: "\F0B1";
+    }
+    & when (@name = "bluetooth-off") {
+        content: "\F0B2";
+    }
+    & when (@name = "bluetooth-settings") {
+        content: "\F0B3";
+    }
+    & when (@name = "bluetooth-transfer") {
+        content: "\F0B4";
+    }
+    & when (@name = "blur") {
+        content: "\F0B5";
+    }
+    & when (@name = "blur-linear") {
+        content: "\F0B6";
+    }
+    & when (@name = "blur-off") {
+        content: "\F0B7";
+    }
+    & when (@name = "blur-radial") {
+        content: "\F0B8";
+    }
+    & when (@name = "bomb") {
+        content: "\F690";
+    }
+    & when (@name = "bone") {
+        content: "\F0B9";
+    }
+    & when (@name = "book") {
+        content: "\F0BA";
+    }
+    & when (@name = "book-minus") {
+        content: "\F5D9";
+    }
+    & when (@name = "book-multiple") {
+        content: "\F0BB";
+    }
+    & when (@name = "book-multiple-variant") {
+        content: "\F0BC";
+    }
+    & when (@name = "book-open") {
+        content: "\F0BD";
+    }
+    & when (@name = "book-open-page-variant") {
+        content: "\F5DA";
+    }
+    & when (@name = "book-open-variant") {
+        content: "\F0BE";
+    }
+    & when (@name = "book-plus") {
+        content: "\F5DB";
+    }
+    & when (@name = "book-variant") {
+        content: "\F0BF";
+    }
+    & when (@name = "bookmark") {
+        content: "\F0C0";
+    }
+    & when (@name = "bookmark-check") {
+        content: "\F0C1";
+    }
+    & when (@name = "bookmark-music") {
+        content: "\F0C2";
+    }
+    & when (@name = "bookmark-outline") {
+        content: "\F0C3";
+    }
+    & when (@name = "bookmark-plus") {
+        content: "\F0C5";
+    }
+    & when (@name = "bookmark-plus-outline") {
+        content: "\F0C4";
+    }
+    & when (@name = "bookmark-remove") {
+        content: "\F0C6";
+    }
+    & when (@name = "boombox") {
+        content: "\F5DC";
+    }
+    & when (@name = "border-all") {
+        content: "\F0C7";
+    }
+    & when (@name = "border-bottom") {
+        content: "\F0C8";
+    }
+    & when (@name = "border-color") {
+        content: "\F0C9";
+    }
+    & when (@name = "border-horizontal") {
+        content: "\F0CA";
+    }
+    & when (@name = "border-inside") {
+        content: "\F0CB";
+    }
+    & when (@name = "border-left") {
+        content: "\F0CC";
+    }
+    & when (@name = "border-none") {
+        content: "\F0CD";
+    }
+    & when (@name = "border-outside") {
+        content: "\F0CE";
+    }
+    & when (@name = "border-right") {
+        content: "\F0CF";
+    }
+    & when (@name = "border-style") {
+        content: "\F0D0";
+    }
+    & when (@name = "border-top") {
+        content: "\F0D1";
+    }
+    & when (@name = "border-vertical") {
+        content: "\F0D2";
+    }
+    & when (@name = "bow-tie") {
+        content: "\F677";
+    }
+    & when (@name = "bowl") {
+        content: "\F617";
+    }
+    & when (@name = "bowling") {
+        content: "\F0D3";
+    }
+    & when (@name = "box") {
+        content: "\F0D4";
+    }
+    & when (@name = "box-cutter") {
+        content: "\F0D5";
+    }
+    & when (@name = "box-shadow") {
+        content: "\F637";
+    }
+    & when (@name = "bridge") {
+        content: "\F618";
+    }
+    & when (@name = "briefcase") {
+        content: "\F0D6";
+    }
+    & when (@name = "briefcase-check") {
+        content: "\F0D7";
+    }
+    & when (@name = "briefcase-download") {
+        content: "\F0D8";
+    }
+    & when (@name = "briefcase-upload") {
+        content: "\F0D9";
+    }
+    & when (@name = "brightness-1") {
+        content: "\F0DA";
+    }
+    & when (@name = "brightness-2") {
+        content: "\F0DB";
+    }
+    & when (@name = "brightness-3") {
+        content: "\F0DC";
+    }
+    & when (@name = "brightness-4") {
+        content: "\F0DD";
+    }
+    & when (@name = "brightness-5") {
+        content: "\F0DE";
+    }
+    & when (@name = "brightness-6") {
+        content: "\F0DF";
+    }
+    & when (@name = "brightness-7") {
+        content: "\F0E0";
+    }
+    & when (@name = "brightness-auto") {
+        content: "\F0E1";
+    }
+    & when (@name = "broom") {
+        content: "\F0E2";
+    }
+    & when (@name = "brush") {
+        content: "\F0E3";
+    }
+    & when (@name = "buffer") {
+        content: "\F619";
+    }
+    & when (@name = "bug") {
+        content: "\F0E4";
+    }
+    & when (@name = "bulletin-board") {
+        content: "\F0E5";
+    }
+    & when (@name = "bullhorn") {
+        content: "\F0E6";
+    }
+    & when (@name = "bullseye") {
+        content: "\F5DD";
+    }
+    & when (@name = "burst-mode") {
+        content: "\F5DE";
+    }
+    & when (@name = "bus") {
+        content: "\F0E7";
+    }
+    & when (@name = "cached") {
+        content: "\F0E8";
+    }
+    & when (@name = "cake") {
+        content: "\F0E9";
+    }
+    & when (@name = "cake-layered") {
+        content: "\F0EA";
+    }
+    & when (@name = "cake-variant") {
+        content: "\F0EB";
+    }
+    & when (@name = "calculator") {
+        content: "\F0EC";
+    }
+    & when (@name = "calendar") {
+        content: "\F0ED";
+    }
+    & when (@name = "calendar-blank") {
+        content: "\F0EE";
+    }
+    & when (@name = "calendar-check") {
+        content: "\F0EF";
+    }
+    & when (@name = "calendar-clock") {
+        content: "\F0F0";
+    }
+    & when (@name = "calendar-multiple") {
+        content: "\F0F1";
+    }
+    & when (@name = "calendar-multiple-check") {
+        content: "\F0F2";
+    }
+    & when (@name = "calendar-plus") {
+        content: "\F0F3";
+    }
+    & when (@name = "calendar-question") {
+        content: "\F691";
+    }
+    & when (@name = "calendar-range") {
+        content: "\F678";
+    }
+    & when (@name = "calendar-remove") {
+        content: "\F0F4";
+    }
+    & when (@name = "calendar-text") {
+        content: "\F0F5";
+    }
+    & when (@name = "calendar-today") {
+        content: "\F0F6";
+    }
+    & when (@name = "call-made") {
+        content: "\F0F7";
+    }
+    & when (@name = "call-merge") {
+        content: "\F0F8";
+    }
+    & when (@name = "call-missed") {
+        content: "\F0F9";
+    }
+    & when (@name = "call-received") {
+        content: "\F0FA";
+    }
+    & when (@name = "call-split") {
+        content: "\F0FB";
+    }
+    & when (@name = "camcorder") {
+        content: "\F0FC";
+    }
+    & when (@name = "camcorder-box") {
+        content: "\F0FD";
+    }
+    & when (@name = "camcorder-box-off") {
+        content: "\F0FE";
+    }
+    & when (@name = "camcorder-off") {
+        content: "\F0FF";
+    }
+    & when (@name = "camera") {
+        content: "\F100";
+    }
+    & when (@name = "camera-burst") {
+        content: "\F692";
+    }
+    & when (@name = "camera-enhance") {
+        content: "\F101";
+    }
+    & when (@name = "camera-front") {
+        content: "\F102";
+    }
+    & when (@name = "camera-front-variant") {
+        content: "\F103";
+    }
+    & when (@name = "camera-iris") {
+        content: "\F104";
+    }
+    & when (@name = "camera-off") {
+        content: "\F5DF";
+    }
+    & when (@name = "camera-party-mode") {
+        content: "\F105";
+    }
+    & when (@name = "camera-rear") {
+        content: "\F106";
+    }
+    & when (@name = "camera-rear-variant") {
+        content: "\F107";
+    }
+    & when (@name = "camera-switch") {
+        content: "\F108";
+    }
+    & when (@name = "camera-timer") {
+        content: "\F109";
+    }
+    & when (@name = "candle") {
+        content: "\F5E2";
+    }
+    & when (@name = "candycane") {
+        content: "\F10A";
+    }
+    & when (@name = "car") {
+        content: "\F10B";
+    }
+    & when (@name = "car-battery") {
+        content: "\F10C";
+    }
+    & when (@name = "car-connected") {
+        content: "\F10D";
+    }
+    & when (@name = "car-wash") {
+        content: "\F10E";
+    }
+    & when (@name = "cards") {
+        content: "\F638";
+    }
+    & when (@name = "cards-outline") {
+        content: "\F639";
+    }
+    & when (@name = "cards-playing-outline") {
+        content: "\F63A";
+    }
+    & when (@name = "carrot") {
+        content: "\F10F";
+    }
+    & when (@name = "cart") {
+        content: "\F110";
+    }
+    & when (@name = "cart-off") {
+        content: "\F66B";
+    }
+    & when (@name = "cart-outline") {
+        content: "\F111";
+    }
+    & when (@name = "cart-plus") {
+        content: "\F112";
+    }
+    & when (@name = "case-sensitive-alt") {
+        content: "\F113";
+    }
+    & when (@name = "cash") {
+        content: "\F114";
+    }
+    & when (@name = "cash-100") {
+        content: "\F115";
+    }
+    & when (@name = "cash-multiple") {
+        content: "\F116";
+    }
+    & when (@name = "cash-usd") {
+        content: "\F117";
+    }
+    & when (@name = "cast") {
+        content: "\F118";
+    }
+    & when (@name = "cast-connected") {
+        content: "\F119";
+    }
+    & when (@name = "castle") {
+        content: "\F11A";
+    }
+    & when (@name = "cat") {
+        content: "\F11B";
+    }
+    & when (@name = "cellphone") {
+        content: "\F11C";
+    }
+    & when (@name = "cellphone-android") {
+        content: "\F11D";
+    }
+    & when (@name = "cellphone-basic") {
+        content: "\F11E";
+    }
+    & when (@name = "cellphone-dock") {
+        content: "\F11F";
+    }
+    & when (@name = "cellphone-iphone") {
+        content: "\F120";
+    }
+    & when (@name = "cellphone-link") {
+        content: "\F121";
+    }
+    & when (@name = "cellphone-link-off") {
+        content: "\F122";
+    }
+    & when (@name = "cellphone-settings") {
+        content: "\F123";
+    }
+    & when (@name = "certificate") {
+        content: "\F124";
+    }
+    & when (@name = "chair-school") {
+        content: "\F125";
+    }
+    & when (@name = "chart-arc") {
+        content: "\F126";
+    }
+    & when (@name = "chart-areaspline") {
+        content: "\F127";
+    }
+    & when (@name = "chart-bar") {
+        content: "\F128";
+    }
+    & when (@name = "chart-bubble") {
+        content: "\F5E3";
+    }
+    & when (@name = "chart-gantt") {
+        content: "\F66C";
+    }
+    & when (@name = "chart-histogram") {
+        content: "\F129";
+    }
+    & when (@name = "chart-line") {
+        content: "\F12A";
+    }
+    & when (@name = "chart-pie") {
+        content: "\F12B";
+    }
+    & when (@name = "chart-scatterplot-hexbin") {
+        content: "\F66D";
+    }
+    & when (@name = "chart-timeline") {
+        content: "\F66E";
+    }
+    & when (@name = "check") {
+        content: "\F12C";
+    }
+    & when (@name = "check-all") {
+        content: "\F12D";
+    }
+    & when (@name = "check-circle") {
+        content: "\F5E0";
+    }
+    & when (@name = "check-circle-outline") {
+        content: "\F5E1";
+    }
+    & when (@name = "checkbox-blank") {
+        content: "\F12E";
+    }
+    & when (@name = "checkbox-blank-circle") {
+        content: "\F12F";
+    }
+    & when (@name = "checkbox-blank-circle-outline") {
+        content: "\F130";
+    }
+    & when (@name = "checkbox-blank-outline") {
+        content: "\F131";
+    }
+    & when (@name = "checkbox-marked") {
+        content: "\F132";
+    }
+    & when (@name = "checkbox-marked-circle") {
+        content: "\F133";
+    }
+    & when (@name = "checkbox-marked-circle-outline") {
+        content: "\F134";
+    }
+    & when (@name = "checkbox-marked-outline") {
+        content: "\F135";
+    }
+    & when (@name = "checkbox-multiple-blank") {
+        content: "\F136";
+    }
+    & when (@name = "checkbox-multiple-blank-circle") {
+        content: "\F63B";
+    }
+    & when (@name = "checkbox-multiple-blank-circle-outline") {
+        content: "\F63C";
+    }
+    & when (@name = "checkbox-multiple-blank-outline") {
+        content: "\F137";
+    }
+    & when (@name = "checkbox-multiple-marked") {
+        content: "\F138";
+    }
+    & when (@name = "checkbox-multiple-marked-circle") {
+        content: "\F63D";
+    }
+    & when (@name = "checkbox-multiple-marked-circle-outline") {
+        content: "\F63E";
+    }
+    & when (@name = "checkbox-multiple-marked-outline") {
+        content: "\F139";
+    }
+    & when (@name = "checkerboard") {
+        content: "\F13A";
+    }
+    & when (@name = "chemical-weapon") {
+        content: "\F13B";
+    }
+    & when (@name = "chevron-double-down") {
+        content: "\F13C";
+    }
+    & when (@name = "chevron-double-left") {
+        content: "\F13D";
+    }
+    & when (@name = "chevron-double-right") {
+        content: "\F13E";
+    }
+    & when (@name = "chevron-double-up") {
+        content: "\F13F";
+    }
+    & when (@name = "chevron-down") {
+        content: "\F140";
+    }
+    & when (@name = "chevron-left") {
+        content: "\F141";
+    }
+    & when (@name = "chevron-right") {
+        content: "\F142";
+    }
+    & when (@name = "chevron-up") {
+        content: "\F143";
+    }
+    & when (@name = "chip") {
+        content: "\F61A";
+    }
+    & when (@name = "church") {
+        content: "\F144";
+    }
+    & when (@name = "cisco-webex") {
+        content: "\F145";
+    }
+    & when (@name = "city") {
+        content: "\F146";
+    }
+    & when (@name = "clipboard") {
+        content: "\F147";
+    }
+    & when (@name = "clipboard-account") {
+        content: "\F148";
+    }
+    & when (@name = "clipboard-alert") {
+        content: "\F149";
+    }
+    & when (@name = "clipboard-arrow-down") {
+        content: "\F14A";
+    }
+    & when (@name = "clipboard-arrow-left") {
+        content: "\F14B";
+    }
+    & when (@name = "clipboard-check") {
+        content: "\F14C";
+    }
+    & when (@name = "clipboard-outline") {
+        content: "\F14D";
+    }
+    & when (@name = "clipboard-text") {
+        content: "\F14E";
+    }
+    & when (@name = "clippy") {
+        content: "\F14F";
+    }
+    & when (@name = "clock") {
+        content: "\F150";
+    }
+    & when (@name = "clock-alert") {
+        content: "\F5CE";
+    }
+    & when (@name = "clock-end") {
+        content: "\F151";
+    }
+    & when (@name = "clock-fast") {
+        content: "\F152";
+    }
+    & when (@name = "clock-in") {
+        content: "\F153";
+    }
+    & when (@name = "clock-out") {
+        content: "\F154";
+    }
+    & when (@name = "clock-start") {
+        content: "\F155";
+    }
+    & when (@name = "close") {
+        content: "\F156";
+    }
+    & when (@name = "close-box") {
+        content: "\F157";
+    }
+    & when (@name = "close-box-outline") {
+        content: "\F158";
+    }
+    & when (@name = "close-circle") {
+        content: "\F159";
+    }
+    & when (@name = "close-circle-outline") {
+        content: "\F15A";
+    }
+    & when (@name = "close-network") {
+        content: "\F15B";
+    }
+    & when (@name = "close-octagon") {
+        content: "\F15C";
+    }
+    & when (@name = "close-octagon-outline") {
+        content: "\F15D";
+    }
+    & when (@name = "closed-caption") {
+        content: "\F15E";
+    }
+    & when (@name = "cloud") {
+        content: "\F15F";
+    }
+    & when (@name = "cloud-check") {
+        content: "\F160";
+    }
+    & when (@name = "cloud-circle") {
+        content: "\F161";
+    }
+    & when (@name = "cloud-download") {
+        content: "\F162";
+    }
+    & when (@name = "cloud-outline") {
+        content: "\F163";
+    }
+    & when (@name = "cloud-outline-off") {
+        content: "\F164";
+    }
+    & when (@name = "cloud-print") {
+        content: "\F165";
+    }
+    & when (@name = "cloud-print-outline") {
+        content: "\F166";
+    }
+    & when (@name = "cloud-sync") {
+        content: "\F63F";
+    }
+    & when (@name = "cloud-upload") {
+        content: "\F167";
+    }
+    & when (@name = "code-array") {
+        content: "\F168";
+    }
+    & when (@name = "code-braces") {
+        content: "\F169";
+    }
+    & when (@name = "code-brackets") {
+        content: "\F16A";
+    }
+    & when (@name = "code-equal") {
+        content: "\F16B";
+    }
+    & when (@name = "code-greater-than") {
+        content: "\F16C";
+    }
+    & when (@name = "code-greater-than-or-equal") {
+        content: "\F16D";
+    }
+    & when (@name = "code-less-than") {
+        content: "\F16E";
+    }
+    & when (@name = "code-less-than-or-equal") {
+        content: "\F16F";
+    }
+    & when (@name = "code-not-equal") {
+        content: "\F170";
+    }
+    & when (@name = "code-not-equal-variant") {
+        content: "\F171";
+    }
+    & when (@name = "code-parentheses") {
+        content: "\F172";
+    }
+    & when (@name = "code-string") {
+        content: "\F173";
+    }
+    & when (@name = "code-tags") {
+        content: "\F174";
+    }
+    & when (@name = "code-tags-check") {
+        content: "\F693";
+    }
+    & when (@name = "codepen") {
+        content: "\F175";
+    }
+    & when (@name = "coffee") {
+        content: "\F176";
+    }
+    & when (@name = "coffee-to-go") {
+        content: "\F177";
+    }
+    & when (@name = "coin") {
+        content: "\F178";
+    }
+    & when (@name = "coins") {
+        content: "\F694";
+    }
+    & when (@name = "collage") {
+        content: "\F640";
+    }
+    & when (@name = "color-helper") {
+        content: "\F179";
+    }
+    & when (@name = "comment") {
+        content: "\F17A";
+    }
+    & when (@name = "comment-account") {
+        content: "\F17B";
+    }
+    & when (@name = "comment-account-outline") {
+        content: "\F17C";
+    }
+    & when (@name = "comment-alert") {
+        content: "\F17D";
+    }
+    & when (@name = "comment-alert-outline") {
+        content: "\F17E";
+    }
+    & when (@name = "comment-check") {
+        content: "\F17F";
+    }
+    & when (@name = "comment-check-outline") {
+        content: "\F180";
+    }
+    & when (@name = "comment-multiple-outline") {
+        content: "\F181";
+    }
+    & when (@name = "comment-outline") {
+        content: "\F182";
+    }
+    & when (@name = "comment-plus-outline") {
+        content: "\F183";
+    }
+    & when (@name = "comment-processing") {
+        content: "\F184";
+    }
+    & when (@name = "comment-processing-outline") {
+        content: "\F185";
+    }
+    & when (@name = "comment-question-outline") {
+        content: "\F186";
+    }
+    & when (@name = "comment-remove-outline") {
+        content: "\F187";
+    }
+    & when (@name = "comment-text") {
+        content: "\F188";
+    }
+    & when (@name = "comment-text-outline") {
+        content: "\F189";
+    }
+    & when (@name = "compare") {
+        content: "\F18A";
+    }
+    & when (@name = "compass") {
+        content: "\F18B";
+    }
+    & when (@name = "compass-outline") {
+        content: "\F18C";
+    }
+    & when (@name = "console") {
+        content: "\F18D";
+    }
+    & when (@name = "contact-mail") {
+        content: "\F18E";
+    }
+    & when (@name = "content-copy") {
+        content: "\F18F";
+    }
+    & when (@name = "content-cut") {
+        content: "\F190";
+    }
+    & when (@name = "content-duplicate") {
+        content: "\F191";
+    }
+    & when (@name = "content-paste") {
+        content: "\F192";
+    }
+    & when (@name = "content-save") {
+        content: "\F193";
+    }
+    & when (@name = "content-save-all") {
+        content: "\F194";
+    }
+    & when (@name = "content-save-settings") {
+        content: "\F61B";
+    }
+    & when (@name = "contrast") {
+        content: "\F195";
+    }
+    & when (@name = "contrast-box") {
+        content: "\F196";
+    }
+    & when (@name = "contrast-circle") {
+        content: "\F197";
+    }
+    & when (@name = "cookie") {
+        content: "\F198";
+    }
+    & when (@name = "copyright") {
+        content: "\F5E6";
+    }
+    & when (@name = "counter") {
+        content: "\F199";
+    }
+    & when (@name = "cow") {
+        content: "\F19A";
+    }
+    & when (@name = "creation") {
+        content: "\F1C9";
+    }
+    & when (@name = "credit-card") {
+        content: "\F19B";
+    }
+    & when (@name = "credit-card-multiple") {
+        content: "\F19C";
+    }
+    & when (@name = "credit-card-off") {
+        content: "\F5E4";
+    }
+    & when (@name = "credit-card-plus") {
+        content: "\F675";
+    }
+    & when (@name = "credit-card-scan") {
+        content: "\F19D";
+    }
+    & when (@name = "crop") {
+        content: "\F19E";
+    }
+    & when (@name = "crop-free") {
+        content: "\F19F";
+    }
+    & when (@name = "crop-landscape") {
+        content: "\F1A0";
+    }
+    & when (@name = "crop-portrait") {
+        content: "\F1A1";
+    }
+    & when (@name = "crop-rotate") {
+        content: "\F695";
+    }
+    & when (@name = "crop-square") {
+        content: "\F1A2";
+    }
+    & when (@name = "crosshairs") {
+        content: "\F1A3";
+    }
+    & when (@name = "crosshairs-gps") {
+        content: "\F1A4";
+    }
+    & when (@name = "crown") {
+        content: "\F1A5";
+    }
+    & when (@name = "cube") {
+        content: "\F1A6";
+    }
+    & when (@name = "cube-outline") {
+        content: "\F1A7";
+    }
+    & when (@name = "cube-send") {
+        content: "\F1A8";
+    }
+    & when (@name = "cube-unfolded") {
+        content: "\F1A9";
+    }
+    & when (@name = "cup") {
+        content: "\F1AA";
+    }
+    & when (@name = "cup-off") {
+        content: "\F5E5";
+    }
+    & when (@name = "cup-water") {
+        content: "\F1AB";
+    }
+    & when (@name = "currency-btc") {
+        content: "\F1AC";
+    }
+    & when (@name = "currency-eur") {
+        content: "\F1AD";
+    }
+    & when (@name = "currency-gbp") {
+        content: "\F1AE";
+    }
+    & when (@name = "currency-inr") {
+        content: "\F1AF";
+    }
+    & when (@name = "currency-ngn") {
+        content: "\F1B0";
+    }
+    & when (@name = "currency-rub") {
+        content: "\F1B1";
+    }
+    & when (@name = "currency-try") {
+        content: "\F1B2";
+    }
+    & when (@name = "currency-usd") {
+        content: "\F1B3";
+    }
+    & when (@name = "currency-usd-off") {
+        content: "\F679";
+    }
+    & when (@name = "cursor-default") {
+        content: "\F1B4";
+    }
+    & when (@name = "cursor-default-outline") {
+        content: "\F1B5";
+    }
+    & when (@name = "cursor-move") {
+        content: "\F1B6";
+    }
+    & when (@name = "cursor-pointer") {
+        content: "\F1B7";
+    }
+    & when (@name = "cursor-text") {
+        content: "\F5E7";
+    }
+    & when (@name = "database") {
+        content: "\F1B8";
+    }
+    & when (@name = "database-minus") {
+        content: "\F1B9";
+    }
+    & when (@name = "database-plus") {
+        content: "\F1BA";
+    }
+    & when (@name = "debug-step-into") {
+        content: "\F1BB";
+    }
+    & when (@name = "debug-step-out") {
+        content: "\F1BC";
+    }
+    & when (@name = "debug-step-over") {
+        content: "\F1BD";
+    }
+    & when (@name = "decimal-decrease") {
+        content: "\F1BE";
+    }
+    & when (@name = "decimal-increase") {
+        content: "\F1BF";
+    }
+    & when (@name = "delete") {
+        content: "\F1C0";
+    }
+    & when (@name = "delete-circle") {
+        content: "\F682";
+    }
+    & when (@name = "delete-forever") {
+        content: "\F5E8";
+    }
+    & when (@name = "delete-sweep") {
+        content: "\F5E9";
+    }
+    & when (@name = "delete-variant") {
+        content: "\F1C1";
+    }
+    & when (@name = "delta") {
+        content: "\F1C2";
+    }
+    & when (@name = "deskphone") {
+        content: "\F1C3";
+    }
+    & when (@name = "desktop-mac") {
+        content: "\F1C4";
+    }
+    & when (@name = "desktop-tower") {
+        content: "\F1C5";
+    }
+    & when (@name = "details") {
+        content: "\F1C6";
+    }
+    & when (@name = "developer-board") {
+        content: "\F696";
+    }
+    & when (@name = "deviantart") {
+        content: "\F1C7";
+    }
+    & when (@name = "dialpad") {
+        content: "\F61C";
+    }
+    & when (@name = "diamond") {
+        content: "\F1C8";
+    }
+    & when (@name = "dice-1") {
+        content: "\F1CA";
+    }
+    & when (@name = "dice-2") {
+        content: "\F1CB";
+    }
+    & when (@name = "dice-3") {
+        content: "\F1CC";
+    }
+    & when (@name = "dice-4") {
+        content: "\F1CD";
+    }
+    & when (@name = "dice-5") {
+        content: "\F1CE";
+    }
+    & when (@name = "dice-6") {
+        content: "\F1CF";
+    }
+    & when (@name = "dice-d20") {
+        content: "\F5EA";
+    }
+    & when (@name = "dice-d4") {
+        content: "\F5EB";
+    }
+    & when (@name = "dice-d6") {
+        content: "\F5EC";
+    }
+    & when (@name = "dice-d8") {
+        content: "\F5ED";
+    }
+    & when (@name = "dictionary") {
+        content: "\F61D";
+    }
+    & when (@name = "directions") {
+        content: "\F1D0";
+    }
+    & when (@name = "directions-fork") {
+        content: "\F641";
+    }
+    & when (@name = "discord") {
+        content: "\F66F";
+    }
+    & when (@name = "disk") {
+        content: "\F5EE";
+    }
+    & when (@name = "disk-alert") {
+        content: "\F1D1";
+    }
+    & when (@name = "disqus") {
+        content: "\F1D2";
+    }
+    & when (@name = "disqus-outline") {
+        content: "\F1D3";
+    }
+    & when (@name = "division") {
+        content: "\F1D4";
+    }
+    & when (@name = "division-box") {
+        content: "\F1D5";
+    }
+    & when (@name = "dna") {
+        content: "\F683";
+    }
+    & when (@name = "dns") {
+        content: "\F1D6";
+    }
+    & when (@name = "do-not-disturb") {
+        content: "\F697";
+    }
+    & when (@name = "do-not-disturb-off") {
+        content: "\F698";
+    }
+    & when (@name = "dolby") {
+        content: "\F6B2";
+    }
+    & when (@name = "domain") {
+        content: "\F1D7";
+    }
+    & when (@name = "dots-horizontal") {
+        content: "\F1D8";
+    }
+    & when (@name = "dots-vertical") {
+        content: "\F1D9";
+    }
+    & when (@name = "douban") {
+        content: "\F699";
+    }
+    & when (@name = "download") {
+        content: "\F1DA";
+    }
+    & when (@name = "drag") {
+        content: "\F1DB";
+    }
+    & when (@name = "drag-horizontal") {
+        content: "\F1DC";
+    }
+    & when (@name = "drag-vertical") {
+        content: "\F1DD";
+    }
+    & when (@name = "drawing") {
+        content: "\F1DE";
+    }
+    & when (@name = "drawing-box") {
+        content: "\F1DF";
+    }
+    & when (@name = "dribbble") {
+        content: "\F1E0";
+    }
+    & when (@name = "dribbble-box") {
+        content: "\F1E1";
+    }
+    & when (@name = "drone") {
+        content: "\F1E2";
+    }
+    & when (@name = "dropbox") {
+        content: "\F1E3";
+    }
+    & when (@name = "drupal") {
+        content: "\F1E4";
+    }
+    & when (@name = "duck") {
+        content: "\F1E5";
+    }
+    & when (@name = "dumbbell") {
+        content: "\F1E6";
+    }
+    & when (@name = "earth") {
+        content: "\F1E7";
+    }
+    & when (@name = "earth-off") {
+        content: "\F1E8";
+    }
+    & when (@name = "edge") {
+        content: "\F1E9";
+    }
+    & when (@name = "eject") {
+        content: "\F1EA";
+    }
+    & when (@name = "elevation-decline") {
+        content: "\F1EB";
+    }
+    & when (@name = "elevation-rise") {
+        content: "\F1EC";
+    }
+    & when (@name = "elevator") {
+        content: "\F1ED";
+    }
+    & when (@name = "email") {
+        content: "\F1EE";
+    }
+    & when (@name = "email-open") {
+        content: "\F1EF";
+    }
+    & when (@name = "email-open-outline") {
+        content: "\F5EF";
+    }
+    & when (@name = "email-outline") {
+        content: "\F1F0";
+    }
+    & when (@name = "email-secure") {
+        content: "\F1F1";
+    }
+    & when (@name = "email-variant") {
+        content: "\F5F0";
+    }
+    & when (@name = "emby") {
+        content: "\F6B3";
+    }
+    & when (@name = "emoticon") {
+        content: "\F1F2";
+    }
+    & when (@name = "emoticon-cool") {
+        content: "\F1F3";
+    }
+    & when (@name = "emoticon-dead") {
+        content: "\F69A";
+    }
+    & when (@name = "emoticon-devil") {
+        content: "\F1F4";
+    }
+    & when (@name = "emoticon-excited") {
+        content: "\F69B";
+    }
+    & when (@name = "emoticon-happy") {
+        content: "\F1F5";
+    }
+    & when (@name = "emoticon-neutral") {
+        content: "\F1F6";
+    }
+    & when (@name = "emoticon-poop") {
+        content: "\F1F7";
+    }
+    & when (@name = "emoticon-sad") {
+        content: "\F1F8";
+    }
+    & when (@name = "emoticon-tongue") {
+        content: "\F1F9";
+    }
+    & when (@name = "engine") {
+        content: "\F1FA";
+    }
+    & when (@name = "engine-outline") {
+        content: "\F1FB";
+    }
+    & when (@name = "equal") {
+        content: "\F1FC";
+    }
+    & when (@name = "equal-box") {
+        content: "\F1FD";
+    }
+    & when (@name = "eraser") {
+        content: "\F1FE";
+    }
+    & when (@name = "eraser-variant") {
+        content: "\F642";
+    }
+    & when (@name = "escalator") {
+        content: "\F1FF";
+    }
+    & when (@name = "ethernet") {
+        content: "\F200";
+    }
+    & when (@name = "ethernet-cable") {
+        content: "\F201";
+    }
+    & when (@name = "ethernet-cable-off") {
+        content: "\F202";
+    }
+    & when (@name = "etsy") {
+        content: "\F203";
+    }
+    & when (@name = "ev-station") {
+        content: "\F5F1";
+    }
+    & when (@name = "evernote") {
+        content: "\F204";
+    }
+    & when (@name = "exclamation") {
+        content: "\F205";
+    }
+    & when (@name = "exit-to-app") {
+        content: "\F206";
+    }
+    & when (@name = "export") {
+        content: "\F207";
+    }
+    & when (@name = "eye") {
+        content: "\F208";
+    }
+    & when (@name = "eye-off") {
+        content: "\F209";
+    }
+    & when (@name = "eyedropper") {
+        content: "\F20A";
+    }
+    & when (@name = "eyedropper-variant") {
+        content: "\F20B";
+    }
+    & when (@name = "face") {
+        content: "\F643";
+    }
+    & when (@name = "face-profile") {
+        content: "\F644";
+    }
+    & when (@name = "facebook") {
+        content: "\F20C";
+    }
+    & when (@name = "facebook-box") {
+        content: "\F20D";
+    }
+    & when (@name = "facebook-messenger") {
+        content: "\F20E";
+    }
+    & when (@name = "factory") {
+        content: "\F20F";
+    }
+    & when (@name = "fan") {
+        content: "\F210";
+    }
+    & when (@name = "fast-forward") {
+        content: "\F211";
+    }
+    & when (@name = "fax") {
+        content: "\F212";
+    }
+    & when (@name = "ferry") {
+        content: "\F213";
+    }
+    & when (@name = "file") {
+        content: "\F214";
+    }
+    & when (@name = "file-chart") {
+        content: "\F215";
+    }
+    & when (@name = "file-check") {
+        content: "\F216";
+    }
+    & when (@name = "file-cloud") {
+        content: "\F217";
+    }
+    & when (@name = "file-delimited") {
+        content: "\F218";
+    }
+    & when (@name = "file-document") {
+        content: "\F219";
+    }
+    & when (@name = "file-document-box") {
+        content: "\F21A";
+    }
+    & when (@name = "file-excel") {
+        content: "\F21B";
+    }
+    & when (@name = "file-excel-box") {
+        content: "\F21C";
+    }
+    & when (@name = "file-export") {
+        content: "\F21D";
+    }
+    & when (@name = "file-find") {
+        content: "\F21E";
+    }
+    & when (@name = "file-hidden") {
+        content: "\F613";
+    }
+    & when (@name = "file-image") {
+        content: "\F21F";
+    }
+    & when (@name = "file-import") {
+        content: "\F220";
+    }
+    & when (@name = "file-lock") {
+        content: "\F221";
+    }
+    & when (@name = "file-multiple") {
+        content: "\F222";
+    }
+    & when (@name = "file-music") {
+        content: "\F223";
+    }
+    & when (@name = "file-outline") {
+        content: "\F224";
+    }
+    & when (@name = "file-pdf") {
+        content: "\F225";
+    }
+    & when (@name = "file-pdf-box") {
+        content: "\F226";
+    }
+    & when (@name = "file-powerpoint") {
+        content: "\F227";
+    }
+    & when (@name = "file-powerpoint-box") {
+        content: "\F228";
+    }
+    & when (@name = "file-presentation-box") {
+        content: "\F229";
+    }
+    & when (@name = "file-restore") {
+        content: "\F670";
+    }
+    & when (@name = "file-send") {
+        content: "\F22A";
+    }
+    & when (@name = "file-tree") {
+        content: "\F645";
+    }
+    & when (@name = "file-video") {
+        content: "\F22B";
+    }
+    & when (@name = "file-word") {
+        content: "\F22C";
+    }
+    & when (@name = "file-word-box") {
+        content: "\F22D";
+    }
+    & when (@name = "file-xml") {
+        content: "\F22E";
+    }
+    & when (@name = "film") {
+        content: "\F22F";
+    }
+    & when (@name = "filmstrip") {
+        content: "\F230";
+    }
+    & when (@name = "filmstrip-off") {
+        content: "\F231";
+    }
+    & when (@name = "filter") {
+        content: "\F232";
+    }
+    & when (@name = "filter-outline") {
+        content: "\F233";
+    }
+    & when (@name = "filter-remove") {
+        content: "\F234";
+    }
+    & when (@name = "filter-remove-outline") {
+        content: "\F235";
+    }
+    & when (@name = "filter-variant") {
+        content: "\F236";
+    }
+    & when (@name = "fingerprint") {
+        content: "\F237";
+    }
+    & when (@name = "fire") {
+        content: "\F238";
+    }
+    & when (@name = "firefox") {
+        content: "\F239";
+    }
+    & when (@name = "fish") {
+        content: "\F23A";
+    }
+    & when (@name = "flag") {
+        content: "\F23B";
+    }
+    & when (@name = "flag-checkered") {
+        content: "\F23C";
+    }
+    & when (@name = "flag-outline") {
+        content: "\F23D";
+    }
+    & when (@name = "flag-outline-variant") {
+        content: "\F23E";
+    }
+    & when (@name = "flag-triangle") {
+        content: "\F23F";
+    }
+    & when (@name = "flag-variant") {
+        content: "\F240";
+    }
+    & when (@name = "flash") {
+        content: "\F241";
+    }
+    & when (@name = "flash-auto") {
+        content: "\F242";
+    }
+    & when (@name = "flash-off") {
+        content: "\F243";
+    }
+    & when (@name = "flash-red-eye") {
+        content: "\F67A";
+    }
+    & when (@name = "flashlight") {
+        content: "\F244";
+    }
+    & when (@name = "flashlight-off") {
+        content: "\F245";
+    }
+    & when (@name = "flask") {
+        content: "\F093";
+    }
+    & when (@name = "flask-empty") {
+        content: "\F094";
+    }
+    & when (@name = "flask-empty-outline") {
+        content: "\F095";
+    }
+    & when (@name = "flask-outline") {
+        content: "\F096";
+    }
+    & when (@name = "flattr") {
+        content: "\F246";
+    }
+    & when (@name = "flip-to-back") {
+        content: "\F247";
+    }
+    & when (@name = "flip-to-front") {
+        content: "\F248";
+    }
+    & when (@name = "floppy") {
+        content: "\F249";
+    }
+    & when (@name = "flower") {
+        content: "\F24A";
+    }
+    & when (@name = "folder") {
+        content: "\F24B";
+    }
+    & when (@name = "folder-account") {
+        content: "\F24C";
+    }
+    & when (@name = "folder-download") {
+        content: "\F24D";
+    }
+    & when (@name = "folder-google-drive") {
+        content: "\F24E";
+    }
+    & when (@name = "folder-image") {
+        content: "\F24F";
+    }
+    & when (@name = "folder-lock") {
+        content: "\F250";
+    }
+    & when (@name = "folder-lock-open") {
+        content: "\F251";
+    }
+    & when (@name = "folder-move") {
+        content: "\F252";
+    }
+    & when (@name = "folder-multiple") {
+        content: "\F253";
+    }
+    & when (@name = "folder-multiple-image") {
+        content: "\F254";
+    }
+    & when (@name = "folder-multiple-outline") {
+        content: "\F255";
+    }
+    & when (@name = "folder-outline") {
+        content: "\F256";
+    }
+    & when (@name = "folder-plus") {
+        content: "\F257";
+    }
+    & when (@name = "folder-remove") {
+        content: "\F258";
+    }
+    & when (@name = "folder-star") {
+        content: "\F69C";
+    }
+    & when (@name = "folder-upload") {
+        content: "\F259";
+    }
+    & when (@name = "food") {
+        content: "\F25A";
+    }
+    & when (@name = "food-apple") {
+        content: "\F25B";
+    }
+    & when (@name = "food-fork-drink") {
+        content: "\F5F2";
+    }
+    & when (@name = "food-off") {
+        content: "\F5F3";
+    }
+    & when (@name = "food-variant") {
+        content: "\F25C";
+    }
+    & when (@name = "football") {
+        content: "\F25D";
+    }
+    & when (@name = "football-australian") {
+        content: "\F25E";
+    }
+    & when (@name = "football-helmet") {
+        content: "\F25F";
+    }
+    & when (@name = "format-align-center") {
+        content: "\F260";
+    }
+    & when (@name = "format-align-justify") {
+        content: "\F261";
+    }
+    & when (@name = "format-align-left") {
+        content: "\F262";
+    }
+    & when (@name = "format-align-right") {
+        content: "\F263";
+    }
+    & when (@name = "format-annotation-plus") {
+        content: "\F646";
+    }
+    & when (@name = "format-bold") {
+        content: "\F264";
+    }
+    & when (@name = "format-clear") {
+        content: "\F265";
+    }
+    & when (@name = "format-color-fill") {
+        content: "\F266";
+    }
+    & when (@name = "format-color-text") {
+        content: "\F69D";
+    }
+    & when (@name = "format-float-center") {
+        content: "\F267";
+    }
+    & when (@name = "format-float-left") {
+        content: "\F268";
+    }
+    & when (@name = "format-float-none") {
+        content: "\F269";
+    }
+    & when (@name = "format-float-right") {
+        content: "\F26A";
+    }
+    & when (@name = "format-header-1") {
+        content: "\F26B";
+    }
+    & when (@name = "format-header-2") {
+        content: "\F26C";
+    }
+    & when (@name = "format-header-3") {
+        content: "\F26D";
+    }
+    & when (@name = "format-header-4") {
+        content: "\F26E";
+    }
+    & when (@name = "format-header-5") {
+        content: "\F26F";
+    }
+    & when (@name = "format-header-6") {
+        content: "\F270";
+    }
+    & when (@name = "format-header-decrease") {
+        content: "\F271";
+    }
+    & when (@name = "format-header-equal") {
+        content: "\F272";
+    }
+    & when (@name = "format-header-increase") {
+        content: "\F273";
+    }
+    & when (@name = "format-header-pound") {
+        content: "\F274";
+    }
+    & when (@name = "format-horizontal-align-center") {
+        content: "\F61E";
+    }
+    & when (@name = "format-horizontal-align-left") {
+        content: "\F61F";
+    }
+    & when (@name = "format-horizontal-align-right") {
+        content: "\F620";
+    }
+    & when (@name = "format-indent-decrease") {
+        content: "\F275";
+    }
+    & when (@name = "format-indent-increase") {
+        content: "\F276";
+    }
+    & when (@name = "format-italic") {
+        content: "\F277";
+    }
+    & when (@name = "format-line-spacing") {
+        content: "\F278";
+    }
+    & when (@name = "format-line-style") {
+        content: "\F5C8";
+    }
+    & when (@name = "format-line-weight") {
+        content: "\F5C9";
+    }
+    & when (@name = "format-list-bulleted") {
+        content: "\F279";
+    }
+    & when (@name = "format-list-bulleted-type") {
+        content: "\F27A";
+    }
+    & when (@name = "format-list-numbers") {
+        content: "\F27B";
+    }
+    & when (@name = "format-paint") {
+        content: "\F27C";
+    }
+    & when (@name = "format-paragraph") {
+        content: "\F27D";
+    }
+    & when (@name = "format-quote") {
+        content: "\F27E";
+    }
+    & when (@name = "format-section") {
+        content: "\F69E";
+    }
+    & when (@name = "format-size") {
+        content: "\F27F";
+    }
+    & when (@name = "format-strikethrough") {
+        content: "\F280";
+    }
+    & when (@name = "format-strikethrough-variant") {
+        content: "\F281";
+    }
+    & when (@name = "format-subscript") {
+        content: "\F282";
+    }
+    & when (@name = "format-superscript") {
+        content: "\F283";
+    }
+    & when (@name = "format-text") {
+        content: "\F284";
+    }
+    & when (@name = "format-textdirection-l-to-r") {
+        content: "\F285";
+    }
+    & when (@name = "format-textdirection-r-to-l") {
+        content: "\F286";
+    }
+    & when (@name = "format-title") {
+        content: "\F5F4";
+    }
+    & when (@name = "format-underline") {
+        content: "\F287";
+    }
+    & when (@name = "format-vertical-align-bottom") {
+        content: "\F621";
+    }
+    & when (@name = "format-vertical-align-center") {
+        content: "\F622";
+    }
+    & when (@name = "format-vertical-align-top") {
+        content: "\F623";
+    }
+    & when (@name = "format-wrap-inline") {
+        content: "\F288";
+    }
+    & when (@name = "format-wrap-square") {
+        content: "\F289";
+    }
+    & when (@name = "format-wrap-tight") {
+        content: "\F28A";
+    }
+    & when (@name = "format-wrap-top-bottom") {
+        content: "\F28B";
+    }
+    & when (@name = "forum") {
+        content: "\F28C";
+    }
+    & when (@name = "forward") {
+        content: "\F28D";
+    }
+    & when (@name = "foursquare") {
+        content: "\F28E";
+    }
+    & when (@name = "fridge") {
+        content: "\F28F";
+    }
+    & when (@name = "fridge-filled") {
+        content: "\F290";
+    }
+    & when (@name = "fridge-filled-bottom") {
+        content: "\F291";
+    }
+    & when (@name = "fridge-filled-top") {
+        content: "\F292";
+    }
+    & when (@name = "fullscreen") {
+        content: "\F293";
+    }
+    & when (@name = "fullscreen-exit") {
+        content: "\F294";
+    }
+    & when (@name = "function") {
+        content: "\F295";
+    }
+    & when (@name = "gamepad") {
+        content: "\F296";
+    }
+    & when (@name = "gamepad-variant") {
+        content: "\F297";
+    }
+    & when (@name = "gas-cylinder") {
+        content: "\F647";
+    }
+    & when (@name = "gas-station") {
+        content: "\F298";
+    }
+    & when (@name = "gate") {
+        content: "\F299";
+    }
+    & when (@name = "gauge") {
+        content: "\F29A";
+    }
+    & when (@name = "gavel") {
+        content: "\F29B";
+    }
+    & when (@name = "gender-female") {
+        content: "\F29C";
+    }
+    & when (@name = "gender-male") {
+        content: "\F29D";
+    }
+    & when (@name = "gender-male-female") {
+        content: "\F29E";
+    }
+    & when (@name = "gender-transgender") {
+        content: "\F29F";
+    }
+    & when (@name = "ghost") {
+        content: "\F2A0";
+    }
+    & when (@name = "gift") {
+        content: "\F2A1";
+    }
+    & when (@name = "git") {
+        content: "\F2A2";
+    }
+    & when (@name = "github-box") {
+        content: "\F2A3";
+    }
+    & when (@name = "github-circle") {
+        content: "\F2A4";
+    }
+    & when (@name = "glass-flute") {
+        content: "\F2A5";
+    }
+    & when (@name = "glass-mug") {
+        content: "\F2A6";
+    }
+    & when (@name = "glass-stange") {
+        content: "\F2A7";
+    }
+    & when (@name = "glass-tulip") {
+        content: "\F2A8";
+    }
+    & when (@name = "glassdoor") {
+        content: "\F2A9";
+    }
+    & when (@name = "glasses") {
+        content: "\F2AA";
+    }
+    & when (@name = "gmail") {
+        content: "\F2AB";
+    }
+    & when (@name = "gnome") {
+        content: "\F2AC";
+    }
+    & when (@name = "gondola") {
+        content: "\F685";
+    }
+    & when (@name = "google") {
+        content: "\F2AD";
+    }
+    & when (@name = "google-cardboard") {
+        content: "\F2AE";
+    }
+    & when (@name = "google-chrome") {
+        content: "\F2AF";
+    }
+    & when (@name = "google-circles") {
+        content: "\F2B0";
+    }
+    & when (@name = "google-circles-communities") {
+        content: "\F2B1";
+    }
+    & when (@name = "google-circles-extended") {
+        content: "\F2B2";
+    }
+    & when (@name = "google-circles-group") {
+        content: "\F2B3";
+    }
+    & when (@name = "google-controller") {
+        content: "\F2B4";
+    }
+    & when (@name = "google-controller-off") {
+        content: "\F2B5";
+    }
+    & when (@name = "google-drive") {
+        content: "\F2B6";
+    }
+    & when (@name = "google-earth") {
+        content: "\F2B7";
+    }
+    & when (@name = "google-glass") {
+        content: "\F2B8";
+    }
+    & when (@name = "google-maps") {
+        content: "\F5F5";
+    }
+    & when (@name = "google-nearby") {
+        content: "\F2B9";
+    }
+    & when (@name = "google-pages") {
+        content: "\F2BA";
+    }
+    & when (@name = "google-physical-web") {
+        content: "\F2BB";
+    }
+    & when (@name = "google-play") {
+        content: "\F2BC";
+    }
+    & when (@name = "google-plus") {
+        content: "\F2BD";
+    }
+    & when (@name = "google-plus-box") {
+        content: "\F2BE";
+    }
+    & when (@name = "google-translate") {
+        content: "\F2BF";
+    }
+    & when (@name = "google-wallet") {
+        content: "\F2C0";
+    }
+    & when (@name = "gradient") {
+        content: "\F69F";
+    }
+    & when (@name = "grease-pencil") {
+        content: "\F648";
+    }
+    & when (@name = "grid") {
+        content: "\F2C1";
+    }
+    & when (@name = "grid-off") {
+        content: "\F2C2";
+    }
+    & when (@name = "group") {
+        content: "\F2C3";
+    }
+    & when (@name = "guitar-electric") {
+        content: "\F2C4";
+    }
+    & when (@name = "guitar-pick") {
+        content: "\F2C5";
+    }
+    & when (@name = "guitar-pick-outline") {
+        content: "\F2C6";
+    }
+    & when (@name = "hackernews") {
+        content: "\F624";
+    }
+    & when (@name = "hamburger") {
+        content: "\F684";
+    }
+    & when (@name = "hand-pointing-right") {
+        content: "\F2C7";
+    }
+    & when (@name = "hanger") {
+        content: "\F2C8";
+    }
+    & when (@name = "hangouts") {
+        content: "\F2C9";
+    }
+    & when (@name = "harddisk") {
+        content: "\F2CA";
+    }
+    & when (@name = "headphones") {
+        content: "\F2CB";
+    }
+    & when (@name = "headphones-box") {
+        content: "\F2CC";
+    }
+    & when (@name = "headphones-settings") {
+        content: "\F2CD";
+    }
+    & when (@name = "headset") {
+        content: "\F2CE";
+    }
+    & when (@name = "headset-dock") {
+        content: "\F2CF";
+    }
+    & when (@name = "headset-off") {
+        content: "\F2D0";
+    }
+    & when (@name = "heart") {
+        content: "\F2D1";
+    }
+    & when (@name = "heart-box") {
+        content: "\F2D2";
+    }
+    & when (@name = "heart-box-outline") {
+        content: "\F2D3";
+    }
+    & when (@name = "heart-broken") {
+        content: "\F2D4";
+    }
+    & when (@name = "heart-outline") {
+        content: "\F2D5";
+    }
+    & when (@name = "heart-pulse") {
+        content: "\F5F6";
+    }
+    & when (@name = "help") {
+        content: "\F2D6";
+    }
+    & when (@name = "help-circle") {
+        content: "\F2D7";
+    }
+    & when (@name = "help-circle-outline") {
+        content: "\F625";
+    }
+    & when (@name = "hexagon") {
+        content: "\F2D8";
+    }
+    & when (@name = "hexagon-outline") {
+        content: "\F2D9";
+    }
+    & when (@name = "highway") {
+        content: "\F5F7";
+    }
+    & when (@name = "history") {
+        content: "\F2DA";
+    }
+    & when (@name = "hololens") {
+        content: "\F2DB";
+    }
+    & when (@name = "home") {
+        content: "\F2DC";
+    }
+    & when (@name = "home-map-marker") {
+        content: "\F5F8";
+    }
+    & when (@name = "home-modern") {
+        content: "\F2DD";
+    }
+    & when (@name = "home-outline") {
+        content: "\F6A0";
+    }
+    & when (@name = "home-variant") {
+        content: "\F2DE";
+    }
+    & when (@name = "hops") {
+        content: "\F2DF";
+    }
+    & when (@name = "hospital") {
+        content: "\F2E0";
+    }
+    & when (@name = "hospital-building") {
+        content: "\F2E1";
+    }
+    & when (@name = "hospital-marker") {
+        content: "\F2E2";
+    }
+    & when (@name = "hotel") {
+        content: "\F2E3";
+    }
+    & when (@name = "houzz") {
+        content: "\F2E4";
+    }
+    & when (@name = "houzz-box") {
+        content: "\F2E5";
+    }
+    & when (@name = "human") {
+        content: "\F2E6";
+    }
+    & when (@name = "human-child") {
+        content: "\F2E7";
+    }
+    & when (@name = "human-female") {
+        content: "\F649";
+    }
+    & when (@name = "human-greeting") {
+        content: "\F64A";
+    }
+    & when (@name = "human-handsdown") {
+        content: "\F64B";
+    }
+    & when (@name = "human-handsup") {
+        content: "\F64C";
+    }
+    & when (@name = "human-male") {
+        content: "\F64D";
+    }
+    & when (@name = "human-male-female") {
+        content: "\F2E8";
+    }
+    & when (@name = "human-pregnant") {
+        content: "\F5CF";
+    }
+    & when (@name = "image") {
+        content: "\F2E9";
+    }
+    & when (@name = "image-album") {
+        content: "\F2EA";
+    }
+    & when (@name = "image-area") {
+        content: "\F2EB";
+    }
+    & when (@name = "image-area-close") {
+        content: "\F2EC";
+    }
+    & when (@name = "image-broken") {
+        content: "\F2ED";
+    }
+    & when (@name = "image-broken-variant") {
+        content: "\F2EE";
+    }
+    & when (@name = "image-filter") {
+        content: "\F2EF";
+    }
+    & when (@name = "image-filter-black-white") {
+        content: "\F2F0";
+    }
+    & when (@name = "image-filter-center-focus") {
+        content: "\F2F1";
+    }
+    & when (@name = "image-filter-center-focus-weak") {
+        content: "\F2F2";
+    }
+    & when (@name = "image-filter-drama") {
+        content: "\F2F3";
+    }
+    & when (@name = "image-filter-frames") {
+        content: "\F2F4";
+    }
+    & when (@name = "image-filter-hdr") {
+        content: "\F2F5";
+    }
+    & when (@name = "image-filter-none") {
+        content: "\F2F6";
+    }
+    & when (@name = "image-filter-tilt-shift") {
+        content: "\F2F7";
+    }
+    & when (@name = "image-filter-vintage") {
+        content: "\F2F8";
+    }
+    & when (@name = "image-multiple") {
+        content: "\F2F9";
+    }
+    & when (@name = "import") {
+        content: "\F2FA";
+    }
+    & when (@name = "inbox") {
+        content: "\F686";
+    }
+    & when (@name = "inbox-arrow-down") {
+        content: "\F2FB";
+    }
+    & when (@name = "inbox-arrow-up") {
+        content: "\F3D1";
+    }
+    & when (@name = "incognito") {
+        content: "\F5F9";
+    }
+    & when (@name = "information") {
+        content: "\F2FC";
+    }
+    & when (@name = "information-outline") {
+        content: "\F2FD";
+    }
+    & when (@name = "information-variant") {
+        content: "\F64E";
+    }
+    & when (@name = "instagram") {
+        content: "\F2FE";
+    }
+    & when (@name = "instapaper") {
+        content: "\F2FF";
+    }
+    & when (@name = "internet-explorer") {
+        content: "\F300";
+    }
+    & when (@name = "invert-colors") {
+        content: "\F301";
+    }
+    & when (@name = "itunes") {
+        content: "\F676";
+    }
+    & when (@name = "jeepney") {
+        content: "\F302";
+    }
+    & when (@name = "jira") {
+        content: "\F303";
+    }
+    & when (@name = "jsfiddle") {
+        content: "\F304";
+    }
+    & when (@name = "json") {
+        content: "\F626";
+    }
+    & when (@name = "keg") {
+        content: "\F305";
+    }
+    & when (@name = "kettle") {
+        content: "\F5FA";
+    }
+    & when (@name = "key") {
+        content: "\F306";
+    }
+    & when (@name = "key-change") {
+        content: "\F307";
+    }
+    & when (@name = "key-minus") {
+        content: "\F308";
+    }
+    & when (@name = "key-plus") {
+        content: "\F309";
+    }
+    & when (@name = "key-remove") {
+        content: "\F30A";
+    }
+    & when (@name = "key-variant") {
+        content: "\F30B";
+    }
+    & when (@name = "keyboard") {
+        content: "\F30C";
+    }
+    & when (@name = "keyboard-backspace") {
+        content: "\F30D";
+    }
+    & when (@name = "keyboard-caps") {
+        content: "\F30E";
+    }
+    & when (@name = "keyboard-close") {
+        content: "\F30F";
+    }
+    & when (@name = "keyboard-off") {
+        content: "\F310";
+    }
+    & when (@name = "keyboard-return") {
+        content: "\F311";
+    }
+    & when (@name = "keyboard-tab") {
+        content: "\F312";
+    }
+    & when (@name = "keyboard-variant") {
+        content: "\F313";
+    }
+    & when (@name = "kodi") {
+        content: "\F314";
+    }
+    & when (@name = "label") {
+        content: "\F315";
+    }
+    & when (@name = "label-outline") {
+        content: "\F316";
+    }
+    & when (@name = "lambda") {
+        content: "\F627";
+    }
+    & when (@name = "lamp") {
+        content: "\F6B4";
+    }
+    & when (@name = "lan") {
+        content: "\F317";
+    }
+    & when (@name = "lan-connect") {
+        content: "\F318";
+    }
+    & when (@name = "lan-disconnect") {
+        content: "\F319";
+    }
+    & when (@name = "lan-pending") {
+        content: "\F31A";
+    }
+    & when (@name = "language-c") {
+        content: "\F671";
+    }
+    & when (@name = "language-cpp") {
+        content: "\F672";
+    }
+    & when (@name = "language-csharp") {
+        content: "\F31B";
+    }
+    & when (@name = "language-css3") {
+        content: "\F31C";
+    }
+    & when (@name = "language-html5") {
+        content: "\F31D";
+    }
+    & when (@name = "language-javascript") {
+        content: "\F31E";
+    }
+    & when (@name = "language-php") {
+        content: "\F31F";
+    }
+    & when (@name = "language-python") {
+        content: "\F320";
+    }
+    & when (@name = "language-python-text") {
+        content: "\F321";
+    }
+    & when (@name = "laptop") {
+        content: "\F322";
+    }
+    & when (@name = "laptop-chromebook") {
+        content: "\F323";
+    }
+    & when (@name = "laptop-mac") {
+        content: "\F324";
+    }
+    & when (@name = "laptop-windows") {
+        content: "\F325";
+    }
+    & when (@name = "lastfm") {
+        content: "\F326";
+    }
+    & when (@name = "launch") {
+        content: "\F327";
+    }
+    & when (@name = "layers") {
+        content: "\F328";
+    }
+    & when (@name = "layers-off") {
+        content: "\F329";
+    }
+    & when (@name = "lead-pencil") {
+        content: "\F64F";
+    }
+    & when (@name = "leaf") {
+        content: "\F32A";
+    }
+    & when (@name = "led-off") {
+        content: "\F32B";
+    }
+    & when (@name = "led-on") {
+        content: "\F32C";
+    }
+    & when (@name = "led-outline") {
+        content: "\F32D";
+    }
+    & when (@name = "led-variant-off") {
+        content: "\F32E";
+    }
+    & when (@name = "led-variant-on") {
+        content: "\F32F";
+    }
+    & when (@name = "led-variant-outline") {
+        content: "\F330";
+    }
+    & when (@name = "library") {
+        content: "\F331";
+    }
+    & when (@name = "library-books") {
+        content: "\F332";
+    }
+    & when (@name = "library-music") {
+        content: "\F333";
+    }
+    & when (@name = "library-plus") {
+        content: "\F334";
+    }
+    & when (@name = "lightbulb") {
+        content: "\F335";
+    }
+    & when (@name = "lightbulb-outline") {
+        content: "\F336";
+    }
+    & when (@name = "link") {
+        content: "\F337";
+    }
+    & when (@name = "link-off") {
+        content: "\F338";
+    }
+    & when (@name = "link-variant") {
+        content: "\F339";
+    }
+    & when (@name = "link-variant-off") {
+        content: "\F33A";
+    }
+    & when (@name = "linkedin") {
+        content: "\F33B";
+    }
+    & when (@name = "linkedin-box") {
+        content: "\F33C";
+    }
+    & when (@name = "linux") {
+        content: "\F33D";
+    }
+    & when (@name = "lock") {
+        content: "\F33E";
+    }
+    & when (@name = "lock-open") {
+        content: "\F33F";
+    }
+    & when (@name = "lock-open-outline") {
+        content: "\F340";
+    }
+    & when (@name = "lock-outline") {
+        content: "\F341";
+    }
+    & when (@name = "lock-plus") {
+        content: "\F5FB";
+    }
+    & when (@name = "login") {
+        content: "\F342";
+    }
+    & when (@name = "login-variant") {
+        content: "\F5FC";
+    }
+    & when (@name = "logout") {
+        content: "\F343";
+    }
+    & when (@name = "logout-variant") {
+        content: "\F5FD";
+    }
+    & when (@name = "looks") {
+        content: "\F344";
+    }
+    & when (@name = "loupe") {
+        content: "\F345";
+    }
+    & when (@name = "lumx") {
+        content: "\F346";
+    }
+    & when (@name = "magnet") {
+        content: "\F347";
+    }
+    & when (@name = "magnet-on") {
+        content: "\F348";
+    }
+    & when (@name = "magnify") {
+        content: "\F349";
+    }
+    & when (@name = "magnify-minus") {
+        content: "\F34A";
+    }
+    & when (@name = "magnify-plus") {
+        content: "\F34B";
+    }
+    & when (@name = "mail-ru") {
+        content: "\F34C";
+    }
+    & when (@name = "map") {
+        content: "\F34D";
+    }
+    & when (@name = "map-marker") {
+        content: "\F34E";
+    }
+    & when (@name = "map-marker-circle") {
+        content: "\F34F";
+    }
+    & when (@name = "map-marker-minus") {
+        content: "\F650";
+    }
+    & when (@name = "map-marker-multiple") {
+        content: "\F350";
+    }
+    & when (@name = "map-marker-off") {
+        content: "\F351";
+    }
+    & when (@name = "map-marker-plus") {
+        content: "\F651";
+    }
+    & when (@name = "map-marker-radius") {
+        content: "\F352";
+    }
+    & when (@name = "margin") {
+        content: "\F353";
+    }
+    & when (@name = "markdown") {
+        content: "\F354";
+    }
+    & when (@name = "marker") {
+        content: "\F652";
+    }
+    & when (@name = "marker-check") {
+        content: "\F355";
+    }
+    & when (@name = "martini") {
+        content: "\F356";
+    }
+    & when (@name = "material-ui") {
+        content: "\F357";
+    }
+    & when (@name = "math-compass") {
+        content: "\F358";
+    }
+    & when (@name = "matrix") {
+        content: "\F628";
+    }
+    & when (@name = "maxcdn") {
+        content: "\F359";
+    }
+    & when (@name = "medium") {
+        content: "\F35A";
+    }
+    & when (@name = "memory") {
+        content: "\F35B";
+    }
+    & when (@name = "menu") {
+        content: "\F35C";
+    }
+    & when (@name = "menu-down") {
+        content: "\F35D";
+    }
+    & when (@name = "menu-down-outline") {
+        content: "\F6B5";
+    }
+    & when (@name = "menu-left") {
+        content: "\F35E";
+    }
+    & when (@name = "menu-right") {
+        content: "\F35F";
+    }
+    & when (@name = "menu-up") {
+        content: "\F360";
+    }
+    & when (@name = "menu-up-outline") {
+        content: "\F6B6";
+    }
+    & when (@name = "message") {
+        content: "\F361";
+    }
+    & when (@name = "message-alert") {
+        content: "\F362";
+    }
+    & when (@name = "message-bulleted") {
+        content: "\F6A1";
+    }
+    & when (@name = "message-bulleted-off") {
+        content: "\F6A2";
+    }
+    & when (@name = "message-draw") {
+        content: "\F363";
+    }
+    & when (@name = "message-image") {
+        content: "\F364";
+    }
+    & when (@name = "message-outline") {
+        content: "\F365";
+    }
+    & when (@name = "message-plus") {
+        content: "\F653";
+    }
+    & when (@name = "message-processing") {
+        content: "\F366";
+    }
+    & when (@name = "message-reply") {
+        content: "\F367";
+    }
+    & when (@name = "message-reply-text") {
+        content: "\F368";
+    }
+    & when (@name = "message-text") {
+        content: "\F369";
+    }
+    & when (@name = "message-text-outline") {
+        content: "\F36A";
+    }
+    & when (@name = "message-video") {
+        content: "\F36B";
+    }
+    & when (@name = "meteor") {
+        content: "\F629";
+    }
+    & when (@name = "microphone") {
+        content: "\F36C";
+    }
+    & when (@name = "microphone-off") {
+        content: "\F36D";
+    }
+    & when (@name = "microphone-outline") {
+        content: "\F36E";
+    }
+    & when (@name = "microphone-settings") {
+        content: "\F36F";
+    }
+    & when (@name = "microphone-variant") {
+        content: "\F370";
+    }
+    & when (@name = "microphone-variant-off") {
+        content: "\F371";
+    }
+    & when (@name = "microscope") {
+        content: "\F654";
+    }
+    & when (@name = "microsoft") {
+        content: "\F372";
+    }
+    & when (@name = "minecraft") {
+        content: "\F373";
+    }
+    & when (@name = "minus") {
+        content: "\F374";
+    }
+    & when (@name = "minus-box") {
+        content: "\F375";
+    }
+    & when (@name = "minus-circle") {
+        content: "\F376";
+    }
+    & when (@name = "minus-circle-outline") {
+        content: "\F377";
+    }
+    & when (@name = "minus-network") {
+        content: "\F378";
+    }
+    & when (@name = "mixcloud") {
+        content: "\F62A";
+    }
+    & when (@name = "monitor") {
+        content: "\F379";
+    }
+    & when (@name = "monitor-multiple") {
+        content: "\F37A";
+    }
+    & when (@name = "more") {
+        content: "\F37B";
+    }
+    & when (@name = "motorbike") {
+        content: "\F37C";
+    }
+    & when (@name = "mouse") {
+        content: "\F37D";
+    }
+    & when (@name = "mouse-off") {
+        content: "\F37E";
+    }
+    & when (@name = "mouse-variant") {
+        content: "\F37F";
+    }
+    & when (@name = "mouse-variant-off") {
+        content: "\F380";
+    }
+    & when (@name = "move-resize") {
+        content: "\F655";
+    }
+    & when (@name = "move-resize-variant") {
+        content: "\F656";
+    }
+    & when (@name = "movie") {
+        content: "\F381";
+    }
+    & when (@name = "multiplication") {
+        content: "\F382";
+    }
+    & when (@name = "multiplication-box") {
+        content: "\F383";
+    }
+    & when (@name = "music-box") {
+        content: "\F384";
+    }
+    & when (@name = "music-box-outline") {
+        content: "\F385";
+    }
+    & when (@name = "music-circle") {
+        content: "\F386";
+    }
+    & when (@name = "music-note") {
+        content: "\F387";
+    }
+    & when (@name = "music-note-bluetooth") {
+        content: "\F5FE";
+    }
+    & when (@name = "music-note-bluetooth-off") {
+        content: "\F5FF";
+    }
+    & when (@name = "music-note-eighth") {
+        content: "\F388";
+    }
+    & when (@name = "music-note-half") {
+        content: "\F389";
+    }
+    & when (@name = "music-note-off") {
+        content: "\F38A";
+    }
+    & when (@name = "music-note-quarter") {
+        content: "\F38B";
+    }
+    & when (@name = "music-note-sixteenth") {
+        content: "\F38C";
+    }
+    & when (@name = "music-note-whole") {
+        content: "\F38D";
+    }
+    & when (@name = "nature") {
+        content: "\F38E";
+    }
+    & when (@name = "nature-people") {
+        content: "\F38F";
+    }
+    & when (@name = "navigation") {
+        content: "\F390";
+    }
+    & when (@name = "near-me") {
+        content: "\F5CD";
+    }
+    & when (@name = "needle") {
+        content: "\F391";
+    }
+    & when (@name = "nest-protect") {
+        content: "\F392";
+    }
+    & when (@name = "nest-thermostat") {
+        content: "\F393";
+    }
+    & when (@name = "new-box") {
+        content: "\F394";
+    }
+    & when (@name = "newspaper") {
+        content: "\F395";
+    }
+    & when (@name = "nfc") {
+        content: "\F396";
+    }
+    & when (@name = "nfc-tap") {
+        content: "\F397";
+    }
+    & when (@name = "nfc-variant") {
+        content: "\F398";
+    }
+    & when (@name = "nodejs") {
+        content: "\F399";
+    }
+    & when (@name = "note") {
+        content: "\F39A";
+    }
+    & when (@name = "note-multiple") {
+        content: "\F6B7";
+    }
+    & when (@name = "note-multiple-outline") {
+        content: "\F6B8";
+    }
+    & when (@name = "note-outline") {
+        content: "\F39B";
+    }
+    & when (@name = "note-plus") {
+        content: "\F39C";
+    }
+    & when (@name = "note-plus-outline") {
+        content: "\F39D";
+    }
+    & when (@name = "note-text") {
+        content: "\F39E";
+    }
+    & when (@name = "notification-clear-all") {
+        content: "\F39F";
+    }
+    & when (@name = "nuke") {
+        content: "\F6A3";
+    }
+    & when (@name = "numeric") {
+        content: "\F3A0";
+    }
+    & when (@name = "numeric-0-box") {
+        content: "\F3A1";
+    }
+    & when (@name = "numeric-0-box-multiple-outline") {
+        content: "\F3A2";
+    }
+    & when (@name = "numeric-0-box-outline") {
+        content: "\F3A3";
+    }
+    & when (@name = "numeric-1-box") {
+        content: "\F3A4";
+    }
+    & when (@name = "numeric-1-box-multiple-outline") {
+        content: "\F3A5";
+    }
+    & when (@name = "numeric-1-box-outline") {
+        content: "\F3A6";
+    }
+    & when (@name = "numeric-2-box") {
+        content: "\F3A7";
+    }
+    & when (@name = "numeric-2-box-multiple-outline") {
+        content: "\F3A8";
+    }
+    & when (@name = "numeric-2-box-outline") {
+        content: "\F3A9";
+    }
+    & when (@name = "numeric-3-box") {
+        content: "\F3AA";
+    }
+    & when (@name = "numeric-3-box-multiple-outline") {
+        content: "\F3AB";
+    }
+    & when (@name = "numeric-3-box-outline") {
+        content: "\F3AC";
+    }
+    & when (@name = "numeric-4-box") {
+        content: "\F3AD";
+    }
+    & when (@name = "numeric-4-box-multiple-outline") {
+        content: "\F3AE";
+    }
+    & when (@name = "numeric-4-box-outline") {
+        content: "\F3AF";
+    }
+    & when (@name = "numeric-5-box") {
+        content: "\F3B0";
+    }
+    & when (@name = "numeric-5-box-multiple-outline") {
+        content: "\F3B1";
+    }
+    & when (@name = "numeric-5-box-outline") {
+        content: "\F3B2";
+    }
+    & when (@name = "numeric-6-box") {
+        content: "\F3B3";
+    }
+    & when (@name = "numeric-6-box-multiple-outline") {
+        content: "\F3B4";
+    }
+    & when (@name = "numeric-6-box-outline") {
+        content: "\F3B5";
+    }
+    & when (@name = "numeric-7-box") {
+        content: "\F3B6";
+    }
+    & when (@name = "numeric-7-box-multiple-outline") {
+        content: "\F3B7";
+    }
+    & when (@name = "numeric-7-box-outline") {
+        content: "\F3B8";
+    }
+    & when (@name = "numeric-8-box") {
+        content: "\F3B9";
+    }
+    & when (@name = "numeric-8-box-multiple-outline") {
+        content: "\F3BA";
+    }
+    & when (@name = "numeric-8-box-outline") {
+        content: "\F3BB";
+    }
+    & when (@name = "numeric-9-box") {
+        content: "\F3BC";
+    }
+    & when (@name = "numeric-9-box-multiple-outline") {
+        content: "\F3BD";
+    }
+    & when (@name = "numeric-9-box-outline") {
+        content: "\F3BE";
+    }
+    & when (@name = "numeric-9-plus-box") {
+        content: "\F3BF";
+    }
+    & when (@name = "numeric-9-plus-box-multiple-outline") {
+        content: "\F3C0";
+    }
+    & when (@name = "numeric-9-plus-box-outline") {
+        content: "\F3C1";
+    }
+    & when (@name = "nutrition") {
+        content: "\F3C2";
+    }
+    & when (@name = "oar") {
+        content: "\F67B";
+    }
+    & when (@name = "octagon") {
+        content: "\F3C3";
+    }
+    & when (@name = "octagon-outline") {
+        content: "\F3C4";
+    }
+    & when (@name = "odnoklassniki") {
+        content: "\F3C5";
+    }
+    & when (@name = "office") {
+        content: "\F3C6";
+    }
+    & when (@name = "oil") {
+        content: "\F3C7";
+    }
+    & when (@name = "oil-temperature") {
+        content: "\F3C8";
+    }
+    & when (@name = "omega") {
+        content: "\F3C9";
+    }
+    & when (@name = "onedrive") {
+        content: "\F3CA";
+    }
+    & when (@name = "opacity") {
+        content: "\F5CC";
+    }
+    & when (@name = "open-in-app") {
+        content: "\F3CB";
+    }
+    & when (@name = "open-in-new") {
+        content: "\F3CC";
+    }
+    & when (@name = "openid") {
+        content: "\F3CD";
+    }
+    & when (@name = "opera") {
+        content: "\F3CE";
+    }
+    & when (@name = "ornament") {
+        content: "\F3CF";
+    }
+    & when (@name = "ornament-variant") {
+        content: "\F3D0";
+    }
+    & when (@name = "owl") {
+        content: "\F3D2";
+    }
+    & when (@name = "package") {
+        content: "\F3D3";
+    }
+    & when (@name = "package-down") {
+        content: "\F3D4";
+    }
+    & when (@name = "package-up") {
+        content: "\F3D5";
+    }
+    & when (@name = "package-variant") {
+        content: "\F3D6";
+    }
+    & when (@name = "package-variant-closed") {
+        content: "\F3D7";
+    }
+    & when (@name = "page-first") {
+        content: "\F600";
+    }
+    & when (@name = "page-last") {
+        content: "\F601";
+    }
+    & when (@name = "palette") {
+        content: "\F3D8";
+    }
+    & when (@name = "palette-advanced") {
+        content: "\F3D9";
+    }
+    & when (@name = "panda") {
+        content: "\F3DA";
+    }
+    & when (@name = "pandora") {
+        content: "\F3DB";
+    }
+    & when (@name = "panorama") {
+        content: "\F3DC";
+    }
+    & when (@name = "panorama-fisheye") {
+        content: "\F3DD";
+    }
+    & when (@name = "panorama-horizontal") {
+        content: "\F3DE";
+    }
+    & when (@name = "panorama-vertical") {
+        content: "\F3DF";
+    }
+    & when (@name = "panorama-wide-angle") {
+        content: "\F3E0";
+    }
+    & when (@name = "paper-cut-vertical") {
+        content: "\F3E1";
+    }
+    & when (@name = "paperclip") {
+        content: "\F3E2";
+    }
+    & when (@name = "parking") {
+        content: "\F3E3";
+    }
+    & when (@name = "pause") {
+        content: "\F3E4";
+    }
+    & when (@name = "pause-circle") {
+        content: "\F3E5";
+    }
+    & when (@name = "pause-circle-outline") {
+        content: "\F3E6";
+    }
+    & when (@name = "pause-octagon") {
+        content: "\F3E7";
+    }
+    & when (@name = "pause-octagon-outline") {
+        content: "\F3E8";
+    }
+    & when (@name = "paw") {
+        content: "\F3E9";
+    }
+    & when (@name = "paw-off") {
+        content: "\F657";
+    }
+    & when (@name = "pen") {
+        content: "\F3EA";
+    }
+    & when (@name = "pencil") {
+        content: "\F3EB";
+    }
+    & when (@name = "pencil-box") {
+        content: "\F3EC";
+    }
+    & when (@name = "pencil-box-outline") {
+        content: "\F3ED";
+    }
+    & when (@name = "pencil-lock") {
+        content: "\F3EE";
+    }
+    & when (@name = "pencil-off") {
+        content: "\F3EF";
+    }
+    & when (@name = "percent") {
+        content: "\F3F0";
+    }
+    & when (@name = "pharmacy") {
+        content: "\F3F1";
+    }
+    & when (@name = "phone") {
+        content: "\F3F2";
+    }
+    & when (@name = "phone-bluetooth") {
+        content: "\F3F3";
+    }
+    & when (@name = "phone-classic") {
+        content: "\F602";
+    }
+    & when (@name = "phone-forward") {
+        content: "\F3F4";
+    }
+    & when (@name = "phone-hangup") {
+        content: "\F3F5";
+    }
+    & when (@name = "phone-in-talk") {
+        content: "\F3F6";
+    }
+    & when (@name = "phone-incoming") {
+        content: "\F3F7";
+    }
+    & when (@name = "phone-locked") {
+        content: "\F3F8";
+    }
+    & when (@name = "phone-log") {
+        content: "\F3F9";
+    }
+    & when (@name = "phone-minus") {
+        content: "\F658";
+    }
+    & when (@name = "phone-missed") {
+        content: "\F3FA";
+    }
+    & when (@name = "phone-outgoing") {
+        content: "\F3FB";
+    }
+    & when (@name = "phone-paused") {
+        content: "\F3FC";
+    }
+    & when (@name = "phone-plus") {
+        content: "\F659";
+    }
+    & when (@name = "phone-settings") {
+        content: "\F3FD";
+    }
+    & when (@name = "phone-voip") {
+        content: "\F3FE";
+    }
+    & when (@name = "pi") {
+        content: "\F3FF";
+    }
+    & when (@name = "pi-box") {
+        content: "\F400";
+    }
+    & when (@name = "piano") {
+        content: "\F67C";
+    }
+    & when (@name = "pig") {
+        content: "\F401";
+    }
+    & when (@name = "pill") {
+        content: "\F402";
+    }
+    & when (@name = "pin") {
+        content: "\F403";
+    }
+    & when (@name = "pin-off") {
+        content: "\F404";
+    }
+    & when (@name = "pine-tree") {
+        content: "\F405";
+    }
+    & when (@name = "pine-tree-box") {
+        content: "\F406";
+    }
+    & when (@name = "pinterest") {
+        content: "\F407";
+    }
+    & when (@name = "pinterest-box") {
+        content: "\F408";
+    }
+    & when (@name = "pizza") {
+        content: "\F409";
+    }
+    & when (@name = "plane-shield") {
+        content: "\F6BA";
+    }
+    & when (@name = "play") {
+        content: "\F40A";
+    }
+    & when (@name = "play-box-outline") {
+        content: "\F40B";
+    }
+    & when (@name = "play-circle") {
+        content: "\F40C";
+    }
+    & when (@name = "play-circle-outline") {
+        content: "\F40D";
+    }
+    & when (@name = "play-pause") {
+        content: "\F40E";
+    }
+    & when (@name = "play-protected-content") {
+        content: "\F40F";
+    }
+    & when (@name = "playlist-check") {
+        content: "\F5C7";
+    }
+    & when (@name = "playlist-minus") {
+        content: "\F410";
+    }
+    & when (@name = "playlist-play") {
+        content: "\F411";
+    }
+    & when (@name = "playlist-plus") {
+        content: "\F412";
+    }
+    & when (@name = "playlist-remove") {
+        content: "\F413";
+    }
+    & when (@name = "playstation") {
+        content: "\F414";
+    }
+    & when (@name = "plex") {
+        content: "\F6B9";
+    }
+    & when (@name = "plus") {
+        content: "\F415";
+    }
+    & when (@name = "plus-box") {
+        content: "\F416";
+    }
+    & when (@name = "plus-circle") {
+        content: "\F417";
+    }
+    & when (@name = "plus-circle-multiple-outline") {
+        content: "\F418";
+    }
+    & when (@name = "plus-circle-outline") {
+        content: "\F419";
+    }
+    & when (@name = "plus-network") {
+        content: "\F41A";
+    }
+    & when (@name = "plus-one") {
+        content: "\F41B";
+    }
+    & when (@name = "pocket") {
+        content: "\F41C";
+    }
+    & when (@name = "pokeball") {
+        content: "\F41D";
+    }
+    & when (@name = "polaroid") {
+        content: "\F41E";
+    }
+    & when (@name = "poll") {
+        content: "\F41F";
+    }
+    & when (@name = "poll-box") {
+        content: "\F420";
+    }
+    & when (@name = "polymer") {
+        content: "\F421";
+    }
+    & when (@name = "pool") {
+        content: "\F606";
+    }
+    & when (@name = "popcorn") {
+        content: "\F422";
+    }
+    & when (@name = "pot") {
+        content: "\F65A";
+    }
+    & when (@name = "pot-mix") {
+        content: "\F65B";
+    }
+    & when (@name = "pound") {
+        content: "\F423";
+    }
+    & when (@name = "pound-box") {
+        content: "\F424";
+    }
+    & when (@name = "power") {
+        content: "\F425";
+    }
+    & when (@name = "power-plug") {
+        content: "\F6A4";
+    }
+    & when (@name = "power-plug-off") {
+        content: "\F6A5";
+    }
+    & when (@name = "power-settings") {
+        content: "\F426";
+    }
+    & when (@name = "power-socket") {
+        content: "\F427";
+    }
+    & when (@name = "presentation") {
+        content: "\F428";
+    }
+    & when (@name = "presentation-play") {
+        content: "\F429";
+    }
+    & when (@name = "printer") {
+        content: "\F42A";
+    }
+    & when (@name = "printer-3d") {
+        content: "\F42B";
+    }
+    & when (@name = "printer-alert") {
+        content: "\F42C";
+    }
+    & when (@name = "priority-high") {
+        content: "\F603";
+    }
+    & when (@name = "priority-low") {
+        content: "\F604";
+    }
+    & when (@name = "professional-hexagon") {
+        content: "\F42D";
+    }
+    & when (@name = "projector") {
+        content: "\F42E";
+    }
+    & when (@name = "projector-screen") {
+        content: "\F42F";
+    }
+    & when (@name = "publish") {
+        content: "\F6A6";
+    }
+    & when (@name = "pulse") {
+        content: "\F430";
+    }
+    & when (@name = "puzzle") {
+        content: "\F431";
+    }
+    & when (@name = "qqchat") {
+        content: "\F605";
+    }
+    & when (@name = "qrcode") {
+        content: "\F432";
+    }
+    & when (@name = "qrcode-scan") {
+        content: "\F433";
+    }
+    & when (@name = "quadcopter") {
+        content: "\F434";
+    }
+    & when (@name = "quality-high") {
+        content: "\F435";
+    }
+    & when (@name = "quicktime") {
+        content: "\F436";
+    }
+    & when (@name = "radar") {
+        content: "\F437";
+    }
+    & when (@name = "radiator") {
+        content: "\F438";
+    }
+    & when (@name = "radio") {
+        content: "\F439";
+    }
+    & when (@name = "radio-handheld") {
+        content: "\F43A";
+    }
+    & when (@name = "radio-tower") {
+        content: "\F43B";
+    }
+    & when (@name = "radioactive") {
+        content: "\F43C";
+    }
+    & when (@name = "radiobox-blank") {
+        content: "\F43D";
+    }
+    & when (@name = "radiobox-marked") {
+        content: "\F43E";
+    }
+    & when (@name = "raspberrypi") {
+        content: "\F43F";
+    }
+    & when (@name = "ray-end") {
+        content: "\F440";
+    }
+    & when (@name = "ray-end-arrow") {
+        content: "\F441";
+    }
+    & when (@name = "ray-start") {
+        content: "\F442";
+    }
+    & when (@name = "ray-start-arrow") {
+        content: "\F443";
+    }
+    & when (@name = "ray-start-end") {
+        content: "\F444";
+    }
+    & when (@name = "ray-vertex") {
+        content: "\F445";
+    }
+    & when (@name = "rdio") {
+        content: "\F446";
+    }
+    & when (@name = "read") {
+        content: "\F447";
+    }
+    & when (@name = "readability") {
+        content: "\F448";
+    }
+    & when (@name = "receipt") {
+        content: "\F449";
+    }
+    & when (@name = "record") {
+        content: "\F44A";
+    }
+    & when (@name = "record-rec") {
+        content: "\F44B";
+    }
+    & when (@name = "recycle") {
+        content: "\F44C";
+    }
+    & when (@name = "reddit") {
+        content: "\F44D";
+    }
+    & when (@name = "redo") {
+        content: "\F44E";
+    }
+    & when (@name = "redo-variant") {
+        content: "\F44F";
+    }
+    & when (@name = "refresh") {
+        content: "\F450";
+    }
+    & when (@name = "regex") {
+        content: "\F451";
+    }
+    & when (@name = "relative-scale") {
+        content: "\F452";
+    }
+    & when (@name = "reload") {
+        content: "\F453";
+    }
+    & when (@name = "remote") {
+        content: "\F454";
+    }
+    & when (@name = "rename-box") {
+        content: "\F455";
+    }
+    & when (@name = "reorder-horizontal") {
+        content: "\F687";
+    }
+    & when (@name = "reorder-vertical") {
+        content: "\F688";
+    }
+    & when (@name = "repeat") {
+        content: "\F456";
+    }
+    & when (@name = "repeat-off") {
+        content: "\F457";
+    }
+    & when (@name = "repeat-once") {
+        content: "\F458";
+    }
+    & when (@name = "replay") {
+        content: "\F459";
+    }
+    & when (@name = "reply") {
+        content: "\F45A";
+    }
+    & when (@name = "reply-all") {
+        content: "\F45B";
+    }
+    & when (@name = "reproduction") {
+        content: "\F45C";
+    }
+    & when (@name = "resize-bottom-right") {
+        content: "\F45D";
+    }
+    & when (@name = "responsive") {
+        content: "\F45E";
+    }
+    & when (@name = "restore") {
+        content: "\F6A7";
+    }
+    & when (@name = "rewind") {
+        content: "\F45F";
+    }
+    & when (@name = "ribbon") {
+        content: "\F460";
+    }
+    & when (@name = "road") {
+        content: "\F461";
+    }
+    & when (@name = "road-variant") {
+        content: "\F462";
+    }
+    & when (@name = "robot") {
+        content: "\F6A8";
+    }
+    & when (@name = "rocket") {
+        content: "\F463";
+    }
+    & when (@name = "rotate-3d") {
+        content: "\F464";
+    }
+    & when (@name = "rotate-90") {
+        content: "\F6A9";
+    }
+    & when (@name = "rotate-left") {
+        content: "\F465";
+    }
+    & when (@name = "rotate-left-variant") {
+        content: "\F466";
+    }
+    & when (@name = "rotate-right") {
+        content: "\F467";
+    }
+    & when (@name = "rotate-right-variant") {
+        content: "\F468";
+    }
+    & when (@name = "rounded-corner") {
+        content: "\F607";
+    }
+    & when (@name = "router-wireless") {
+        content: "\F469";
+    }
+    & when (@name = "routes") {
+        content: "\F46A";
+    }
+    & when (@name = "rowing") {
+        content: "\F608";
+    }
+    & when (@name = "rss") {
+        content: "\F46B";
+    }
+    & when (@name = "rss-box") {
+        content: "\F46C";
+    }
+    & when (@name = "ruler") {
+        content: "\F46D";
+    }
+    & when (@name = "run") {
+        content: "\F46E";
+    }
+    & when (@name = "sale") {
+        content: "\F46F";
+    }
+    & when (@name = "satellite") {
+        content: "\F470";
+    }
+    & when (@name = "satellite-variant") {
+        content: "\F471";
+    }
+    & when (@name = "saxophone") {
+        content: "\F609";
+    }
+    & when (@name = "scale") {
+        content: "\F472";
+    }
+    & when (@name = "scale-balance") {
+        content: "\F5D1";
+    }
+    & when (@name = "scale-bathroom") {
+        content: "\F473";
+    }
+    & when (@name = "scanner") {
+        content: "\F6AA";
+    }
+    & when (@name = "school") {
+        content: "\F474";
+    }
+    & when (@name = "screen-rotation") {
+        content: "\F475";
+    }
+    & when (@name = "screen-rotation-lock") {
+        content: "\F476";
+    }
+    & when (@name = "screwdriver") {
+        content: "\F477";
+    }
+    & when (@name = "script") {
+        content: "\F478";
+    }
+    & when (@name = "sd") {
+        content: "\F479";
+    }
+    & when (@name = "seal") {
+        content: "\F47A";
+    }
+    & when (@name = "seat-flat") {
+        content: "\F47B";
+    }
+    & when (@name = "seat-flat-angled") {
+        content: "\F47C";
+    }
+    & when (@name = "seat-individual-suite") {
+        content: "\F47D";
+    }
+    & when (@name = "seat-legroom-extra") {
+        content: "\F47E";
+    }
+    & when (@name = "seat-legroom-normal") {
+        content: "\F47F";
+    }
+    & when (@name = "seat-legroom-reduced") {
+        content: "\F480";
+    }
+    & when (@name = "seat-recline-extra") {
+        content: "\F481";
+    }
+    & when (@name = "seat-recline-normal") {
+        content: "\F482";
+    }
+    & when (@name = "security") {
+        content: "\F483";
+    }
+    & when (@name = "security-home") {
+        content: "\F689";
+    }
+    & when (@name = "security-network") {
+        content: "\F484";
+    }
+    & when (@name = "select") {
+        content: "\F485";
+    }
+    & when (@name = "select-all") {
+        content: "\F486";
+    }
+    & when (@name = "select-inverse") {
+        content: "\F487";
+    }
+    & when (@name = "select-off") {
+        content: "\F488";
+    }
+    & when (@name = "selection") {
+        content: "\F489";
+    }
+    & when (@name = "send") {
+        content: "\F48A";
+    }
+    & when (@name = "serial-port") {
+        content: "\F65C";
+    }
+    & when (@name = "server") {
+        content: "\F48B";
+    }
+    & when (@name = "server-minus") {
+        content: "\F48C";
+    }
+    & when (@name = "server-network") {
+        content: "\F48D";
+    }
+    & when (@name = "server-network-off") {
+        content: "\F48E";
+    }
+    & when (@name = "server-off") {
+        content: "\F48F";
+    }
+    & when (@name = "server-plus") {
+        content: "\F490";
+    }
+    & when (@name = "server-remove") {
+        content: "\F491";
+    }
+    & when (@name = "server-security") {
+        content: "\F492";
+    }
+    & when (@name = "settings") {
+        content: "\F493";
+    }
+    & when (@name = "settings-box") {
+        content: "\F494";
+    }
+    & when (@name = "shape-circle-plus") {
+        content: "\F65D";
+    }
+    & when (@name = "shape-plus") {
+        content: "\F495";
+    }
+    & when (@name = "shape-polygon-plus") {
+        content: "\F65E";
+    }
+    & when (@name = "shape-rectangle-plus") {
+        content: "\F65F";
+    }
+    & when (@name = "shape-square-plus") {
+        content: "\F660";
+    }
+    & when (@name = "share") {
+        content: "\F496";
+    }
+    & when (@name = "share-variant") {
+        content: "\F497";
+    }
+    & when (@name = "shield") {
+        content: "\F498";
+    }
+    & when (@name = "shield-outline") {
+        content: "\F499";
+    }
+    & when (@name = "shopping") {
+        content: "\F49A";
+    }
+    & when (@name = "shopping-music") {
+        content: "\F49B";
+    }
+    & when (@name = "shredder") {
+        content: "\F49C";
+    }
+    & when (@name = "shuffle") {
+        content: "\F49D";
+    }
+    & when (@name = "shuffle-disabled") {
+        content: "\F49E";
+    }
+    & when (@name = "shuffle-variant") {
+        content: "\F49F";
+    }
+    & when (@name = "sigma") {
+        content: "\F4A0";
+    }
+    & when (@name = "sigma-lower") {
+        content: "\F62B";
+    }
+    & when (@name = "sign-caution") {
+        content: "\F4A1";
+    }
+    & when (@name = "signal") {
+        content: "\F4A2";
+    }
+    & when (@name = "signal-variant") {
+        content: "\F60A";
+    }
+    & when (@name = "silverware") {
+        content: "\F4A3";
+    }
+    & when (@name = "silverware-fork") {
+        content: "\F4A4";
+    }
+    & when (@name = "silverware-spoon") {
+        content: "\F4A5";
+    }
+    & when (@name = "silverware-variant") {
+        content: "\F4A6";
+    }
+    & when (@name = "sim") {
+        content: "\F4A7";
+    }
+    & when (@name = "sim-alert") {
+        content: "\F4A8";
+    }
+    & when (@name = "sim-off") {
+        content: "\F4A9";
+    }
+    & when (@name = "sitemap") {
+        content: "\F4AA";
+    }
+    & when (@name = "skip-backward") {
+        content: "\F4AB";
+    }
+    & when (@name = "skip-forward") {
+        content: "\F4AC";
+    }
+    & when (@name = "skip-next") {
+        content: "\F4AD";
+    }
+    & when (@name = "skip-next-circle") {
+        content: "\F661";
+    }
+    & when (@name = "skip-next-circle-outline") {
+        content: "\F662";
+    }
+    & when (@name = "skip-previous") {
+        content: "\F4AE";
+    }
+    & when (@name = "skip-previous-circle") {
+        content: "\F663";
+    }
+    & when (@name = "skip-previous-circle-outline") {
+        content: "\F664";
+    }
+    & when (@name = "skull") {
+        content: "\F68B";
+    }
+    & when (@name = "skype") {
+        content: "\F4AF";
+    }
+    & when (@name = "skype-business") {
+        content: "\F4B0";
+    }
+    & when (@name = "slack") {
+        content: "\F4B1";
+    }
+    & when (@name = "sleep") {
+        content: "\F4B2";
+    }
+    & when (@name = "sleep-off") {
+        content: "\F4B3";
+    }
+    & when (@name = "smoking") {
+        content: "\F4B4";
+    }
+    & when (@name = "smoking-off") {
+        content: "\F4B5";
+    }
+    & when (@name = "snapchat") {
+        content: "\F4B6";
+    }
+    & when (@name = "snowman") {
+        content: "\F4B7";
+    }
+    & when (@name = "soccer") {
+        content: "\F4B8";
+    }
+    & when (@name = "sofa") {
+        content: "\F4B9";
+    }
+    & when (@name = "solid") {
+        content: "\F68C";
+    }
+    & when (@name = "sort") {
+        content: "\F4BA";
+    }
+    & when (@name = "sort-alphabetical") {
+        content: "\F4BB";
+    }
+    & when (@name = "sort-ascending") {
+        content: "\F4BC";
+    }
+    & when (@name = "sort-descending") {
+        content: "\F4BD";
+    }
+    & when (@name = "sort-numeric") {
+        content: "\F4BE";
+    }
+    & when (@name = "sort-variant") {
+        content: "\F4BF";
+    }
+    & when (@name = "soundcloud") {
+        content: "\F4C0";
+    }
+    & when (@name = "source-branch") {
+        content: "\F62C";
+    }
+    & when (@name = "source-fork") {
+        content: "\F4C1";
+    }
+    & when (@name = "source-merge") {
+        content: "\F62D";
+    }
+    & when (@name = "source-pull") {
+        content: "\F4C2";
+    }
+    & when (@name = "speaker") {
+        content: "\F4C3";
+    }
+    & when (@name = "speaker-off") {
+        content: "\F4C4";
+    }
+    & when (@name = "speedometer") {
+        content: "\F4C5";
+    }
+    & when (@name = "spellcheck") {
+        content: "\F4C6";
+    }
+    & when (@name = "spotify") {
+        content: "\F4C7";
+    }
+    & when (@name = "spotlight") {
+        content: "\F4C8";
+    }
+    & when (@name = "spotlight-beam") {
+        content: "\F4C9";
+    }
+    & when (@name = "spray") {
+        content: "\F665";
+    }
+    & when (@name = "square-inc") {
+        content: "\F4CA";
+    }
+    & when (@name = "square-inc-cash") {
+        content: "\F4CB";
+    }
+    & when (@name = "stackexchange") {
+        content: "\F60B";
+    }
+    & when (@name = "stackoverflow") {
+        content: "\F4CC";
+    }
+    & when (@name = "stairs") {
+        content: "\F4CD";
+    }
+    & when (@name = "star") {
+        content: "\F4CE";
+    }
+    & when (@name = "star-circle") {
+        content: "\F4CF";
+    }
+    & when (@name = "star-half") {
+        content: "\F4D0";
+    }
+    & when (@name = "star-off") {
+        content: "\F4D1";
+    }
+    & when (@name = "star-outline") {
+        content: "\F4D2";
+    }
+    & when (@name = "steam") {
+        content: "\F4D3";
+    }
+    & when (@name = "steering") {
+        content: "\F4D4";
+    }
+    & when (@name = "step-backward") {
+        content: "\F4D5";
+    }
+    & when (@name = "step-backward-2") {
+        content: "\F4D6";
+    }
+    & when (@name = "step-forward") {
+        content: "\F4D7";
+    }
+    & when (@name = "step-forward-2") {
+        content: "\F4D8";
+    }
+    & when (@name = "stethoscope") {
+        content: "\F4D9";
+    }
+    & when (@name = "sticker") {
+        content: "\F5D0";
+    }
+    & when (@name = "stocking") {
+        content: "\F4DA";
+    }
+    & when (@name = "stop") {
+        content: "\F4DB";
+    }
+    & when (@name = "stop-circle") {
+        content: "\F666";
+    }
+    & when (@name = "stop-circle-outline") {
+        content: "\F667";
+    }
+    & when (@name = "store") {
+        content: "\F4DC";
+    }
+    & when (@name = "store-24-hour") {
+        content: "\F4DD";
+    }
+    & when (@name = "stove") {
+        content: "\F4DE";
+    }
+    & when (@name = "subdirectory-arrow-left") {
+        content: "\F60C";
+    }
+    & when (@name = "subdirectory-arrow-right") {
+        content: "\F60D";
+    }
+    & when (@name = "subway") {
+        content: "\F6AB";
+    }
+    & when (@name = "subway-variant") {
+        content: "\F4DF";
+    }
+    & when (@name = "sunglasses") {
+        content: "\F4E0";
+    }
+    & when (@name = "surround-sound") {
+        content: "\F5C5";
+    }
+    & when (@name = "swap-horizontal") {
+        content: "\F4E1";
+    }
+    & when (@name = "swap-vertical") {
+        content: "\F4E2";
+    }
+    & when (@name = "swim") {
+        content: "\F4E3";
+    }
+    & when (@name = "switch") {
+        content: "\F4E4";
+    }
+    & when (@name = "sword") {
+        content: "\F4E5";
+    }
+    & when (@name = "sync") {
+        content: "\F4E6";
+    }
+    & when (@name = "sync-alert") {
+        content: "\F4E7";
+    }
+    & when (@name = "sync-off") {
+        content: "\F4E8";
+    }
+    & when (@name = "tab") {
+        content: "\F4E9";
+    }
+    & when (@name = "tab-unselected") {
+        content: "\F4EA";
+    }
+    & when (@name = "table") {
+        content: "\F4EB";
+    }
+    & when (@name = "table-column-plus-after") {
+        content: "\F4EC";
+    }
+    & when (@name = "table-column-plus-before") {
+        content: "\F4ED";
+    }
+    & when (@name = "table-column-remove") {
+        content: "\F4EE";
+    }
+    & when (@name = "table-column-width") {
+        content: "\F4EF";
+    }
+    & when (@name = "table-edit") {
+        content: "\F4F0";
+    }
+    & when (@name = "table-large") {
+        content: "\F4F1";
+    }
+    & when (@name = "table-row-height") {
+        content: "\F4F2";
+    }
+    & when (@name = "table-row-plus-after") {
+        content: "\F4F3";
+    }
+    & when (@name = "table-row-plus-before") {
+        content: "\F4F4";
+    }
+    & when (@name = "table-row-remove") {
+        content: "\F4F5";
+    }
+    & when (@name = "tablet") {
+        content: "\F4F6";
+    }
+    & when (@name = "tablet-android") {
+        content: "\F4F7";
+    }
+    & when (@name = "tablet-ipad") {
+        content: "\F4F8";
+    }
+    & when (@name = "tag") {
+        content: "\F4F9";
+    }
+    & when (@name = "tag-faces") {
+        content: "\F4FA";
+    }
+    & when (@name = "tag-heart") {
+        content: "\F68A";
+    }
+    & when (@name = "tag-multiple") {
+        content: "\F4FB";
+    }
+    & when (@name = "tag-outline") {
+        content: "\F4FC";
+    }
+    & when (@name = "tag-text-outline") {
+        content: "\F4FD";
+    }
+    & when (@name = "target") {
+        content: "\F4FE";
+    }
+    & when (@name = "taxi") {
+        content: "\F4FF";
+    }
+    & when (@name = "teamviewer") {
+        content: "\F500";
+    }
+    & when (@name = "telegram") {
+        content: "\F501";
+    }
+    & when (@name = "television") {
+        content: "\F502";
+    }
+    & when (@name = "television-guide") {
+        content: "\F503";
+    }
+    & when (@name = "temperature-celsius") {
+        content: "\F504";
+    }
+    & when (@name = "temperature-fahrenheit") {
+        content: "\F505";
+    }
+    & when (@name = "temperature-kelvin") {
+        content: "\F506";
+    }
+    & when (@name = "tennis") {
+        content: "\F507";
+    }
+    & when (@name = "tent") {
+        content: "\F508";
+    }
+    & when (@name = "terrain") {
+        content: "\F509";
+    }
+    & when (@name = "test-tube") {
+        content: "\F668";
+    }
+    & when (@name = "text-shadow") {
+        content: "\F669";
+    }
+    & when (@name = "text-to-speech") {
+        content: "\F50A";
+    }
+    & when (@name = "text-to-speech-off") {
+        content: "\F50B";
+    }
+    & when (@name = "textbox") {
+        content: "\F60E";
+    }
+    & when (@name = "texture") {
+        content: "\F50C";
+    }
+    & when (@name = "theater") {
+        content: "\F50D";
+    }
+    & when (@name = "theme-light-dark") {
+        content: "\F50E";
+    }
+    & when (@name = "thermometer") {
+        content: "\F50F";
+    }
+    & when (@name = "thermometer-lines") {
+        content: "\F510";
+    }
+    & when (@name = "thumb-down") {
+        content: "\F511";
+    }
+    & when (@name = "thumb-down-outline") {
+        content: "\F512";
+    }
+    & when (@name = "thumb-up") {
+        content: "\F513";
+    }
+    & when (@name = "thumb-up-outline") {
+        content: "\F514";
+    }
+    & when (@name = "thumbs-up-down") {
+        content: "\F515";
+    }
+    & when (@name = "ticket") {
+        content: "\F516";
+    }
+    & when (@name = "ticket-account") {
+        content: "\F517";
+    }
+    & when (@name = "ticket-confirmation") {
+        content: "\F518";
+    }
+    & when (@name = "tie") {
+        content: "\F519";
+    }
+    & when (@name = "timelapse") {
+        content: "\F51A";
+    }
+    & when (@name = "timer") {
+        content: "\F51B";
+    }
+    & when (@name = "timer-10") {
+        content: "\F51C";
+    }
+    & when (@name = "timer-3") {
+        content: "\F51D";
+    }
+    & when (@name = "timer-off") {
+        content: "\F51E";
+    }
+    & when (@name = "timer-sand") {
+        content: "\F51F";
+    }
+    & when (@name = "timer-sand-empty") {
+        content: "\F6AC";
+    }
+    & when (@name = "timetable") {
+        content: "\F520";
+    }
+    & when (@name = "toggle-switch") {
+        content: "\F521";
+    }
+    & when (@name = "toggle-switch-off") {
+        content: "\F522";
+    }
+    & when (@name = "tooltip") {
+        content: "\F523";
+    }
+    & when (@name = "tooltip-edit") {
+        content: "\F524";
+    }
+    & when (@name = "tooltip-image") {
+        content: "\F525";
+    }
+    & when (@name = "tooltip-outline") {
+        content: "\F526";
+    }
+    & when (@name = "tooltip-outline-plus") {
+        content: "\F527";
+    }
+    & when (@name = "tooltip-text") {
+        content: "\F528";
+    }
+    & when (@name = "tooth") {
+        content: "\F529";
+    }
+    & when (@name = "tor") {
+        content: "\F52A";
+    }
+    & when (@name = "tower-beach") {
+        content: "\F680";
+    }
+    & when (@name = "tower-fire") {
+        content: "\F681";
+    }
+    & when (@name = "traffic-light") {
+        content: "\F52B";
+    }
+    & when (@name = "train") {
+        content: "\F52C";
+    }
+    & when (@name = "tram") {
+        content: "\F52D";
+    }
+    & when (@name = "transcribe") {
+        content: "\F52E";
+    }
+    & when (@name = "transcribe-close") {
+        content: "\F52F";
+    }
+    & when (@name = "transfer") {
+        content: "\F530";
+    }
+    & when (@name = "transit-transfer") {
+        content: "\F6AD";
+    }
+    & when (@name = "translate") {
+        content: "\F5CA";
+    }
+    & when (@name = "tree") {
+        content: "\F531";
+    }
+    & when (@name = "trello") {
+        content: "\F532";
+    }
+    & when (@name = "trending-down") {
+        content: "\F533";
+    }
+    & when (@name = "trending-neutral") {
+        content: "\F534";
+    }
+    & when (@name = "trending-up") {
+        content: "\F535";
+    }
+    & when (@name = "triangle") {
+        content: "\F536";
+    }
+    & when (@name = "triangle-outline") {
+        content: "\F537";
+    }
+    & when (@name = "trophy") {
+        content: "\F538";
+    }
+    & when (@name = "trophy-award") {
+        content: "\F539";
+    }
+    & when (@name = "trophy-outline") {
+        content: "\F53A";
+    }
+    & when (@name = "trophy-variant") {
+        content: "\F53B";
+    }
+    & when (@name = "trophy-variant-outline") {
+        content: "\F53C";
+    }
+    & when (@name = "truck") {
+        content: "\F53D";
+    }
+    & when (@name = "truck-delivery") {
+        content: "\F53E";
+    }
+    & when (@name = "tshirt-crew") {
+        content: "\F53F";
+    }
+    & when (@name = "tshirt-v") {
+        content: "\F540";
+    }
+    & when (@name = "tumblr") {
+        content: "\F541";
+    }
+    & when (@name = "tumblr-reblog") {
+        content: "\F542";
+    }
+    & when (@name = "tune") {
+        content: "\F62E";
+    }
+    & when (@name = "tune-vertical") {
+        content: "\F66A";
+    }
+    & when (@name = "twitch") {
+        content: "\F543";
+    }
+    & when (@name = "twitter") {
+        content: "\F544";
+    }
+    & when (@name = "twitter-box") {
+        content: "\F545";
+    }
+    & when (@name = "twitter-circle") {
+        content: "\F546";
+    }
+    & when (@name = "twitter-retweet") {
+        content: "\F547";
+    }
+    & when (@name = "ubuntu") {
+        content: "\F548";
+    }
+    & when (@name = "umbraco") {
+        content: "\F549";
+    }
+    & when (@name = "umbrella") {
+        content: "\F54A";
+    }
+    & when (@name = "umbrella-outline") {
+        content: "\F54B";
+    }
+    & when (@name = "undo") {
+        content: "\F54C";
+    }
+    & when (@name = "undo-variant") {
+        content: "\F54D";
+    }
+    & when (@name = "unfold-less") {
+        content: "\F54E";
+    }
+    & when (@name = "unfold-more") {
+        content: "\F54F";
+    }
+    & when (@name = "ungroup") {
+        content: "\F550";
+    }
+    & when (@name = "unity") {
+        content: "\F6AE";
+    }
+    & when (@name = "untappd") {
+        content: "\F551";
+    }
+    & when (@name = "update") {
+        content: "\F6AF";
+    }
+    & when (@name = "upload") {
+        content: "\F552";
+    }
+    & when (@name = "usb") {
+        content: "\F553";
+    }
+    & when (@name = "vector-arrange-above") {
+        content: "\F554";
+    }
+    & when (@name = "vector-arrange-below") {
+        content: "\F555";
+    }
+    & when (@name = "vector-circle") {
+        content: "\F556";
+    }
+    & when (@name = "vector-circle-variant") {
+        content: "\F557";
+    }
+    & when (@name = "vector-combine") {
+        content: "\F558";
+    }
+    & when (@name = "vector-curve") {
+        content: "\F559";
+    }
+    & when (@name = "vector-difference") {
+        content: "\F55A";
+    }
+    & when (@name = "vector-difference-ab") {
+        content: "\F55B";
+    }
+    & when (@name = "vector-difference-ba") {
+        content: "\F55C";
+    }
+    & when (@name = "vector-intersection") {
+        content: "\F55D";
+    }
+    & when (@name = "vector-line") {
+        content: "\F55E";
+    }
+    & when (@name = "vector-point") {
+        content: "\F55F";
+    }
+    & when (@name = "vector-polygon") {
+        content: "\F560";
+    }
+    & when (@name = "vector-polyline") {
+        content: "\F561";
+    }
+    & when (@name = "vector-rectangle") {
+        content: "\F5C6";
+    }
+    & when (@name = "vector-selection") {
+        content: "\F562";
+    }
+    & when (@name = "vector-square") {
+        content: "\F001";
+    }
+    & when (@name = "vector-triangle") {
+        content: "\F563";
+    }
+    & when (@name = "vector-union") {
+        content: "\F564";
+    }
+    & when (@name = "verified") {
+        content: "\F565";
+    }
+    & when (@name = "vibrate") {
+        content: "\F566";
+    }
+    & when (@name = "video") {
+        content: "\F567";
+    }
+    & when (@name = "video-off") {
+        content: "\F568";
+    }
+    & when (@name = "video-switch") {
+        content: "\F569";
+    }
+    & when (@name = "view-agenda") {
+        content: "\F56A";
+    }
+    & when (@name = "view-array") {
+        content: "\F56B";
+    }
+    & when (@name = "view-carousel") {
+        content: "\F56C";
+    }
+    & when (@name = "view-column") {
+        content: "\F56D";
+    }
+    & when (@name = "view-dashboard") {
+        content: "\F56E";
+    }
+    & when (@name = "view-day") {
+        content: "\F56F";
+    }
+    & when (@name = "view-grid") {
+        content: "\F570";
+    }
+    & when (@name = "view-headline") {
+        content: "\F571";
+    }
+    & when (@name = "view-list") {
+        content: "\F572";
+    }
+    & when (@name = "view-module") {
+        content: "\F573";
+    }
+    & when (@name = "view-quilt") {
+        content: "\F574";
+    }
+    & when (@name = "view-stream") {
+        content: "\F575";
+    }
+    & when (@name = "view-week") {
+        content: "\F576";
+    }
+    & when (@name = "vimeo") {
+        content: "\F577";
+    }
+    & when (@name = "vine") {
+        content: "\F578";
+    }
+    & when (@name = "violin") {
+        content: "\F60F";
+    }
+    & when (@name = "visualstudio") {
+        content: "\F610";
+    }
+    & when (@name = "vk") {
+        content: "\F579";
+    }
+    & when (@name = "vk-box") {
+        content: "\F57A";
+    }
+    & when (@name = "vk-circle") {
+        content: "\F57B";
+    }
+    & when (@name = "vlc") {
+        content: "\F57C";
+    }
+    & when (@name = "voice") {
+        content: "\F5CB";
+    }
+    & when (@name = "voicemail") {
+        content: "\F57D";
+    }
+    & when (@name = "volume-high") {
+        content: "\F57E";
+    }
+    & when (@name = "volume-low") {
+        content: "\F57F";
+    }
+    & when (@name = "volume-medium") {
+        content: "\F580";
+    }
+    & when (@name = "volume-off") {
+        content: "\F581";
+    }
+    & when (@name = "vpn") {
+        content: "\F582";
+    }
+    & when (@name = "walk") {
+        content: "\F583";
+    }
+    & when (@name = "wallet") {
+        content: "\F584";
+    }
+    & when (@name = "wallet-giftcard") {
+        content: "\F585";
+    }
+    & when (@name = "wallet-membership") {
+        content: "\F586";
+    }
+    & when (@name = "wallet-travel") {
+        content: "\F587";
+    }
+    & when (@name = "wan") {
+        content: "\F588";
+    }
+    & when (@name = "watch") {
+        content: "\F589";
+    }
+    & when (@name = "watch-export") {
+        content: "\F58A";
+    }
+    & when (@name = "watch-import") {
+        content: "\F58B";
+    }
+    & when (@name = "watch-vibrate") {
+        content: "\F6B0";
+    }
+    & when (@name = "water") {
+        content: "\F58C";
+    }
+    & when (@name = "water-off") {
+        content: "\F58D";
+    }
+    & when (@name = "water-percent") {
+        content: "\F58E";
+    }
+    & when (@name = "water-pump") {
+        content: "\F58F";
+    }
+    & when (@name = "watermark") {
+        content: "\F612";
+    }
+    & when (@name = "weather-cloudy") {
+        content: "\F590";
+    }
+    & when (@name = "weather-fog") {
+        content: "\F591";
+    }
+    & when (@name = "weather-hail") {
+        content: "\F592";
+    }
+    & when (@name = "weather-lightning") {
+        content: "\F593";
+    }
+    & when (@name = "weather-lightning-rainy") {
+        content: "\F67D";
+    }
+    & when (@name = "weather-night") {
+        content: "\F594";
+    }
+    & when (@name = "weather-partlycloudy") {
+        content: "\F595";
+    }
+    & when (@name = "weather-pouring") {
+        content: "\F596";
+    }
+    & when (@name = "weather-rainy") {
+        content: "\F597";
+    }
+    & when (@name = "weather-snowy") {
+        content: "\F598";
+    }
+    & when (@name = "weather-snowy-rainy") {
+        content: "\F67E";
+    }
+    & when (@name = "weather-sunny") {
+        content: "\F599";
+    }
+    & when (@name = "weather-sunset") {
+        content: "\F59A";
+    }
+    & when (@name = "weather-sunset-down") {
+        content: "\F59B";
+    }
+    & when (@name = "weather-sunset-up") {
+        content: "\F59C";
+    }
+    & when (@name = "weather-windy") {
+        content: "\F59D";
+    }
+    & when (@name = "weather-windy-variant") {
+        content: "\F59E";
+    }
+    & when (@name = "web") {
+        content: "\F59F";
+    }
+    & when (@name = "webcam") {
+        content: "\F5A0";
+    }
+    & when (@name = "webhook") {
+        content: "\F62F";
+    }
+    & when (@name = "wechat") {
+        content: "\F611";
+    }
+    & when (@name = "weight") {
+        content: "\F5A1";
+    }
+    & when (@name = "weight-kilogram") {
+        content: "\F5A2";
+    }
+    & when (@name = "whatsapp") {
+        content: "\F5A3";
+    }
+    & when (@name = "wheelchair-accessibility") {
+        content: "\F5A4";
+    }
+    & when (@name = "white-balance-auto") {
+        content: "\F5A5";
+    }
+    & when (@name = "white-balance-incandescent") {
+        content: "\F5A6";
+    }
+    & when (@name = "white-balance-iridescent") {
+        content: "\F5A7";
+    }
+    & when (@name = "white-balance-sunny") {
+        content: "\F5A8";
+    }
+    & when (@name = "wifi") {
+        content: "\F5A9";
+    }
+    & when (@name = "wifi-off") {
+        content: "\F5AA";
+    }
+    & when (@name = "wii") {
+        content: "\F5AB";
+    }
+    & when (@name = "wikipedia") {
+        content: "\F5AC";
+    }
+    & when (@name = "window-close") {
+        content: "\F5AD";
+    }
+    & when (@name = "window-closed") {
+        content: "\F5AE";
+    }
+    & when (@name = "window-maximize") {
+        content: "\F5AF";
+    }
+    & when (@name = "window-minimize") {
+        content: "\F5B0";
+    }
+    & when (@name = "window-open") {
+        content: "\F5B1";
+    }
+    & when (@name = "window-restore") {
+        content: "\F5B2";
+    }
+    & when (@name = "windows") {
+        content: "\F5B3";
+    }
+    & when (@name = "wordpress") {
+        content: "\F5B4";
+    }
+    & when (@name = "worker") {
+        content: "\F5B5";
+    }
+    & when (@name = "wrap") {
+        content: "\F5B6";
+    }
+    & when (@name = "wrench") {
+        content: "\F5B7";
+    }
+    & when (@name = "wunderlist") {
+        content: "\F5B8";
+    }
+    & when (@name = "xaml") {
+        content: "\F673";
+    }
+    & when (@name = "xbox") {
+        content: "\F5B9";
+    }
+    & when (@name = "xbox-controller") {
+        content: "\F5BA";
+    }
+    & when (@name = "xbox-controller-off") {
+        content: "\F5BB";
+    }
+    & when (@name = "xda") {
+        content: "\F5BC";
+    }
+    & when (@name = "xing") {
+        content: "\F5BD";
+    }
+    & when (@name = "xing-box") {
+        content: "\F5BE";
+    }
+    & when (@name = "xing-circle") {
+        content: "\F5BF";
+    }
+    & when (@name = "xml") {
+        content: "\F5C0";
+    }
+    & when (@name = "yeast") {
+        content: "\F5C1";
+    }
+    & when (@name = "yelp") {
+        content: "\F5C2";
+    }
+    & when (@name = "yin-yang") {
+        content: "\F67F";
+    }
+    & when (@name = "youtube-play") {
+        content: "\F5C3";
+    }
+    & when (@name = "zip-box") {
+        content: "\F5C4";
     }
 }
 
