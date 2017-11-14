@@ -66,10 +66,12 @@ var SplitView = function () {
             if (!this.left) {
                 this.left = node;
                 this.node().appendChild(node);
+                Dom.addClass(this.left, "sys-viewport");
             } else {
                 if (!this.right) {
                     this.right = node;
                     this.node().appendChild(node);
+                    Dom.addClass(this.right, "sys-viewport");
                 }
             }
         }
@@ -175,6 +177,9 @@ var SplitView = function () {
             	this.listener(lw, rw);
             }
         }
+
+        if (this.left) BaseWidget.invalidateResponsiveBreakpointClasses(this.left);
+        if (this.right) BaseWidget.invalidateResponsiveBreakpointClasses(this.right);
     };
 
     SplitView.prototype.onSizeChanged = function () {

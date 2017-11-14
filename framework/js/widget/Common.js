@@ -295,7 +295,9 @@ widget.Util = function() {
                         selectors = selectors.replace(/@([a-z])/gi, ".AnonId_" + (templateName + "_") + "$1");
                     }
                     selectors = selectors.replace(/[ \r\n\t]\,[ \r\n\t]+/g, ",");
-                    if (!selectors.match(/^[ \t]*body[ \.\[:]/) && !selectors.match(/^[ \t]*@media /)) {
+                    if (!selectors.match(/^[ \t]*body[ \.\[:]/)
+                            && !selectors.match(/^[ \t]*@media /)
+                            && !selectors.match(/^[ \t]*#sys-/)) {
                         selectors = prefix + " " + selectors.replace(/\,/g, ",\n" + prefix + " ");
                     }
 
@@ -307,6 +309,8 @@ widget.Util = function() {
 
                 //appending less config
                 var includes = "";
+                includes += "@import \"" + __getFrameworkPrefix() + "style/layout-includes.less\";\n";
+
                 if (window.APP_THEME_PATH) {
                     includes += "@import \"" + window.APP_THEME_PATH + "\";\n";
                 }
@@ -316,6 +320,8 @@ widget.Util = function() {
 
                 less.render(css, lessParserConfig).then(function (output) {
                     widget.Util.insertGlobalStyleSheet(output.css, templateName);
+                }).catch(function (e) {
+                    console.error(e);
                 });
 
                 processedCSS[templateName] = true;
@@ -862,9 +868,26 @@ BaseWidget.signalOnAttachedRecursively = function (container) {
         BaseWidget.signalOnAttachedRecursively(child);
     }
 };
+
+BaseWidget.RESPONSIVE_BREAKPOINTS = {
+    sm: 576,
+    md: 768,
+    lg: 992,
+    xl: 1200
+};
+BaseWidget.invalidateResponsiveBreakpointClasses = function (viewport) {
+    var w = viewport.offsetWidth;
+    for (var name in BaseWidget.RESPONSIVE_BREAKPOINTS) {
+        console.log(w, name, w >= BaseWidget.RESPONSIVE_BREAKPOINTS[name]);
+        Dom.toggleClass(viewport, name, w >= BaseWidget.RESPONSIVE_BREAKPOINTS[name]);
+    }
+};
 BaseWidget.signalOnSizeChangedRecursively = function (container) {
     if (container.__widget && container.__widget.onSizeChanged) {
         container.__widget.onSizeChanged();
+    }
+    if (Dom.hasClass(container, "sys-viewport")) {
+        BaseWidget.invalidateResponsiveBreakpointClasses(container);
     }
     for (var i = 0; i < container.childNodes.length; i++) {
         var child = container.childNodes[i];
@@ -1159,4 +1182,4 @@ widget.busyIndicator = (function () {
 })();
 
 window.__busyIndicator = widget.busyIndicator;
-window.APP_THEME_PATH = __getFrameworkPrefix() + "style/theme-default-variables.less";
+window.APP_THEME_PATH = __getFrameworkPrefix() + "style/theme-default-includes.less";

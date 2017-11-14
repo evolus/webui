@@ -15,8 +15,23 @@
             margin-top: 0.5em;
             align-items: center;
         }
-        @dataTable td.Col_name span {
+        @dataTable td.Col_developer hbox {
+            align-items: center;
+        }
+        @dataTable td.Col_developer span {
             opacity: 0.6;
+        }
+        @dataTable td.Col_developer img {
+            width: 3em;
+            height: 3em;
+            background: #eee;
+            margin-right: 0.5em;
+            border-radius: 1.5em;
+            border: solid 0.2em transparent;
+            box-sizing: border-box;
+        }
+        @dataTable .DTCheckedItemRow td.Col_developer img {
+            border-color: @primary_color;
         }
     </style>
     <hbox anon-id="titleBar">

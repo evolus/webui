@@ -46,6 +46,7 @@ var Paginator = function () {
         this.firstRender = true;
 
         this.selectedItems = [];
+        this.lastPageSizeCalculationAt = 0;
     }
     __extend(BaseWidget, Paginator);
 
@@ -73,6 +74,9 @@ var Paginator = function () {
                 },
                 onSelectNoneAction: function () {
                     thiz.clearSelection();
+                },
+                onSizeChanged: function () {
+                    thiz.onRendererSizeChanged();
                 }
             });
         }
@@ -147,13 +151,40 @@ var Paginator = function () {
         this.source.setOrder(order);
         this.gotoPage(this.currentPage);
     };
+    Paginator.prototype.onRendererSizeChanged = function () {
+        if (this.options && this.options.avoidPageSizeRecalculation) return;
+        if (this.firstRender) return;
+
+        var now = new Date().getTime();
+
+        if (now - this.lastPageSizeCalculationAt < 1000) return;
+
+        var thiz = this;
+        var calculatePageSize = this.renderer.calculatePreferredPageSize && this.renderer.getItems;
+        if (!calculatePageSize) return;
+        var items = this.renderer.getItems();
+
+        var currentIndex = this.currentPage * this.pageSize;
+        thiz.lastPageSizeCalculationAt = now;
+        thiz.renderer.calculatePreferredPageSize(items, function (preferredPageSize) {
+            if (!isNaN(preferredPageSize) && preferredPageSize > 0 && preferredPageSize != thiz.pageSize) {
+                var newPageIndex = Math.floor(currentIndex / preferredPageSize);
+                thiz.pageSize = preferredPageSize;
+                thiz.gotoPage(newPageIndex);
+            } else {
+                thiz.renderer.setItems(items);
+            }
+        });
+
+    };
+
     Paginator.prototype.gotoPage = function (pageIndex, silent) {
         var thiz = this;
         //this.renderer.setItems([], true);
         if (this.renderer.showBusy && !silent) this.renderer.showBusy(true);
         this.source.loadPage(pageIndex, this.pageSize, function (results, totalItems) {
             var showPaginator = thiz.options != null && thiz.options.showPaginator;
-            var calculatePageSize = thiz.needCalculatePageSize() && showPaginator && pageIndex == 0 && totalItems > 0 && thiz.firstRender && thiz.renderer.getPreferredPageSize;
+            var calculatePageSize = thiz.needCalculatePageSize() && showPaginator && pageIndex == 0 && totalItems > 0 && thiz.firstRender && thiz.renderer.calculatePreferredPageSize;
 
             if (thiz.selectedItems && thiz.selectedItems.length > 0 && results && results.length > 0) {
                 var updatedItems = [];
@@ -168,7 +199,6 @@ var Paginator = function () {
 
                 thiz.selectedItems = updatedItems;
             }
-            thiz.renderer.setItems(results, calculatePageSize);
 
             var count = results.length;
 
@@ -176,19 +206,47 @@ var Paginator = function () {
                 thiz.renderer.selectItems(thiz.selectedItems);
             }
 
-            if (calculatePageSize) { //perform calculation
-                //thiz.renderer.setItems(results.slice(0, Math.min(5, results.length)));
-
-                thiz.firstRender = false;
-                var preferred = thiz.renderer.getPreferredPageSize();
-                if (!isNaN(preferred) && preferred > 0) {
-                    thiz.pageSize = preferred;
+            var postRenderRunnable = function () {
+                if (thiz.source.getOrder && thiz.renderer.setOrder) {
+                    thiz.renderer.setOrder(thiz.source.getOrder());
                 }
-                if (thiz.pageSize > results.length) {
-                    thiz.gotoPage(0);
-                    if (thiz.renderer.showBusy && !silent) thiz.renderer.showBusy(false);
-                    return;
+
+                //calculate pages
+                thiz.totalPages = Math.ceil(totalItems / thiz.pageSize);
+                thiz.currentPage = pageIndex;
+                thiz.totalItems = totalItems;
+
+                if (thiz.options && thiz.options.onPageLoaded) {
+                    thiz.options.onPageLoaded(thiz, count);
+                }
+
+                if (showPaginator) {
+                	thiz._updateUI();
                 } else {
+                	thiz.container.innerHTML = "";
+                	thiz.invalidateRendererHeight();
+                }
+
+                thiz.renderer.multiPages = thiz.totalPages > 1;
+                thiz.renderer.totalItems = thiz.totalItems;
+                if (thiz.renderer.showBusy && !silent) thiz.renderer.showBusy(false);
+
+            }
+
+            thiz.firstRender = false;
+
+            if (calculatePageSize) { //perform calculation
+                thiz.lastPageSizeCalculationAt = new Date().getTime();
+                thiz.renderer.calculatePreferredPageSize(results, function (preferredPageSize) {
+                    console.log("calculated preferredPageSize: ", preferredPageSize);
+                    if (!isNaN(preferredPageSize) && preferredPageSize > 0) thiz.pageSize = preferredPageSize;
+
+                    if (thiz.pageSize > results.length) {
+                        if (thiz.renderer.showBusy && !silent) thiz.renderer.showBusy(false);
+                        thiz.gotoPage(0, silent);
+                        return;
+                    }
+
                     var subList = results.slice(0, thiz.pageSize);
                     thiz.renderer.setItems(subList);
                     count = subList.length;
@@ -196,32 +254,13 @@ var Paginator = function () {
                     if (!thiz.renderer.isSelectAll()) {
                         thiz.renderer.selectItems(thiz.selectedItems);
                     }
-                }
-            }
 
-            if (thiz.source.getOrder && thiz.renderer.setOrder) {
-                thiz.renderer.setOrder(thiz.source.getOrder());
-            }
-
-            //calculate pages
-            thiz.totalPages = Math.ceil(totalItems / thiz.pageSize);
-            thiz.currentPage = pageIndex;
-            thiz.totalItems = totalItems;
-
-            if (thiz.options && thiz.options.onPageLoaded) {
-                thiz.options.onPageLoaded(thiz, count);
-            }
-
-            if (showPaginator) {
-            	thiz._updateUI();
+                    postRenderRunnable();
+                });
             } else {
-            	thiz.container.innerHTML = "";
-            	thiz.invalidateRendererHeight();
+                thiz.renderer.setItems(results);
+                postRenderRunnable();
             }
-
-            thiz.renderer.multiPages = thiz.totalPages > 1;
-            thiz.renderer.totalItems = thiz.totalItems;
-            if (thiz.renderer.showBusy && !silent) thiz.renderer.showBusy(false);
         }, function (error) {
             if (thiz.renderer.showBusy && !silent) thiz.renderer.showBusy(false);
         });
@@ -293,7 +332,7 @@ var Paginator = function () {
         var count = to - from + 1;
         if (enableDot && count - 2 * Paginator.PADDING > Paginator.THRESHOLD) {
             var html = this._generateButtons(from, from + Paginator.PADDING, false);
-            html += "<button class=\"btn btn-default\" type=\"button\"><span>...</span></button>"; //dot
+            html += "<button type=\"button\"><span>...</span></button>"; //dot
             html += this._generateButtons(to - Paginator.PADDING, to, false);
             return html;
         } else {
@@ -301,9 +340,7 @@ var Paginator = function () {
             for (var i = Math.max(0, from); i < Math.min(to, this.totalPages); i ++) {
                 html += "<button type=\"button\" role=\"" + i + "\"";
                 if (i == this.currentPage) {
-                    html += " class=\"btn btn-default active\"";
-                } else {
-                    html += " class=\"btn btn-default\"";
+                    html += " class=\"active\"";
                 }
                 html += "><span>" + (i + 1) + "</span></button>";
             }
@@ -320,12 +357,12 @@ var Paginator = function () {
         var html = "";
 
         if (this.options && this.options.withoutStatus) {
-            html = "<div class=\"ResultInfo row\">" +
-            "<div class=\"col-md-12\">" +
+            html = "<div class=\"ResultInfo\">" +
+            "<div>" +
             "<ul class=\"pagination\" id=\"" + id + "\">";
         } else {
-            html = "<div class=\"ResultInfo row\"><div class=\"col-md-4\"><p class=\"Status\">" + (this.options && this.options.getTotalItemText ? this.options.getTotalItemText(this.totalItems) : "") + "</p></div>" +
-            "<div class=\"col-md-8\">" +
+            html = "<div class=\"ResultInfo row\"><div><p class=\"Status\">" + (this.options && this.options.getTotalItemText ? this.options.getTotalItemText(this.totalItems) : "") + "</p></div>" +
+            "<div>" +
             "<ul class=\"pagination\" id=\"" + id + "\">";
         }
 
@@ -355,9 +392,9 @@ var Paginator = function () {
         var id = widget.random();
         var html = "";
 
-        html += "<div class=\"pagination\" id=\"" + id + "\"><div class=\"btn-group nav-pills\">";
+        html += "<div class=\"pagination\" id=\"" + id + "\"><div class=\"ButtonGroup\">";
 
-        html += "<button type=\"button\" class=\"btn btn-default\" role=\"prev\"";
+        html += "<button type=\"button\" role=\"prev\"";
         if (this.currentPage == 0) {
             html += " disabled=\"true\"";
         }
@@ -367,7 +404,7 @@ var Paginator = function () {
         html += this._generateButtons(0, this.currentPage, true);
         html += this._generateButtons(this.currentPage, this.totalPages, true);
 
-        html += "<button type=\"button\" class=\"btn btn-default\" role=\"next\"";
+        html += "<button type=\"button\" role=\"next\"";
         if (this.currentPage == this.totalPages - 1) {
             html += " disabled=\"true\"";
         }

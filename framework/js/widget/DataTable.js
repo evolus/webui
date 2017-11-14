@@ -740,7 +740,7 @@ var DataTable = function () {
         this.isConfigurable = true;
         return this;
     };
-    DataTable.prototype.invalidateSizing = function() {
+    DataTable.prototype.invalidateSizing = function(callback) {
         // this.count = !this.count ? 1 : (this.count + 1);
         // if (this.count >= 10) return;
         // console.log("invalidateSizing called: " + this.count);
@@ -757,6 +757,7 @@ var DataTable = function () {
             thiz.setup(function () {
                 thiz._setItems(thiz.getItems(), false);
                 thiz.selectItems(selected);
+                if (callback) callback();
             });
         }, 1);
 
@@ -765,7 +766,12 @@ var DataTable = function () {
         return true;
     };
     DataTable.prototype.onSizeChanged = function () {
-    	this.invalidateSizing();
+        var thiz = this;
+    	this.invalidateSizing(function () {
+            for (var i = 0; i < thiz.listeners.length; i ++) {
+                if (thiz.listeners[i].onSizeChanged) thiz.listeners[i].onSizeChanged(thiz);
+            }
+        });
     };
     DataTable.prototype._init = function() {
         var random = widget.random();
@@ -1066,16 +1072,58 @@ var DataTable = function () {
 
 		return rowHeight;
 	};
+    DataTable.prototype.calculatePreferredPageSize = function (sampleItems, callback) {
+        console.log("calculatePreferredPageSize is called");
+        Dom.addClass(this.node(), "PageSizeCalculating");
+        var thiz = this;
+
+        this.setItems([]);
+        window.setTimeout(function () {
+            thiz.setItems(sampleItems);
+            var tries = 10;
+            var f = function () {
+                try {
+                    var pageSize = thiz.getPreferredPageSize();
+                    thiz.setItems([]);
+                    Dom.removeClass(thiz.node(), "PageSizeCalculating");
+                    callback(pageSize);
+                } catch (e) {
+                    if (tries --> 0) {
+                        window.setTimeout(f, 100);
+                    } else {
+                        thiz.setItems([]);
+                        Dom.removeClass(thiz.node(), "PageSizeCalculating");
+                        callback(1);
+                    }
+                }
+            };
+
+            window.setTimeout(f, 100);
+        }, 100);
+    }
     DataTable.prototype.getPreferredPageSize = function (busy) {
         this.table.style.height = "auto";
         var headerHeight = Dom.getOffsetHeight(this.table.getElementsByTagName("th")[0]);
+        if (headerHeight <= 0) throw new Error("headerHeight <= 0");
+
         var bodyHeight = Dom.getOffsetHeight(this.table) - headerHeight;
+        if (bodyHeight <= 0) throw new Error("bodyHeight <= 0");
+
         var rowHeight = bodyHeight / (this.items ? this.items.length : 1);
 
         var maxBodyHeight = Dom.getOffsetHeight(this.container) - Dom.calculateSystemScrollbarSize().h - headerHeight;
         var rows = Math.floor(maxBodyHeight / rowHeight);
         if (rows <= 0) rows = 1;
         this.lastCalculatedPageSize = rows;
+
+        console.log("getPreferredPageSize: ", {
+            headerHeight: headerHeight,
+            bodyHeight: bodyHeight,
+            rowHeight: rowHeight,
+            maxBodyHeight: maxBodyHeight,
+            rows: rows
+        });
+
         return rows;
     };
 

@@ -7,6 +7,9 @@
         @this:hover {
             overflow-x: auto;
         }
+        @this.PageSizeCalculating > table {
+            visibility: hidden;
+        }
         @this > .ColumnSetting {
             position: absolute;
             top: 0px;
@@ -26,6 +29,7 @@
         @this:hover > .ColumnSetting span:hover i {
             color: #369;
         }
+
         .SelectionInfoPane {
             width: 240px;
             height: 45%;

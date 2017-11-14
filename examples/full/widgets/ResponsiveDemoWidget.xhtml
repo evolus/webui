@@ -1,0 +1,215 @@
+<vbox xmlns:ui="http://evolus.vn/Namespaces/WebUI/1.0">
+    <style>
+        h1 {
+            margin: 0px;
+            font-weight: 500;
+            font-size: 2.5em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        @summaryPane {
+            align-items: flex-start;
+            margin-top: 0.5em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        @summaryPane icon {
+            font-size: 3.5em;
+            opacity: 0.4;
+        }
+        @temp {
+            font-size: 3.5em;
+            margin-left: 0.3em;
+        }
+
+
+        @forecastList {
+            #sys-vbox();
+            margin-top: 2em;
+        }
+        @forecastList > item {
+            #sys-hbox();
+            align-items: center;
+            border-bottom: solid 1px #ccc;
+            padding: 0.5em;
+        }
+
+        @forecastList > item:first-child {
+            border-top: solid 1px #ccc;
+        }
+        @forecastList > item > strong {
+            width: 7em;
+        }
+        @forecastList > item icon {
+            font-size: 3em;
+        }
+        @forecastList > item > icon,
+        @forecastList > item > .Temp,
+        @forecastList > item > .Pollen {
+            #sys-flex(1);
+        }
+        @forecastList > item > .Temp {
+            #sys-vbox();
+            align-items: center;
+        }
+        @forecastList > item > .Temp > span + span {
+            opacity: 0.5;
+        }
+
+        @forecastList > item > .Pollen > * + * {
+            margin-left: 1ex;
+        }
+
+        #sys-media-sm-up({
+            @forecastList > item > .Temp {
+                #sys-hbox();
+                font-size: 0.9em;
+            }
+            @forecastList > item > .Temp > * {
+                #sys-flex(1);
+            }
+        });
+
+        #sys-media-md-up({
+            h1 {
+                font-size: 3.7em;
+            }
+            @forecastList {
+                #sys-hbox();
+                flex-wrap: wrap;
+            }
+            @forecastList > item {
+                #sys-flex(1);
+                #sys-vbox();
+                align-items: center;
+                border: none;
+                padding: 0.5em;
+                flex-basis: auto;
+            }
+            @forecastList > item > icon,
+            @forecastList > item > .Temp,
+            @forecastList > item > .Pollen {
+                #sys-no-flex();
+            }
+            @forecastList > item > icon {
+                margin: 0.3em 0em;
+            }
+
+            @forecastList > item > .Temp > * + * {
+                margin-left: 1ex;
+            }
+
+            @forecastList > item:first-child {
+                border: none;
+            }
+            @forecastList > item > strong {
+                width: auto;
+            }
+        });
+    </style>
+    <vbox>
+        <h1>New York, NY</h1>
+        <div>Tuesday, April 15th</div>
+        <div>Overcast</div>
+        <hbox anon-id="summaryPane">
+            <hbox flex="1">
+                <icon class="weather-lightning-rainy"></icon>
+                <span anon-id="temp">57<sup>&#8457;</sup></span>
+            </hbox>
+            <vbox flex="1">
+                <span>Precipitation: 100%</span>
+                <span>Humidity: 97%</span>
+                <span>Wind: 4 mph SW</span>
+                <span>Pollen count: 36</span>
+            </vbox>
+        </hbox>
+        <box anon-id="forecastList">
+            <item>
+                <strong>Today</strong>
+                <icon class="weather-pouring"></icon>
+                <box class="Temp">
+                    <span>68 &#8457;</span>
+                    <span>36 &#8457;</span>
+                </box>
+                <box class="Pollen">
+                    <span>Pollen</span>
+                    <span>36</span>
+                </box>
+            </item>
+            <item>
+                <strong>Wednesday</strong>
+                <icon class="weather-partlycloudy"></icon>
+                <box class="Temp">
+                    <span>68 &#8457;</span>
+                    <span>36 &#8457;</span>
+                </box>
+                <box class="Pollen">
+                    <span>Pollen</span>
+                    <span>36</span>
+                </box>
+            </item>
+            <item>
+                <strong>Thursday</strong>
+                <icon class="weather-rainy"></icon>
+                <box class="Temp">
+                    <span>68 &#8457;</span>
+                    <span>36 &#8457;</span>
+                </box>
+                <box class="Pollen">
+                    <span>Pollen</span>
+                    <span>36</span>
+                </box>
+            </item>
+            <item>
+                <strong>Friday</strong>
+                <icon class="weather-snowy"></icon>
+                <box class="Temp">
+                    <span>68 &#8457;</span>
+                    <span>36 &#8457;</span>
+                </box>
+                <box class="Pollen">
+                    <span>Pollen</span>
+                    <span>36</span>
+                </box>
+            </item>
+            <item>
+                <strong>Saturday</strong>
+                <icon class="weather-snowy-rainy"></icon>
+                <box class="Temp">
+                    <span>68 &#8457;</span>
+                    <span>36 &#8457;</span>
+                </box>
+                <box class="Pollen">
+                    <span>Pollen</span>
+                    <span>36</span>
+                </box>
+            </item>
+            <item>
+                <strong>Sunday</strong>
+                <icon class="weather-windy-variant"></icon>
+                <box class="Temp">
+                    <span>68 &#8457;</span>
+                    <span>36 &#8457;</span>
+                </box>
+                <box class="Pollen">
+                    <span>Pollen</span>
+                    <span>36</span>
+                </box>
+            </item>
+            <item>
+                <strong>Monday</strong>
+                <icon class="weather-hail"></icon>
+                <box class="Temp">
+                    <span>68 &#8457;</span>
+                    <span>36 &#8457;</span>
+                </box>
+                <box class="Pollen">
+                    <span>Pollen</span>
+                    <span>36</span>
+                </box>
+            </item>
+        </box>
+    </vbox>
+</vbox>

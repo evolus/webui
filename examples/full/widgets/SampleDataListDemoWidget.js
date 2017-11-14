@@ -140,14 +140,21 @@ SampleDataListDemoWidget.prototype.onAttached = function () {
 
 
 SampleDataListDemoWidget.prototype.initializeDataTable = function () {
-    this.dataTable.column(new DataTable.GenericDomColumn("Name", function (data) {
-        return {
-                    _name: "vbox",
-                    _children: [
-                        {_name: "strong", _text: data.name},
-                        {_name: "span", _text: data.email}
-                    ]
-                };
+    this.dataTable.column(new DataTable.GenericDomColumn("Developer", function (data) {
+        return { _name: "hbox",
+                 _children: [
+                     {
+                         _name: "img",
+                         src: "https://robohash.org/" + escape(data.email) + ".png"
+                     },
+                     {
+                        _name: "vbox",
+                        flex: "1",
+                        _children: [
+                            {_name: "strong", _text: data.name},
+                            {_name: "span", _text: data.email}
+                        ]
+                }]};
     }).width("2*"));
     this.dataTable.column(new DataTable.GenericDomColumn("Company", function (data) {
         return {

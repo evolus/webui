@@ -8,7 +8,7 @@
 
         <!--  FRAMEWORK STYLES -->
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet" />
-        <link rel="stylesheet" href="../../framework/style/layout.css" />
+        <link rel="stylesheet/less" type="text/css" href="../../framework/style/layout.less" />
         <link rel="stylesheet/less" type="text/css" href="../../framework/style/theme-default.less?" />
         <!--
         <link rel="stylesheet/less" type="text/css" href="../../framework/style/icon-fontawesome.less" />
@@ -37,15 +37,24 @@
         <!-- APPLICATION SPECIFIC WIDGETS -->
         <script type="text/javascript" src="widgets/Sample.js"></script>
         <script type="text/javascript" src="widgets/SampleDataListDemoWidget.js"></script>
+        <script type="text/javascript" src="widgets/ResponsiveDemoWidget.js"></script>
         <script type="text/javascript" src="widgets/SampleDialog.js"></script>
 
 
     </head>
     <body>
         <ui:SplitView>
-            <div>Left</div>
+            <vbox>
+                <ui:ResponsiveDemoWidget anon-id="responsiveDemoWidget1" flex="1" />
+            </vbox>
             <vbox>
                 <ui:TabPane anon-id="settingTabPane" flex="1">
+                    <vbox anon-id="responsiveTab" flex="1" tab-title="Responsiveness">
+                        <hbox class="sys-viewport" flex="1">
+                            <ui:ResponsiveDemoWidget anon-id="responsiveDemoWidget2" flex="1" />
+                        </hbox>
+                    </vbox>
+                    <!--
                     <vbox anon-id="dataListTab" flex="1" tab-title="Data List &amp; Actions">
                         <ui:SampleDataListDemoWidget anon-id="sampleDataListDemoWidget" flex="1" />
                     </vbox>
@@ -55,6 +64,7 @@
                     <vbox anon-id="generalTab" flex="1" tab-title="Second">
                         This is the content
                     </vbox>
+                    -->
                 </ui:TabPane>
             </vbox>
         </ui:SplitView>

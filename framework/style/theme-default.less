@@ -1,4 +1,4 @@
-@import "theme-default-variables.less";
+@import "theme-default-includes.less";
 
 @keyframes ripple {
     0% {
@@ -21,6 +21,27 @@
     100% {
         opacity: 0;
     }
+}
+
+html {
+  height: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  margin: 0px;
+  padding: 0px;
+  height: 100%;
+}
+html {
+  user-select: none;
+  -o-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+}
+label {
+  font-weight: normal;
 }
 
 /* Base */
@@ -159,16 +180,16 @@ input[type="radio"] {
 }
 
 input[type="checkbox"]:before {
-    content: "\F131";
+    .mdi-icon-name-to-content("checkbox-blank-outline");
 }
 input[type="checkbox"]:checked::before {
-    content: "\F135";
+    .mdi-icon-name-to-content("checkbox-marked");
 }
 input[type="radio"]:before {
-    content: "\F130";
+    .mdi-icon-name-to-content("checkbox-blank-circle-outline");
 }
 input[type="radio"]:checked::before {
-    content: "\F134";
+    .mdi-icon-name-to-content("checkbox-marked-circle");
 }
 
 
@@ -615,4 +636,38 @@ input[type="radio"]:checked::before {
 }
 .widget_ActionBar button:not(:focus) {
     background: @toolbar-button-background;
+}
+
+/* Paginator */
+.widget_Paginator button.active {
+    background-color: @hover_bg;
+    font-weight: 900;
+}
+
+/* SplitView */
+
+.SplitViewSplitter {
+    cursor: ew-resize;
+}
+.SplitViewSplitter div {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    width: 4px;
+    bottom: -20px;
+    margin-left: -2px;
+}
+.SplitViewSplitter div.Kept,
+.SplitViewSplitter:hover div,
+.SplitViewSplitter:active div {
+    background: rgba(0, 0, 0, 0.1);
+}
+.SplitViewHeld .SplitViewSplitter div {
+    background: rgba(33, 66, 99, 0.6);
+}
+.SplitViewBOTH #dataContainer {
+    border-right: solid 2px transparent;
+}
+.SplitViewBOTH #mapContainerWrapper {
+    border-left: solid 2px transparent;
 }
